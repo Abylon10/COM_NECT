@@ -1,6 +1,6 @@
 /**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
+ * App colors for light and dark mode. Teal brand color comes from the
+ * Community Connect logo.
  */
 
 import '@/global.css';
@@ -9,18 +9,38 @@ import { Platform } from 'react-native';
 
 export const Colors = {
   light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+    text: '#11181C',
+    background: '#FFFFFF',
+    backgroundElement: '#F2F5F5',
+    backgroundSelected: '#E2E8E8',
+    textSecondary: '#60686C',
+    border: '#E3E8E8',
+    card: '#FFFFFF',
+    primary: '#1F9E96',
+    primarySoft: '#E3F4F3',
+    onPrimary: '#FFFFFF',
+    danger: '#E5484D',
+    dangerSoft: '#FDECEC',
+    warning: '#F5A524',
+    warningSoft: '#FEF4E1',
+    success: '#2E9F5B',
   },
   dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
+    text: '#ECEDEE',
+    background: '#0E1415',
+    backgroundElement: '#1A2223',
+    backgroundSelected: '#253031',
+    textSecondary: '#A3ADB0',
+    border: '#253031',
+    card: '#151C1D',
+    primary: '#38BDB4',
+    primarySoft: '#173634',
+    onPrimary: '#06201E',
+    danger: '#FF6369',
+    dangerSoft: '#3B1C1E',
+    warning: '#FFB547',
+    warningSoft: '#3A2D14',
+    success: '#4CC38A',
   },
 } as const;
 
@@ -61,5 +81,12 @@ export const Spacing = {
   six: 64,
 } as const;
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
+export const Radius = {
+  sm: 8,
+  md: 12,
+  lg: 16,
+  pill: 999,
+} as const;
+
+export const BottomTabInset = Platform.select({ ios: 50, android: 80, web: 88 }) ?? 0;
 export const MaxContentWidth = 800;
