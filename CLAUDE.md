@@ -48,8 +48,8 @@ changes that assume multiple people are committing at once.
 - **Tabs use `NativeTabs`** from `expo-router/unstable-native-tabs`,
   defined in `src/components/app-tabs.tsx`. Tabs are declared with
   `<NativeTabs.Trigger name="...">`, where the name matches a file in
-  `src/app/`. A separate `src/components/app-tabs.web.tsx` controls the
-  web preview only and hasn't been updated yet.
+  `src/app/(tabs)/`. A separate `src/components/app-tabs.web.tsx`
+  controls the web preview only.
 - **Backend: Supabase is the proposed choice but not yet confirmed by the
   team.** It fits the resident/organizer auth split, and Justin Dave has
   used it before on a separate project. Don't build real auth or database
