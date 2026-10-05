@@ -4,6 +4,7 @@ import { Alert, Pressable, StyleSheet, View } from 'react-native';
 
 import { Avatar } from '@/components/avatar';
 import { Icon, Icons } from '@/components/icon';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { ThemedText } from '@/components/themed-text';
 import { Spacing } from '@/constants/theme';
 import { useCurrentUser } from '@/hooks/use-events';
@@ -34,14 +35,17 @@ export function AppHeader() {
         </ThemedText>
       </View>
 
-      <Pressable
-        onPress={() =>
-          Alert.alert('Notifications', 'Event reminders and update alerts are coming soon.')
-        }
-        accessibilityLabel="Notifications"
-        style={[styles.side, styles.sideRight]}>
-        <Icon name={Icons.bell} size={22} color={theme.text} />
-      </Pressable>
+      <View style={[styles.side, styles.sideRight]}>
+        <ThemeToggle />
+        <Pressable
+          onPress={() =>
+            Alert.alert('Notifications', 'Event reminders and update alerts are coming soon.')
+          }
+          accessibilityLabel="Notifications"
+          hitSlop={8}>
+          <Icon name={Icons.bell} size={22} color={theme.text} />
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -54,10 +58,13 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.two,
   },
   side: {
-    width: 44,
+    width: 68,
   },
   sideRight: {
-    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    gap: Spacing.three,
   },
   brand: {
     flex: 1,
@@ -71,7 +78,7 @@ const styles = StyleSheet.create({
     height: 28,
   },
   brandText: {
-    fontSize: 19,
+    fontSize: 18,
     fontWeight: 700,
   },
 });

@@ -47,4 +47,7 @@ export const Icons = {
   privacy: { ios: 'hand.raised', md: 'privacy_tip' },
   help: { ios: 'questionmark.circle', md: 'help' },
   logout: { ios: 'rectangle.portrait.and.arrow.right', md: 'logout' },
+  sun: { ios: 'sun.max', md: 'light_mode' },
+  moon: { ios: 'moon', md: 'dark_mode' },
+  appearance: { ios: 'circle.lefthalf.filled', md: 'contrast' },
 } satisfies Record<string, IconName>;

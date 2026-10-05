@@ -166,6 +166,10 @@ src/
 - Cancelled/postponed events show a badge and the organizer's note;
   RSVP is disabled for cancelled events.
 - App icon, splash, and header use the Community Connect logo (teal).
+- Day/night toggle: sun/moon button in the Browse header, plus System /
+  Day / Night choice on Profile (`hooks/color-scheme-preference.ts`).
+  Native uses `Appearance.setColorScheme`, so the tab bar and alerts
+  follow too. The choice is in memory and resets to System on reload.
 - Web preview tab bar (`app-tabs.web.tsx`) is updated too.
 - ESLint is set up (`npx expo lint`). Lint and typecheck pass.
 - Not yet tested on a real device after these changes. Check the native
