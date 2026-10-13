@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+<title>Wireframe / 08 Create event (organizer)</title>
+<defs><clipPath id="clip1"><rect x="0" y="0" width="390" height="844" rx="0"/></clipPath></defs>
+
+<g id="Wireframe / 08 Create event (organizer)" clip-path="url(#clip1)">
+<rect id="Create event background" x="0" y="0" width="390" height="844" fill="#FFFFFF"/>
+<g id="Status bar">
+<text id="Time" x="39.6" y="33.0" font-family="Inter" font-size="16" font-weight="600" fill="#212121">9:41</text>
+<rect id="Signal" x="296" y="26" width="3" height="3" rx="1" fill="#212121"/>
+<rect id="Signal 2" x="301" y="23" width="3" height="6" rx="1" fill="#212121"/>
+<rect id="Signal 3" x="306" y="20" width="3" height="9" rx="1" fill="#212121"/>
+<rect id="Signal 4" x="311" y="17" width="3" height="12" rx="1" fill="#212121"/>
+<rect id="Battery" x="322" y="21" width="25" height="12" rx="3.5" fill="none" stroke="#212121" stroke-width="1"/>
+<rect id="Battery level" x="324" y="23" width="19" height="8" rx="2" fill="#212121"/>
+<rect id="Battery cap" x="348" y="25" width="2" height="4" rx="1" fill="#212121"/>
+</g>
+<g id="Nav bar">
+<path id="icon/close" transform="translate(16 61) scale(1.0000)" d="M6.4 19 5 17.6 10.6 12 5 6.4 6.4 5 12 10.6 17.6 5 19 6.4 13.4 12 19 17.6 17.6 19 12 13.4Z" fill="#212121"/>
+<text id="Screen title" x="150.9" y="80.0" font-family="Inter" font-size="17" font-weight="600" fill="#212121">New Event</text>
+</g>
+<g id="Posting as">
+<rect id="Org background" x="16" y="104" width="358" height="52" rx="12" fill="#E6E6E6"/>
+<text id="Posting as 2" x="32.0" y="125.0" font-family="Inter" font-size="12" font-weight="500" fill="#757575">Posting as</text>
+<text id="Organization" x="32.0" y="144.0" font-family="Inter" font-size="15" font-weight="600" fill="#212121">SK Federation of Naval</text>
+<path id="icon/verified" transform="translate(205.967 130) scale(0.6667)" d="M8.6 22.5 6.7 19.3 3.1 18.5 3.45 14.8 1 12 3.45 9.2 3.1 5.5 6.7 4.7 8.6 1.5 12 2.95 15.4 1.5 17.3 4.7 20.9 5.5 20.55 9.2 23 12 20.55 14.8 20.9 18.5 17.3 19.3 15.4 22.5 12 21.05ZM9.45 19.95 12 18.85 14.6 19.95 16 17.55 18.75 16.9 18.5 14.1 20.35 12 18.5 9.85 18.75 7.05 16 6.45 14.55 4.05 12 5.15 9.4 4.05 8 6.45 5.25 7.05 5.5 9.85 3.65 12 5.5 14.1 5.25 16.95 8 17.55ZM12 12ZM10.95 15.55 16.6 9.9 15.2 8.45 10.95 12.7 8.8 10.6 7.4 12Z" fill="#5F5F5F"/>
+<path id="icon/expand_more" transform="translate(342 118) scale(1.0000)" d="M12 15.38 6 9.38 7.4 7.97 12 12.57 16.6 7.97 18 9.38Z" fill="#757575"/>
+</g>
+<g id="Field/Title">
+<text id="Label" x="16.0" y="186.0" font-family="Inter" font-size="13" font-weight="600" fill="#212121">Title</text>
+<rect id="Input" x="16" y="194" width="358" height="48" rx="12" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Value" x="30.0" y="224.0" font-family="Inter" font-size="15" font-weight="400" fill="#212121">Youth Leadership Summit 2026</text>
+</g>
+<text id="Label/Category" x="16.0" y="272.0" font-family="Inter" font-size="13" font-weight="600" fill="#212121">Category</text>
+<g id="Chip/Youth">
+<rect id="Chip background" x="16" y="280" width="69.6987" height="34" rx="17" fill="#5F5F5F"/>
+<text id="Youth" x="32.0" y="301.7" font-family="Inter" font-size="13" font-weight="600" fill="#FFFFFF">Youth</text>
+</g>
+<g id="Chip/Educational">
+<rect id="Chip background 2" x="93.6987" y="280" width="105.709" height="34" rx="17" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Educational" x="109.7" y="301.7" font-family="Inter" font-size="13" font-weight="600" fill="#757575">Educational</text>
+</g>
+<g id="Chip/Sports">
+<rect id="Chip background 3" x="207.408" y="280" width="73.374" height="34" rx="17" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Sports" x="223.4" y="301.7" font-family="Inter" font-size="13" font-weight="600" fill="#757575">Sports</text>
+</g>
+<g id="Chip/Cultural">
+<rect id="Chip background 4" x="288.782" y="280" width="81.5181" height="34" rx="17" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Cultural" x="304.8" y="301.7" font-family="Inter" font-size="13" font-weight="600" fill="#757575">Cultural</text>
+</g>
+<g id="Field/Date">
+<text id="Label 2" x="16.0" y="344.0" font-family="Inter" font-size="13" font-weight="600" fill="#212121">Date</text>
+<rect id="Input 2" x="16" y="352" width="175" height="48" rx="12" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<path id="icon/calendar_today" transform="translate(28 366) scale(0.8333)" d="M5 22Q4.17 22 3.59 21.41Q3 20.82 3 20V6Q3 5.18 3.59 4.59Q4.17 4 5 4H6V2H8V4H16V2H18V4H19Q19.83 4 20.41 4.59Q21 5.18 21 6V20Q21 20.82 20.41 21.41Q19.83 22 19 22ZM5 20H19Q19 20 19 20Q19 20 19 20V10H5V20Q5 20 5 20Q5 20 5 20ZM5 8H19V6Q19 6 19 6Q19 6 19 6H5Q5 6 5 6Q5 6 5 6ZM5 8V6Q5 6 5 6Q5 6 5 6Q5 6 5 6Q5 6 5 6V8Z" fill="#757575"/>
+<text id="Value 2" x="58.0" y="382.0" font-family="Inter" font-size="15" font-weight="400" fill="#212121">Oct 10, 2026</text>
+</g>
+<g id="Field/Time">
+<text id="Label 3" x="199.0" y="344.0" font-family="Inter" font-size="13" font-weight="600" fill="#212121">Time</text>
+<rect id="Input 3" x="199" y="352" width="175" height="48" rx="12" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<path id="icon/schedule" transform="translate(211 366) scale(0.8333)" d="M15.3 16.7 16.7 15.3 13 11.6V7H11V12.4ZM12 22Q9.93 22 8.1 21.21Q6.28 20.43 4.93 19.08Q3.58 17.73 2.79 15.9Q2 14.07 2 12Q2 9.92 2.79 8.1Q3.58 6.27 4.93 4.92Q6.28 3.57 8.1 2.79Q9.93 2 12 2Q14.08 2 15.9 2.79Q17.73 3.57 19.08 4.92Q20.43 6.27 21.21 8.1Q22 9.92 22 12Q22 14.07 21.21 15.9Q20.43 17.73 19.08 19.08Q17.73 20.43 15.9 21.21Q14.08 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.33 20 17.66 17.66Q20 15.32 20 12Q20 8.67 17.66 6.34Q15.33 4 12 4Q8.68 4 6.34 6.34Q4 8.67 4 12Q4 15.32 6.34 17.66Q8.68 20 12 20Z" fill="#757575"/>
+<text id="Value 3" x="241.0" y="382.0" font-family="Inter" font-size="15" font-weight="400" fill="#212121">8 AM – 5 PM</text>
+</g>
+<g id="Field/Venue">
+<text id="Label 4" x="16.0" y="430.0" font-family="Inter" font-size="13" font-weight="600" fill="#212121">Venue</text>
+<rect id="Input 4" x="16" y="438" width="358" height="48" rx="12" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<path id="icon/apartment" transform="translate(28 452) scale(0.8333)" d="M3 21V7H7V3H17V11H21V21H13V17H11V21ZM5 19H7V17H5ZM5 15H7V13H5ZM5 11H7V9H5ZM9 15H11V13H9ZM9 11H11V9H9ZM9 7H11V5H9ZM13 15H15V13H13ZM13 11H15V9H13ZM13 7H15V5H13ZM17 19H19V17H17ZM17 15H19V13H17Z" fill="#757575"/>
+<text id="Value 4" x="58.0" y="468.0" font-family="Inter" font-size="15" font-weight="400" fill="#757575">e.g. NSU Gymnasium</text>
+</g>
+<g id="Field/Location">
+<text id="Label 5" x="16.0" y="516.0" font-family="Inter" font-size="13" font-weight="600" fill="#212121">Location</text>
+<rect id="Input 5" x="16" y="524" width="358" height="48" rx="12" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<path id="icon/location_on" transform="translate(28 538) scale(0.8333)" d="M12 12Q12.83 12 13.41 11.41Q14 10.82 14 10Q14 9.17 13.41 8.59Q12.83 8 12 8Q11.18 8 10.59 8.59Q10 9.17 10 10Q10 10.82 10.59 11.41Q11.18 12 12 12ZM12 19.35Q15.05 16.55 16.52 14.26Q18 11.97 18 10.2Q18 7.47 16.26 5.74Q14.53 4 12 4Q9.47 4 7.74 5.74Q6 7.47 6 10.2Q6 11.97 7.48 14.26Q8.95 16.55 12 19.35ZM12 22Q7.98 18.57 5.99 15.64Q4 12.7 4 10.2Q4 6.45 6.41 4.22Q8.83 2 12 2Q15.18 2 17.59 4.22Q20 6.45 20 10.2Q20 12.7 18.01 15.64Q16.03 18.57 12 22ZM12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Z" fill="#757575"/>
+<text id="Value 5" x="58.0" y="554.0" font-family="Inter" font-size="15" font-weight="400" fill="#757575">Select barangay</text>
+</g>
+<path id="icon/expand_more 2" transform="translate(338 536) scale(1.0000)" d="M12 15.38 6 9.38 7.4 7.97 12 12.57 16.6 7.97 18 9.38Z" fill="#757575"/>
+<g id="Field/Description">
+<text id="Label 6" x="16.0" y="602.0" font-family="Inter" font-size="13" font-weight="600" fill="#212121">Description</text>
+<rect id="Input 6" x="16" y="610" width="358" height="88" rx="12" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Value 6" x="30.0" y="640.0" font-family="Inter" font-size="15" font-weight="400" fill="#757575">What will happen at this event?</text>
+</g>
+<g id="Footer">
+<rect id="Footer background" x="0" y="746" width="390" height="98" fill="#FFFFFF"/>
+<line id="Divider" x1="0" y1="746" x2="390" y2="746" stroke="#BDBDBD" stroke-width="1"/>
+<g id="Button/Save draft">
+<rect id="Button background" x="16" y="762" width="175" height="40" rx="20" fill="none" stroke="#5F5F5F" stroke-width="1.5"/>
+<text id="Save draft" x="68.6" y="787.0" font-family="Inter" font-size="14" font-weight="600" fill="#5F5F5F">Save draft</text>
+</g>
+<g id="Button/Publish">
+<rect id="Button background 2" x="199" y="762" width="175" height="40" rx="20" fill="#5F5F5F" stroke="#5F5F5F" stroke-width="1.5"/>
+<text id="Publish" x="261.5" y="787.0" font-family="Inter" font-size="14" font-weight="600" fill="#FFFFFF">Publish</text>
+</g>
+</g>
+<rect id="Home indicator" x="128" y="830" width="134" height="5" rx="2.5" fill="#212121"/>
+</g>
+</svg>

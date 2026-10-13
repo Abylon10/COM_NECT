@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+<title>Wireframe / 01 Sign in</title>
+<defs><clipPath id="clip1"><rect x="0" y="0" width="390" height="844" rx="0"/></clipPath></defs>
+
+<g id="Wireframe / 01 Sign in" clip-path="url(#clip1)">
+<rect id="Sign in background" x="0" y="0" width="390" height="844" fill="#FFFFFF"/>
+<g id="Status bar">
+<text id="Time" x="39.6" y="33.0" font-family="Inter" font-size="16" font-weight="600" fill="#212121">9:41</text>
+<rect id="Signal" x="296" y="26" width="3" height="3" rx="1" fill="#212121"/>
+<rect id="Signal 2" x="301" y="23" width="3" height="6" rx="1" fill="#212121"/>
+<rect id="Signal 3" x="306" y="20" width="3" height="9" rx="1" fill="#212121"/>
+<rect id="Signal 4" x="311" y="17" width="3" height="12" rx="1" fill="#212121"/>
+<rect id="Battery" x="322" y="21" width="25" height="12" rx="3.5" fill="none" stroke="#212121" stroke-width="1"/>
+<rect id="Battery level" x="324" y="23" width="19" height="8" rx="2" fill="#212121"/>
+<rect id="Battery cap" x="348" y="25" width="2" height="4" rx="1" fill="#212121"/>
+</g>
+<rect id="Logo" x="147" y="128" width="96" height="96" rx="24" fill="#E6E6E6" stroke="#BDBDBD" stroke-width="1"/>
+<line id="Logo X" x1="147" y1="128" x2="243" y2="224" stroke="#BDBDBD" stroke-width="1"/>
+<line id="Logo X 2" x1="243" y1="128" x2="147" y2="224" stroke="#BDBDBD" stroke-width="1"/>
+<text id="App name" x="54.3" y="270.0" font-family="Inter" font-size="28" font-weight="700" fill="#212121">Community Connect</text>
+<text id="Tagline" x="48.5" y="302.0" font-family="Inter" font-size="15" font-weight="400" fill="#757575">Local events and trusted announcements</text>
+<text id="Tagline 2" x="103.3" y="324.0" font-family="Inter" font-size="15" font-weight="400" fill="#757575">for Naval, all in one place.</text>
+<g id="Field/Email">
+<text id="Label" x="24.0" y="376.0" font-family="Inter" font-size="14" font-weight="600" fill="#212121">Email</text>
+<rect id="Input" x="24" y="386" width="342" height="50" rx="12" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<path id="icon/mail" transform="translate(40 401) scale(0.8333)" d="M4 20Q3.18 20 2.59 19.41Q2 18.82 2 18V6Q2 5.18 2.59 4.59Q3.18 4 4 4H20Q20.83 4 21.41 4.59Q22 5.18 22 6V18Q22 18.82 21.41 19.41Q20.83 20 20 20ZM12 13 4 8V18Q4 18 4 18Q4 18 4 18H20Q20 18 20 18Q20 18 20 18V8ZM12 11 20 6H4ZM4 8V6V8V18Q4 18 4 18Q4 18 4 18Q4 18 4 18Q4 18 4 18Z" fill="#757575"/>
+<text id="Value" x="72.0" y="416.4" font-family="Inter" font-size="15" font-weight="400" fill="#757575">you@example.com</text>
+</g>
+<g id="Field/Password">
+<text id="Label 2" x="24.0" y="466.0" font-family="Inter" font-size="14" font-weight="600" fill="#212121">Password</text>
+<rect id="Input 2" x="24" y="476" width="342" height="50" rx="12" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<path id="icon/lock" transform="translate(40 491) scale(0.8333)" d="M6 22Q5.18 22 4.59 21.41Q4 20.82 4 20V10Q4 9.17 4.59 8.59Q5.18 8 6 8H7V6Q7 3.92 8.46 2.46Q9.93 1 12 1Q14.08 1 15.54 2.46Q17 3.92 17 6V8H18Q18.82 8 19.41 8.59Q20 9.17 20 10V20Q20 20.82 19.41 21.41Q18.82 22 18 22ZM6 20H18Q18 20 18 20Q18 20 18 20V10Q18 10 18 10Q18 10 18 10H6Q6 10 6 10Q6 10 6 10V20Q6 20 6 20Q6 20 6 20ZM14 15Q14 14.17 13.41 13.59Q12.83 13 12 13Q11.18 13 10.59 13.59Q10 14.17 10 15Q10 15.82 10.59 16.41Q11.18 17 12 17Q12.83 17 13.41 16.41Q14 15.82 14 15ZM9 8H15V6Q15 4.75 14.12 3.88Q13.25 3 12 3Q10.75 3 9.88 3.88Q9 4.75 9 6ZM6 20Q6 20 6 20Q6 20 6 20V10Q6 10 6 10Q6 10 6 10Q6 10 6 10Q6 10 6 10V20Q6 20 6 20Q6 20 6 20Z" fill="#757575"/>
+<text id="Value 2" x="72.0" y="506.4" font-family="Inter" font-size="15" font-weight="400" fill="#757575">••••••••</text>
+<path id="icon/visibility" transform="translate(326 491) scale(0.8333)" d="M12 16Q13.88 16 15.19 14.69Q16.5 13.38 16.5 11.5Q16.5 9.62 15.19 8.31Q13.88 7 12 7Q10.12 7 8.81 8.31Q7.5 9.62 7.5 11.5Q7.5 13.38 8.81 14.69Q10.12 16 12 16ZM12 14.2Q10.88 14.2 10.09 13.41Q9.3 12.62 9.3 11.5Q9.3 10.38 10.09 9.59Q10.88 8.8 12 8.8Q13.12 8.8 13.91 9.59Q14.7 10.38 14.7 11.5Q14.7 12.62 13.91 13.41Q13.12 14.2 12 14.2ZM1 11.5Q2.35 8.07 5.35 6.04Q8.35 4 12 4Q15.65 4 18.65 6.04Q21.65 8.07 23 11.5Q21.65 14.92 18.65 16.96Q15.65 19 12 19Q8.35 19 5.35 16.96Q2.35 14.92 1 11.5ZM12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5ZM20.8 11.5Q19.55 8.97 17.19 7.49Q14.83 6 12 6Q9.18 6 6.81 7.49Q4.45 8.97 3.2 11.5Q4.45 14.02 6.81 15.51Q9.18 17 12 17Q14.83 17 17.19 15.51Q19.55 14.02 20.8 11.5Z" fill="#757575"/>
+</g>
+<text id="Forgot password" x="243.6" y="546.0" font-family="Inter" font-size="14" font-weight="600" fill="#5F5F5F">Forgot password?</text>
+<g id="Button/Sign in">
+<rect id="Button background" x="24" y="566" width="342" height="50" rx="25" fill="#5F5F5F" stroke="#5F5F5F" stroke-width="1.5"/>
+<text id="Sign in" x="172.1" y="596.0" font-family="Inter" font-size="14" font-weight="600" fill="#FFFFFF">Sign in</text>
+</g>
+<g id="Button/Create an account">
+<rect id="Button background 2" x="24" y="628" width="342" height="50" rx="25" fill="none" stroke="#5F5F5F" stroke-width="1.5"/>
+<text id="Create an account" x="133.0" y="658.0" font-family="Inter" font-size="14" font-weight="600" fill="#5F5F5F">Create an account</text>
+</g>
+<text id="Guest link" x="129.4" y="706.0" font-family="Inter" font-size="15" font-weight="600" fill="#5F5F5F">Continue as guest</text>
+<g id="Organizer note">
+<rect id="Note background" x="24" y="754" width="342" height="64" rx="12" fill="#E6E6E6"/>
+<path id="icon/verified" transform="translate(40 776) scale(0.8333)" d="M8.6 22.5 6.7 19.3 3.1 18.5 3.45 14.8 1 12 3.45 9.2 3.1 5.5 6.7 4.7 8.6 1.5 12 2.95 15.4 1.5 17.3 4.7 20.9 5.5 20.55 9.2 23 12 20.55 14.8 20.9 18.5 17.3 19.3 15.4 22.5 12 21.05ZM9.45 19.95 12 18.85 14.6 19.95 16 17.55 18.75 16.9 18.5 14.1 20.35 12 18.5 9.85 18.75 7.05 16 6.45 14.55 4.05 12 5.15 9.4 4.05 8 6.45 5.25 7.05 5.5 9.85 3.65 12 5.5 14.1 5.25 16.95 8 17.55ZM12 12ZM10.95 15.55 16.6 9.9 15.2 8.45 10.95 12.7 8.8 10.6 7.4 12Z" fill="#5F5F5F"/>
+<g id="Paragraph placeholder">
+<rect id="Text line" x="72" y="771" width="270" height="8" rx="4" fill="#DDDDDD"/>
+<rect id="Text line 2" x="72" y="793" width="222.396" height="8" rx="4" fill="#DDDDDD"/>
+</g>
+</g>
+<rect id="Home indicator" x="128" y="830" width="134" height="5" rx="2.5" fill="#212121"/>
+</g>
+</svg>
