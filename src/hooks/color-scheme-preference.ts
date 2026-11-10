@@ -20,7 +20,7 @@ export function setColorSchemePreference(next: ColorSchemePreference) {
   // On iOS/Android this also switches native UI (tab bar, alerts, status bar).
   // react-native-web doesn't support it; the web hook reads `preference` instead.
   if (Platform.OS !== 'web') {
-    Appearance.setColorScheme(next === 'system' ? 'unspecified' : next);
+    Appearance.setColorScheme(next === 'system' ? 'auto' : next);
   }
   listeners.forEach((listener) => listener());
 }

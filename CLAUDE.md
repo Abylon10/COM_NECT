@@ -42,7 +42,7 @@ changes that assume multiple people are committing at once.
 
 ## Stack
 
-- **Expo (React Native), SDK 57**, created with `create-expo-app@latest`.
+- **Expo (React Native), SDK 58**, created with `create-expo-app@latest`.
 - **expo-router** with file-based routing in `src/app/`. Each file there
   is a screen.
 - **Tabs use `NativeTabs`** from `expo-router/unstable-native-tabs`,
@@ -71,7 +71,7 @@ changes that assume multiple people are committing at once.
 - Theme colors come from `Colors` in `src/constants/theme.ts`:
   ```ts
   const scheme = useColorScheme();
-  const colors = Colors[scheme === 'unspecified' ? 'light' : scheme];
+  const colors = Colors[scheme ?? 'light'];
   ```
   Use `colors.background`, `colors.text`, `colors.backgroundElement` so
   screens work in light and dark mode.
@@ -124,6 +124,9 @@ are decided.
 - **Expo Go needs the phone and computer on the same wifi.** Phone on
   mobile data shows a generic "Something went wrong" error. Check the
   phone's status bar for wifi vs. cellular first.
+- **After an SDK upgrade, update Expo Go on the phone** (Play Store /
+  App Store). An old Expo Go shows "Project is incompatible with this
+  version of Expo Go". Also run `npm install` after pulling.
 - **Don't `git clone` inside the existing project folder.** It creates a
   nested copy that can get committed as an embedded repo. To test a fresh
   clone, clone into a separate folder (e.g. `Documents\COM_NECT_test`),

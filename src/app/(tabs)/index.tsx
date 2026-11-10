@@ -73,7 +73,7 @@ export default function BrowseScreen() {
             </ThemedText>
           }
           ListEmptyComponent={
-            loading ? null : (
+            loading ? undefined : (
               <EmptyState
                 icon={Icons.search}
                 title="No events found"

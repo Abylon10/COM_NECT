@@ -35,7 +35,9 @@ export default function AppTabs() {
   );
 }
 
-export function TabButton({ children, isFocused, ...props }: TabTriggerSlotProps) {
+// `ref` is left out: its type no longer matches Pressable's in SDK 58, and the
+// button doesn't need it.
+export function TabButton({ children, isFocused, ref: _ref, ...props }: TabTriggerSlotProps) {
   const theme = useTheme();
 
   return (
