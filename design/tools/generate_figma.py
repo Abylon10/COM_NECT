@@ -816,11 +816,10 @@ def slug(name):
 
 
 def render_screen(fn, pal, wire, name):
+    # No wrapper group: Figma turns the SVG itself into a frame (which already
+    # clips), so layers sit directly inside it and are one click away.
     c = Canvas(pal, wire)
-    clip = c.clip_rect(0, 0, W, H)
-    c.begin(name, clip=clip)
     fn(c)
-    c.end()
     return c
 
 

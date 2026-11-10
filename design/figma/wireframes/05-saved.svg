@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
 <title>Wireframe / 05 Saved</title>
-<defs><clipPath id="clip1"><rect x="0" y="0" width="390" height="844" rx="0"/></clipPath><clipPath id="clip2"><rect x="0" y="160" width="390" height="601" rx="0"/></clipPath></defs>
+<defs><clipPath id="clip1"><rect x="0" y="160" width="390" height="601" rx="0"/></clipPath></defs>
 
-<g id="Wireframe / 05 Saved" clip-path="url(#clip1)">
 <rect id="Saved background" x="0" y="0" width="390" height="844" fill="#FFFFFF"/>
 <g id="Status bar">
 <text id="Time" x="39.6" y="33.0" font-family="Inter" font-size="16" font-weight="600" fill="#212121">9:41</text>
@@ -27,7 +26,7 @@
 <rect id="Chip background 3" x="172.489" y="115" width="96.2065" height="34" rx="17" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
 <text id="Interested" x="188.5" y="136.7" font-family="Inter" font-size="13" font-weight="600" fill="#757575">Interested</text>
 </g>
-<g id="Event list" clip-path="url(#clip2)">
+<g id="Event list" clip-path="url(#clip1)">
 <g id="Event card/Coastal Cleanup Drive">
 <rect id="Card background" x="16" y="165" width="358" height="374" rx="16" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
 <g id="Event cover">
@@ -139,5 +138,4 @@
 </g>
 </g>
 <rect id="Home indicator" x="128" y="830" width="134" height="5" rx="2.5" fill="#212121"/>
-</g>
 </svg>

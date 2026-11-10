@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
 <title>Hi-fi / 01 Sign in</title>
-<defs><clipPath id="clip1"><rect x="0" y="0" width="390" height="844" rx="0"/></clipPath></defs>
 
-<g id="Hi-fi / 01 Sign in" clip-path="url(#clip1)">
+
 <rect id="Sign in background" x="0" y="0" width="390" height="844" fill="#FFFFFF"/>
 <g id="Status bar">
 <text id="Time" x="39.6" y="33.0" font-family="Inter" font-size="16" font-weight="600" fill="#11181C">9:41</text>
@@ -50,5 +49,4 @@
 </g>
 </g>
 <rect id="Home indicator" x="128" y="830" width="134" height="5" rx="2.5" fill="#11181C"/>
-</g>
 </svg>

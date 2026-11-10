@@ -1,11 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
 <title>Hi-fi / 04 Event details</title>
-<defs><clipPath id="clip1"><rect x="0" y="0" width="390" height="844" rx="0"/></clipPath><clipPath id="clip2"><rect x="0" y="0" width="390" height="267" rx="0"/></clipPath></defs>
+<defs><clipPath id="clip1"><rect x="0" y="0" width="390" height="267" rx="0"/></clipPath></defs>
 
-<g id="Hi-fi / 04 Event details" clip-path="url(#clip1)">
 <rect id="Event details background" x="0" y="0" width="390" height="844" fill="#FFFFFF"/>
 <g id="Event cover">
-<g id="Cover background" clip-path="url(#clip2)">
+<g id="Cover background" clip-path="url(#clip1)">
 <rect id="Category color" x="0" y="0" width="390" height="267" fill="#1F9E96"/>
 <path id="icon/groups" transform="translate(205.75 82.75) scale(8.3438)" d="M0 18V16.43Q0 15.35 1.1 14.68Q2.2 14 4 14Q4.33 14 4.62 14.01Q4.93 14.02 5.2 14.07Q4.85 14.6 4.68 15.18Q4.5 15.75 4.5 16.38V18ZM6 18V16.38Q6 15.57 6.44 14.91Q6.88 14.25 7.68 13.75Q8.47 13.25 9.59 13Q10.7 12.75 12 12.75Q13.33 12.75 14.44 13Q15.55 13.25 16.35 13.75Q17.15 14.25 17.58 14.91Q18 15.57 18 16.38V18ZM19.5 18V16.38Q19.5 15.72 19.34 15.15Q19.18 14.57 18.85 14.07Q19.12 14.02 19.41 14.01Q19.7 14 20 14Q21.8 14 22.9 14.66Q24 15.32 24 16.43V18ZM8.12 16H15.9Q15.65 15.5 14.51 15.12Q13.38 14.75 12 14.75Q10.62 14.75 9.49 15.12Q8.35 15.5 8.12 16ZM4 13Q3.18 13 2.59 12.41Q2 11.82 2 11Q2 10.15 2.59 9.57Q3.18 9 4 9Q4.85 9 5.43 9.57Q6 10.15 6 11Q6 11.82 5.43 12.41Q4.85 13 4 13ZM20 13Q19.18 13 18.59 12.41Q18 11.82 18 11Q18 10.15 18.59 9.57Q19.18 9 20 9Q20.85 9 21.43 9.57Q22 10.15 22 11Q22 11.82 21.43 12.41Q20.85 13 20 13ZM12 12Q10.75 12 9.88 11.12Q9 10.25 9 9Q9 7.72 9.88 6.86Q10.75 6 12 6Q13.28 6 14.14 6.86Q15 7.72 15 9Q15 10.25 14.14 11.12Q13.28 12 12 12ZM12 10Q12.43 10 12.71 9.71Q13 9.42 13 9Q13 8.57 12.71 8.29Q12.43 8 12 8Q11.58 8 11.29 8.29Q11 8.57 11 9Q11 9.42 11.29 9.71Q11.58 10 12 10ZM12.03 16Q12.03 16 12.03 16Q12.03 16 12.03 16Q12.03 16 12.03 16Q12.03 16 12.03 16ZM12 9Q12 9 12 9Q12 9 12 9Q12 9 12 9Q12 9 12 9Q12 9 12 9Q12 9 12 9Q12 9 12 9Q12 9 12 9Z" fill="#FFFFFF" fill-opacity="0.18"/>
 </g>
@@ -87,5 +86,4 @@
 </g>
 </g>
 <rect id="Home indicator" x="128" y="830" width="134" height="5" rx="2.5" fill="#11181C"/>
-</g>
 </svg>

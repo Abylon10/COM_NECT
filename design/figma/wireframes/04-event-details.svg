@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
 <title>Wireframe / 04 Event details</title>
-<defs><clipPath id="clip1"><rect x="0" y="0" width="390" height="844" rx="0"/></clipPath></defs>
 
-<g id="Wireframe / 04 Event details" clip-path="url(#clip1)">
+
 <rect id="Event details background" x="0" y="0" width="390" height="844" fill="#FFFFFF"/>
 <g id="Event cover">
 <rect id="Image placeholder" x="0" y="0" width="390" height="267" fill="#EEEEEE" stroke="#BDBDBD" stroke-width="1"/>
@@ -86,5 +85,4 @@
 </g>
 </g>
 <rect id="Home indicator" x="128" y="830" width="134" height="5" rx="2.5" fill="#212121"/>
-</g>
 </svg>

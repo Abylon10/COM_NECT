@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
 <title>Hi-fi / 05 Saved</title>
-<defs><clipPath id="clip1"><rect x="0" y="0" width="390" height="844" rx="0"/></clipPath><clipPath id="clip2"><rect x="0" y="160" width="390" height="601" rx="0"/></clipPath><clipPath id="clip3"><rect x="24" y="173" width="342" height="140" rx="12"/></clipPath><clipPath id="clip4"><rect x="24" y="563" width="342" height="140" rx="12"/></clipPath></defs>
+<defs><clipPath id="clip1"><rect x="0" y="160" width="390" height="601" rx="0"/></clipPath><clipPath id="clip2"><rect x="24" y="173" width="342" height="140" rx="12"/></clipPath><clipPath id="clip3"><rect x="24" y="563" width="342" height="140" rx="12"/></clipPath></defs>
 
-<g id="Hi-fi / 05 Saved" clip-path="url(#clip1)">
 <rect id="Saved background" x="0" y="0" width="390" height="844" fill="#FFFFFF"/>
 <g id="Status bar">
 <text id="Time" x="39.6" y="33.0" font-family="Inter" font-size="16" font-weight="600" fill="#11181C">9:41</text>
@@ -27,11 +26,11 @@
 <rect id="Chip background 3" x="172.489" y="115" width="96.2065" height="34" rx="17" fill="#FFFFFF" stroke="#E3E8E8" stroke-width="1"/>
 <text id="Interested" x="188.5" y="136.7" font-family="Inter" font-size="13" font-weight="600" fill="#60686C">Interested</text>
 </g>
-<g id="Event list" clip-path="url(#clip2)">
+<g id="Event list" clip-path="url(#clip1)">
 <g id="Event card/Coastal Cleanup Drive">
 <rect id="Card background" x="16" y="165" width="358" height="374" rx="16" fill="#FFFFFF" stroke="#E3E8E8" stroke-width="1"/>
 <g id="Event cover">
-<g id="Cover background" clip-path="url(#clip3)">
+<g id="Cover background" clip-path="url(#clip2)">
 <rect id="Category color" x="24" y="173" width="342" height="140" rx="12" fill="#3F9C5A"/>
 <path id="icon/volunteer_activism" transform="translate(277 224) scale(4.3750)" d="M16 13 11.85 8.95Q11.08 8.2 10.54 7.29Q10 6.38 10 5.3Q10 3.92 10.96 2.96Q11.93 2 13.3 2Q14.1 2 14.8 2.34Q15.5 2.67 16 3.25Q16.5 2.67 17.2 2.34Q17.9 2 18.7 2Q20.08 2 21.04 2.96Q22 3.92 22 5.3Q22 6.38 21.48 7.29Q20.95 8.2 20.18 8.95ZM16 10.2 18.73 7.52Q19.2 7.05 19.6 6.51Q20 5.97 20 5.3Q20 4.75 19.62 4.38Q19.25 4 18.7 4Q18.35 4 18.04 4.14Q17.73 4.27 17.5 4.55L16 6.35L14.5 4.55Q14.28 4.27 13.96 4.14Q13.65 4 13.3 4Q12.75 4 12.38 4.38Q12 4.75 12 5.3Q12 5.97 12.4 6.51Q12.8 7.05 13.28 7.52ZM7 18.5 13.95 20.4 19.9 18.55Q19.78 18.32 19.54 18.16Q19.3 18 19 18H13.95Q13.28 18 12.88 17.95Q12.48 17.9 12.05 17.75L9.73 16.98L10.28 15.03L12.3 15.7Q12.73 15.82 13.3 15.9Q13.88 15.97 15 16Q15 16 15 16Q15 16 15 16Q15 15.72 14.84 15.47Q14.68 15.22 14.45 15.15L8.6 13Q8.6 13 8.6 13Q8.6 13 8.6 13H7ZM1 22V11H8.6Q8.78 11 8.95 11.04Q9.12 11.07 9.28 11.12L15.15 13.3Q15.98 13.6 16.49 14.35Q17 15.1 17 16H19Q20.25 16 21.12 16.82Q22 17.65 22 19V20L14 22.5L7 20.55V22ZM3 20H5V13H3ZM16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Z" fill="#FFFFFF" fill-opacity="0.18"/>
 </g>
@@ -75,7 +74,7 @@
 <g id="Event card/Biliranon Cultural Night">
 <rect id="Card background 2" x="16" y="555" width="358" height="414" rx="16" fill="#FFFFFF" stroke="#E3E8E8" stroke-width="1"/>
 <g id="Event cover 2">
-<g id="Cover background 2" clip-path="url(#clip4)">
+<g id="Cover background 2" clip-path="url(#clip3)">
 <rect id="Category color 2" x="24" y="563" width="342" height="140" rx="12" fill="#A3509C"/>
 <path id="icon/theater_comedy" transform="translate(277 614) scale(4.3750)" d="M19 7.5Q19.43 7.5 19.71 7.21Q20 6.93 20 6.5Q20 6.07 19.71 5.79Q19.43 5.5 19 5.5Q18.57 5.5 18.29 5.79Q18 6.07 18 6.5Q18 6.93 18.29 7.21Q18.57 7.5 19 7.5ZM15 7.5Q15.43 7.5 15.71 7.21Q16 6.93 16 6.5Q16 6.07 15.71 5.79Q15.43 5.5 15 5.5Q14.58 5.5 14.29 5.79Q14 6.07 14 6.5Q14 6.93 14.29 7.21Q14.58 7.5 15 7.5ZM14.5 10.9H19.5Q19.5 10.02 18.74 9.51Q17.98 9 17 9Q16.03 9 15.26 9.51Q14.5 10.02 14.5 10.9ZM1 16V9H13V16Q13 18.5 11.25 20.25Q9.5 22 7 22Q4.5 22 2.75 20.25Q1 18.5 1 16ZM11 16V11H3V16Q3 17.65 4.18 18.82Q5.35 20 7 20Q8.65 20 9.82 18.82Q11 17.65 11 16ZM17 15Q16.35 15 15.71 14.86Q15.08 14.72 14.5 14.45V12.1Q15.05 12.52 15.69 12.76Q16.32 13 17 13Q18.65 13 19.83 11.82Q21 10.65 21 9V4H13V7.5H11V2H23V9Q23 11.5 21.25 13.25Q19.5 15 17 15ZM5 14.5Q5.43 14.5 5.71 14.21Q6 13.92 6 13.5Q6 13.07 5.71 12.79Q5.43 12.5 5 12.5Q4.58 12.5 4.29 12.79Q4 13.07 4 13.5Q4 13.92 4.29 14.21Q4.58 14.5 5 14.5ZM10 13.5Q10 13.07 9.71 12.79Q9.43 12.5 9 12.5Q8.58 12.5 8.29 12.79Q8 13.07 8 13.5Q8 13.92 8.29 14.21Q8.58 14.5 9 14.5Q9.43 14.5 9.71 14.21Q10 13.92 10 13.5ZM9.5 16H4.5Q4.5 16.88 5.26 17.39Q6.03 17.9 7 17.9Q7.98 17.9 8.74 17.39Q9.5 16.88 9.5 16ZM7 15.5Q7 15.5 7 15.5Q7 15.5 7 15.5Q7 15.5 7 15.5Q7 15.5 7 15.5ZM17 8.5Q17 8.5 17 8.5Q17 8.5 17 8.5Q17 8.5 17 8.5Q17 8.5 17 8.5Q17 8.5 17 8.5Q17 8.5 17 8.5Q17 8.5 17 8.5Q17 8.5 17 8.5Z" fill="#FFFFFF" fill-opacity="0.18"/>
 </g>
@@ -141,5 +140,4 @@
 </g>
 </g>
 <rect id="Home indicator" x="128" y="830" width="134" height="5" rx="2.5" fill="#11181C"/>
-</g>
 </svg>
