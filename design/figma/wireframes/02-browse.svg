@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+<title>Wireframe / 02 Browse</title>
+<defs><clipPath id="clip1"><rect x="0" y="160" width="390" height="50" rx="0"/></clipPath><clipPath id="clip2"><rect x="0" y="240" width="390" height="521" rx="0"/></clipPath></defs>
+
+<rect id="Browse background" x="0" y="0" width="390" height="844" fill="#FFFFFF"/>
+<g id="Status bar">
+<text id="Time" x="39.6" y="33.0" font-family="Inter" font-size="16" font-weight="600" fill="#212121">9:41</text>
+<rect id="Signal" x="296" y="26" width="3" height="3" rx="1" fill="#212121"/>
+<rect id="Signal 2" x="301" y="23" width="3" height="6" rx="1" fill="#212121"/>
+<rect id="Signal 3" x="306" y="20" width="3" height="9" rx="1" fill="#212121"/>
+<rect id="Signal 4" x="311" y="17" width="3" height="12" rx="1" fill="#212121"/>
+<rect id="Battery" x="322" y="21" width="25" height="12" rx="3.5" fill="none" stroke="#212121" stroke-width="1"/>
+<rect id="Battery level" x="324" y="23" width="19" height="8" rx="2" fill="#212121"/>
+<rect id="Battery cap" x="348" y="25" width="2" height="4" rx="1" fill="#212121"/>
+</g>
+<g id="Header">
+<g id="Avatar">
+<circle id="Ellipse" cx="34" cy="73" r="18" fill="#E6E6E6"/>
+<text id="AR" x="24.2" y="78.0" font-family="Inter" font-size="14" font-weight="700" fill="#5F5F5F">AR</text>
+</g>
+<rect id="Logo" x="80.5693" y="59" width="28" height="28" rx="7" fill="#E6E6E6" stroke="#BDBDBD" stroke-width="1"/>
+<line id="Logo X" x1="80.5693" y1="59" x2="108.569" y2="87" stroke="#BDBDBD" stroke-width="1"/>
+<line id="Logo X 2" x1="108.569" y1="59" x2="80.5693" y2="87" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Brand" x="116.6" y="79.0" font-family="Inter" font-size="18" font-weight="700" fill="#212121">Community Connect</text>
+<path id="icon/dark_mode" transform="translate(314 62) scale(0.9167)" d="M12 21Q8.25 21 5.62 18.38Q3 15.75 3 12Q3 8.25 5.62 5.62Q8.25 3 12 3Q12.35 3 12.69 3.02Q13.03 3.05 13.35 3.1Q12.33 3.82 11.71 4.99Q11.1 6.15 11.1 7.5Q11.1 9.75 12.68 11.32Q14.25 12.9 16.5 12.9Q17.88 12.9 19.02 12.29Q20.18 11.67 20.9 10.65Q20.95 10.97 20.98 11.31Q21 11.65 21 12Q21 15.75 18.38 18.38Q15.75 21 12 21ZM12 19Q14.2 19 15.95 17.79Q17.7 16.57 18.5 14.62Q18 14.75 17.5 14.82Q17 14.9 16.5 14.9Q13.43 14.9 11.26 12.74Q9.1 10.57 9.1 7.5Q9.1 7 9.18 6.5Q9.25 6 9.38 5.5Q7.43 6.3 6.21 8.05Q5 9.8 5 12Q5 14.9 7.05 16.95Q9.1 19 12 19ZM11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Z" fill="#212121"/>
+<path id="icon/notifications" transform="translate(348 62) scale(0.9167)" d="M4 19V17H6V10Q6 7.93 7.25 6.31Q8.5 4.7 10.5 4.2V3.5Q10.5 2.88 10.94 2.44Q11.38 2 12 2Q12.62 2 13.06 2.44Q13.5 2.88 13.5 3.5V4.2Q15.5 4.7 16.75 6.31Q18 7.93 18 10V17H20V19ZM12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5ZM12 22Q11.18 22 10.59 21.41Q10 20.82 10 20H14Q14 20.82 13.41 21.41Q12.83 22 12 22ZM8 17H16V10Q16 8.35 14.82 7.17Q13.65 6 12 6Q10.35 6 9.18 7.17Q8 8.35 8 10Z" fill="#212121"/>
+<circle id="Unread dot" cx="366" cy="64" r="4" fill="#5F5F5F"/>
+</g>
+<g id="Search">
+<rect id="Search field" x="16" y="107" width="306" height="44" rx="22" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<path id="icon/search" transform="translate(32 120) scale(0.7500)" d="M19.6 21 13.3 14.7Q12.55 15.3 11.58 15.65Q10.6 16 9.5 16Q6.78 16 4.89 14.11Q3 12.22 3 9.5Q3 6.77 4.89 4.89Q6.78 3 9.5 3Q12.23 3 14.11 4.89Q16 6.77 16 9.5Q16 10.6 15.65 11.57Q15.3 12.55 14.7 13.3L21 19.6ZM9.5 14Q11.38 14 12.69 12.69Q14 11.38 14 9.5Q14 7.62 12.69 6.31Q11.38 5 9.5 5Q7.62 5 6.31 6.31Q5 7.62 5 9.5Q5 11.38 6.31 12.69Q7.62 14 9.5 14Z" fill="#757575"/>
+<text id="Placeholder" x="58.0" y="134.4" font-family="Inter" font-size="15" font-weight="400" fill="#757575">Search events, organizers, venues</text>
+<g id="Filter button">
+<circle id="Ellipse 2" cx="352" cy="129" r="22" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<path id="icon/tune" transform="translate(342 119) scale(0.8333)" d="M11 21V15H13V17H21V19H13V21ZM3 19V17H9V19ZM7 15V13H3V11H7V9H9V15ZM11 13V11H21V13ZM15 9V3H17V5H21V7H17V9ZM3 7V5H13V7Z" fill="#757575"/>
+</g>
+</g>
+<g id="Category chips" clip-path="url(#clip1)">
+<g id="Chip/All">
+<rect id="Chip background" x="16" y="167" width="48.2627" height="34" rx="17" fill="#5F5F5F"/>
+<text id="All" x="32.0" y="188.7" font-family="Inter" font-size="13" font-weight="600" fill="#FFFFFF">All</text>
+</g>
+<g id="Chip/Youth">
+<rect id="Chip background 2" x="72.2627" y="167" width="69.6987" height="34" rx="17" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Youth" x="88.3" y="188.7" font-family="Inter" font-size="13" font-weight="600" fill="#757575">Youth</text>
+</g>
+<g id="Chip/Educational">
+<rect id="Chip background 3" x="149.961" y="167" width="105.709" height="34" rx="17" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Educational" x="166.0" y="188.7" font-family="Inter" font-size="13" font-weight="600" fill="#757575">Educational</text>
+</g>
+<g id="Chip/Sports">
+<rect id="Chip background 4" x="263.67" y="167" width="73.374" height="34" rx="17" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Sports" x="279.7" y="188.7" font-family="Inter" font-size="13" font-weight="600" fill="#757575">Sports</text>
+</g>
+<g id="Chip/Cultural">
+<rect id="Chip background 5" x="345.044" y="167" width="81.5181" height="34" rx="17" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Cultural" x="361.0" y="188.7" font-family="Inter" font-size="13" font-weight="600" fill="#757575">Cultural</text>
+</g>
+</g>
+<text id="Result count" x="16.0" y="231.0" font-family="Inter" font-size="12" font-weight="500" fill="#757575">8 events</text>
+<g id="Event list" clip-path="url(#clip2)">
+<g id="Event card/Youth Leadership Summit 2026">
+<rect id="Card background" x="16" y="244" width="358" height="374" rx="16" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<g id="Event cover">
+<rect id="Image placeholder" x="24" y="252" width="342" height="140" rx="12" fill="#EEEEEE" stroke="#BDBDBD" stroke-width="1"/>
+<line id="Placeholder X" x1="24" y1="252" x2="366" y2="392" stroke="#CFCFCF" stroke-width="1"/>
+<line id="Placeholder X 2" x1="366" y1="252" x2="24" y2="392" stroke="#CFCFCF" stroke-width="1"/>
+<g id="Tag/Youth">
+<rect id="Tag background" x="40" y="268" width="55.4668" height="22" rx="8" fill="#9E9E9E"/>
+<text id="Youth 2" x="50.0" y="283.3" font-family="Inter" font-size="12" font-weight="700" fill="#FFFFFF">Youth</text>
+</g>
+<g id="Save button">
+<circle id="Ellipse 3" cx="333" cy="285" r="17" fill="#FFFFFF" stroke="#DDDDDD" stroke-width="1"/>
+<path id="icon/bookmark_border" transform="translate(324 276) scale(0.7500)" d="M5 21V5Q5 4.17 5.59 3.59Q6.18 3 7 3H17Q17.82 3 18.41 3.59Q19 4.17 19 5V21L12 18ZM7 17.95 12 15.8 17 17.95V5Q17 5 17 5Q17 5 17 5H7Q7 5 7 5Q7 5 7 5ZM7 5Q7 5 7 5Q7 5 7 5H17Q17 5 17 5Q17 5 17 5H12Z" fill="#757575"/>
+</g>
+<g id="Date tile">
+<rect id="Tile" x="40" y="326" width="46" height="50" rx="8" fill="#FFFFFF" stroke="#DDDDDD" stroke-width="1"/>
+<text id="OCT" x="49.9" y="344.0" font-family="Inter" font-size="12" font-weight="700" fill="#757575">OCT</text>
+<text id="10" x="51.9" y="367.0" font-family="Inter" font-size="20" font-weight="700" fill="#11181C">10</text>
+</g>
+</g>
+<text id="Title" x="32.0" y="425.0" font-family="Inter" font-size="17" font-weight="600" fill="#212121">Youth Leadership Summit 2026</text>
+<text id="Organizer" x="32.0" y="449.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">by SK Federation of Naval</text>
+<path id="icon/verified" transform="translate(210.614 437) scale(0.5833)" d="M8.6 22.5 6.7 19.3 3.1 18.5 3.45 14.8 1 12 3.45 9.2 3.1 5.5 6.7 4.7 8.6 1.5 12 2.95 15.4 1.5 17.3 4.7 20.9 5.5 20.55 9.2 23 12 20.55 14.8 20.9 18.5 17.3 19.3 15.4 22.5 12 21.05ZM9.45 19.95 12 18.85 14.6 19.95 16 17.55 18.75 16.9 18.5 14.1 20.35 12 18.5 9.85 18.75 7.05 16 6.45 14.55 4.05 12 5.15 9.4 4.05 8 6.45 5.25 7.05 5.5 9.85 3.65 12 5.5 14.1 5.25 16.95 8 17.55ZM12 12ZM10.95 15.55 16.6 9.9 15.2 8.45 10.95 12.7 8.8 10.6 7.4 12Z" fill="#5F5F5F"/>
+<g id="Info row">
+<path id="icon/calendar_today" transform="translate(32 472) scale(0.6667)" d="M5 22Q4.17 22 3.59 21.41Q3 20.82 3 20V6Q3 5.18 3.59 4.59Q4.17 4 5 4H6V2H8V4H16V2H18V4H19Q19.83 4 20.41 4.59Q21 5.18 21 6V20Q21 20.82 20.41 21.41Q19.83 22 19 22ZM5 20H19Q19 20 19 20Q19 20 19 20V10H5V20Q5 20 5 20Q5 20 5 20ZM5 8H19V6Q19 6 19 6Q19 6 19 6H5Q5 6 5 6Q5 6 5 6ZM5 8V6Q5 6 5 6Q5 6 5 6Q5 6 5 6Q5 6 5 6V8Z" fill="#757575"/>
+<text id="Sat, Oct 10, 2026 · 8:00 AM" x="56.0" y="485.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">Sat, Oct 10, 2026 · 8:00 AM</text>
+</g>
+<g id="Info row 2">
+<path id="icon/location_on" transform="translate(32 496) scale(0.6667)" d="M12 12Q12.83 12 13.41 11.41Q14 10.82 14 10Q14 9.17 13.41 8.59Q12.83 8 12 8Q11.18 8 10.59 8.59Q10 9.17 10 10Q10 10.82 10.59 11.41Q11.18 12 12 12ZM12 19.35Q15.05 16.55 16.52 14.26Q18 11.97 18 10.2Q18 7.47 16.26 5.74Q14.53 4 12 4Q9.47 4 7.74 5.74Q6 7.47 6 10.2Q6 11.97 7.48 14.26Q8.95 16.55 12 19.35ZM12 22Q7.98 18.57 5.99 15.64Q4 12.7 4 10.2Q4 6.45 6.41 4.22Q8.83 2 12 2Q15.18 2 17.59 4.22Q20 6.45 20 10.2Q20 12.7 18.01 15.64Q16.03 18.57 12 22ZM12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Z" fill="#757575"/>
+<text id="NSU Gymnasium, Brgy. Caraycaray, Naval" x="56.0" y="509.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">NSU Gymnasium, Brgy. Caraycaray, Naval</text>
+</g>
+<text id="RSVP counts" x="32.0" y="542.0" font-family="Inter" font-size="12" font-weight="500" fill="#757575">50 going · 31 interested</text>
+<g id="Button/Interested">
+<rect id="Button background" x="32" y="562" width="159" height="40" rx="20" fill="none" stroke="#5F5F5F" stroke-width="1.5"/>
+<path id="icon/star" transform="translate(66.9272 574) scale(0.6667)" d="M8.85 16.82 12 14.92 15.15 16.85 14.33 13.25 17.1 10.85 13.45 10.52 12 7.12 10.55 10.5 6.9 10.82 9.68 13.25ZM5.83 21 7.45 13.97 2 9.25 9.2 8.62 12 2 14.8 8.62 22 9.25 16.55 13.97 18.18 21 12 17.27ZM12 12.25Z" fill="#5F5F5F"/>
+<text id="Interested" x="86.9" y="587.0" font-family="Inter" font-size="14" font-weight="600" fill="#5F5F5F">Interested</text>
+</g>
+<g id="Button/Going">
+<rect id="Button background 2" x="199" y="562" width="159" height="40" rx="20" fill="#5F5F5F" stroke="#5F5F5F" stroke-width="1.5"/>
+<path id="icon/check_circle" transform="translate(248.501 574) scale(0.6667)" d="M10.6 16.6 17.65 9.55 16.25 8.15 10.6 13.8 7.75 10.95 6.35 12.35ZM12 22Q9.93 22 8.1 21.21Q6.28 20.43 4.93 19.08Q3.58 17.73 2.79 15.9Q2 14.07 2 12Q2 9.92 2.79 8.1Q3.58 6.27 4.93 4.92Q6.28 3.57 8.1 2.79Q9.93 2 12 2Q14.08 2 15.9 2.79Q17.73 3.57 19.08 4.92Q20.43 6.27 21.21 8.1Q22 9.92 22 12Q22 14.07 21.21 15.9Q20.43 17.73 19.08 19.08Q17.73 20.43 15.9 21.21Q14.08 22 12 22ZM12 20Q15.35 20 17.68 17.68Q20 15.35 20 12Q20 8.65 17.68 6.32Q15.35 4 12 4Q8.65 4 6.33 6.32Q4 8.65 4 12Q4 15.35 6.33 17.68Q8.65 20 12 20ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Z" fill="#FFFFFF"/>
+<text id="Going" x="268.5" y="587.0" font-family="Inter" font-size="14" font-weight="600" fill="#FFFFFF">Going</text>
+</g>
+</g>
+<g id="Event card/Scholarship Info Session">
+<rect id="Card background 2" x="16" y="634" width="358" height="394" rx="16" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<g id="Event cover 2">
+<rect id="Image placeholder 2" x="24" y="642" width="342" height="140" rx="12" fill="#EEEEEE" stroke="#BDBDBD" stroke-width="1"/>
+<line id="Placeholder X 3" x1="24" y1="642" x2="366" y2="782" stroke="#CFCFCF" stroke-width="1"/>
+<line id="Placeholder X 4" x1="366" y1="642" x2="24" y2="782" stroke="#CFCFCF" stroke-width="1"/>
+<g id="Tag/Educational">
+<rect id="Tag background 2" x="40" y="658" width="89.0469" height="22" rx="8" fill="#9E9E9E"/>
+<text id="Educational 2" x="50.0" y="673.3" font-family="Inter" font-size="12" font-weight="700" fill="#FFFFFF">Educational</text>
+</g>
+<g id="Save button 2">
+<circle id="Ellipse 4" cx="333" cy="675" r="17" fill="#FFFFFF" stroke="#DDDDDD" stroke-width="1"/>
+<path id="icon/bookmark_border 2" transform="translate(324 666) scale(0.7500)" d="M5 21V5Q5 4.17 5.59 3.59Q6.18 3 7 3H17Q17.82 3 18.41 3.59Q19 4.17 19 5V21L12 18ZM7 17.95 12 15.8 17 17.95V5Q17 5 17 5Q17 5 17 5H7Q7 5 7 5Q7 5 7 5ZM7 5Q7 5 7 5Q7 5 7 5H17Q17 5 17 5Q17 5 17 5H12Z" fill="#757575"/>
+</g>
+<g id="Date tile 2">
+<rect id="Tile 2" x="40" y="716" width="46" height="50" rx="8" fill="#FFFFFF" stroke="#DDDDDD" stroke-width="1"/>
+<text id="OCT 2" x="49.9" y="734.0" font-family="Inter" font-size="12" font-weight="700" fill="#757575">OCT</text>
+<text id="14" x="51.9" y="757.0" font-family="Inter" font-size="20" font-weight="700" fill="#11181C">14</text>
+</g>
+</g>
+<text id="Title 2" x="32.0" y="815.0" font-family="Inter" font-size="17" font-weight="600" fill="#212121">Scholarship Info Session</text>
+<text id="Organizer 2" x="32.0" y="839.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">by Naval Youth Development Office</text>
+<path id="icon/verified 2" transform="translate(275.303 827) scale(0.5833)" d="M8.6 22.5 6.7 19.3 3.1 18.5 3.45 14.8 1 12 3.45 9.2 3.1 5.5 6.7 4.7 8.6 1.5 12 2.95 15.4 1.5 17.3 4.7 20.9 5.5 20.55 9.2 23 12 20.55 14.8 20.9 18.5 17.3 19.3 15.4 22.5 12 21.05ZM9.45 19.95 12 18.85 14.6 19.95 16 17.55 18.75 16.9 18.5 14.1 20.35 12 18.5 9.85 18.75 7.05 16 6.45 14.55 4.05 12 5.15 9.4 4.05 8 6.45 5.25 7.05 5.5 9.85 3.65 12 5.5 14.1 5.25 16.95 8 17.55ZM12 12ZM10.95 15.55 16.6 9.9 15.2 8.45 10.95 12.7 8.8 10.6 7.4 12Z" fill="#5F5F5F"/>
+<g id="Info row 3">
+<path id="icon/calendar_today 2" transform="translate(32 862) scale(0.6667)" d="M5 22Q4.17 22 3.59 21.41Q3 20.82 3 20V6Q3 5.18 3.59 4.59Q4.17 4 5 4H6V2H8V4H16V2H18V4H19Q19.83 4 20.41 4.59Q21 5.18 21 6V20Q21 20.82 20.41 21.41Q19.83 22 19 22ZM5 20H19Q19 20 19 20Q19 20 19 20V10H5V20Q5 20 5 20Q5 20 5 20ZM5 8H19V6Q19 6 19 6Q19 6 19 6H5Q5 6 5 6Q5 6 5 6ZM5 8V6Q5 6 5 6Q5 6 5 6Q5 6 5 6Q5 6 5 6V8Z" fill="#757575"/>
+<text id="Wed, Oct 14, 2026 · 2:00 PM" x="56.0" y="875.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">Wed, Oct 14, 2026 · 2:00 PM</text>
+</g>
+<g id="Info row 4">
+<path id="icon/location_on 2" transform="translate(32 886) scale(0.6667)" d="M12 12Q12.83 12 13.41 11.41Q14 10.82 14 10Q14 9.17 13.41 8.59Q12.83 8 12 8Q11.18 8 10.59 8.59Q10 9.17 10 10Q10 10.82 10.59 11.41Q11.18 12 12 12ZM12 19.35Q15.05 16.55 16.52 14.26Q18 11.97 18 10.2Q18 7.47 16.26 5.74Q14.53 4 12 4Q9.47 4 7.74 5.74Q6 7.47 6 10.2Q6 11.97 7.48 14.26Q8.95 16.55 12 19.35ZM12 22Q7.98 18.57 5.99 15.64Q4 12.7 4 10.2Q4 6.45 6.41 4.22Q8.83 2 12 2Q15.18 2 17.59 4.22Q20 6.45 20 10.2Q20 12.7 18.01 15.64Q16.03 18.57 12 22ZM12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Q12 10 12 10Z" fill="#757575"/>
+<text id="Municipal Session Hall, Brgy. P.I. Garci" x="56.0" y="899.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">Municipal Session Hall, Brgy. P.I. Garcia,</text>
+<text id="Naval" x="56.0" y="919.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">Naval</text>
+</g>
+<text id="RSVP counts 2" x="32.0" y="952.0" font-family="Inter" font-size="12" font-weight="500" fill="#757575">22 going · 40 interested</text>
+<g id="Button/Interested 2">
+<rect id="Button background 3" x="32" y="972" width="159" height="40" rx="20" fill="none" stroke="#5F5F5F" stroke-width="1.5"/>
+<path id="icon/star 2" transform="translate(66.9272 984) scale(0.6667)" d="M8.85 16.82 12 14.92 15.15 16.85 14.33 13.25 17.1 10.85 13.45 10.52 12 7.12 10.55 10.5 6.9 10.82 9.68 13.25ZM5.83 21 7.45 13.97 2 9.25 9.2 8.62 12 2 14.8 8.62 22 9.25 16.55 13.97 18.18 21 12 17.27ZM12 12.25Z" fill="#5F5F5F"/>
+<text id="Interested 2" x="86.9" y="997.0" font-family="Inter" font-size="14" font-weight="600" fill="#5F5F5F">Interested</text>
+</g>
+<g id="Button/Going 2">
+<rect id="Button background 4" x="199" y="972" width="159" height="40" rx="20" fill="none" stroke="#5F5F5F" stroke-width="1.5"/>
+<path id="icon/check_circle 2" transform="translate(248.501 984) scale(0.6667)" d="M10.6 16.6 17.65 9.55 16.25 8.15 10.6 13.8 7.75 10.95 6.35 12.35ZM12 22Q9.93 22 8.1 21.21Q6.28 20.43 4.93 19.08Q3.58 17.73 2.79 15.9Q2 14.07 2 12Q2 9.92 2.79 8.1Q3.58 6.27 4.93 4.92Q6.28 3.57 8.1 2.79Q9.93 2 12 2Q14.08 2 15.9 2.79Q17.73 3.57 19.08 4.92Q20.43 6.27 21.21 8.1Q22 9.92 22 12Q22 14.07 21.21 15.9Q20.43 17.73 19.08 19.08Q17.73 20.43 15.9 21.21Q14.08 22 12 22ZM12 20Q15.35 20 17.68 17.68Q20 15.35 20 12Q20 8.65 17.68 6.32Q15.35 4 12 4Q8.65 4 6.33 6.32Q4 8.65 4 12Q4 15.35 6.33 17.68Q8.65 20 12 20ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Z" fill="#5F5F5F"/>
+<text id="Going 2" x="268.5" y="997.0" font-family="Inter" font-size="14" font-weight="600" fill="#5F5F5F">Going</text>
+</g>
+</g>
+</g>
+<g id="Tab bar">
+<rect id="Tab bar background" x="0" y="761" width="390" height="83" fill="#FFFFFF"/>
+<line id="Divider" x1="0" y1="761" x2="390" y2="761" stroke="#BDBDBD" stroke-width="1"/>
+<g id="Tab/Browse">
+<rect id="Indicator" x="35" y="767" width="60" height="32" rx="16" fill="#E6E6E6"/>
+<path id="icon/event" transform="translate(52 770) scale(1.0833)" d="M14.5 18Q13.45 18 12.73 17.27Q12 16.55 12 15.5Q12 14.45 12.73 13.72Q13.45 13 14.5 13Q15.55 13 16.27 13.72Q17 14.45 17 15.5Q17 16.55 16.27 17.27Q15.55 18 14.5 18ZM5 22Q4.17 22 3.59 21.41Q3 20.82 3 20V6Q3 5.18 3.59 4.59Q4.17 4 5 4H6V2H8V4H16V2H18V4H19Q19.83 4 20.41 4.59Q21 5.18 21 6V20Q21 20.82 20.41 21.41Q19.83 22 19 22ZM5 20H19Q19 20 19 20Q19 20 19 20V10H5V20Q5 20 5 20Q5 20 5 20ZM5 8H19V6Q19 6 19 6Q19 6 19 6H5Q5 6 5 6Q5 6 5 6ZM5 8V6Q5 6 5 6Q5 6 5 6Q5 6 5 6Q5 6 5 6V8Z" fill="#5F5F5F"/>
+<text id="Browse" x="45.0" y="816.0" font-family="Inter" font-size="11" font-weight="600" fill="#5F5F5F">Browse</text>
+</g>
+<g id="Tab/Saved">
+<path id="icon/bookmark_border 3" transform="translate(182 770) scale(1.0833)" d="M5 21V5Q5 4.17 5.59 3.59Q6.18 3 7 3H17Q17.82 3 18.41 3.59Q19 4.17 19 5V21L12 18ZM7 17.95 12 15.8 17 17.95V5Q17 5 17 5Q17 5 17 5H7Q7 5 7 5Q7 5 7 5ZM7 5Q7 5 7 5Q7 5 7 5H17Q17 5 17 5Q17 5 17 5H12Z" fill="#757575"/>
+<text id="Saved" x="178.5" y="816.0" font-family="Inter" font-size="11" font-weight="500" fill="#757575">Saved</text>
+</g>
+<g id="Tab/Profile">
+<path id="icon/person" transform="translate(312 770) scale(1.0833)" d="M12 12Q10.35 12 9.18 10.82Q8 9.65 8 8Q8 6.35 9.18 5.17Q10.35 4 12 4Q13.65 4 14.82 5.17Q16 6.35 16 8Q16 9.65 14.82 10.82Q13.65 12 12 12ZM4 20V17.2Q4 16.35 4.44 15.64Q4.88 14.92 5.6 14.55Q7.15 13.77 8.75 13.39Q10.35 13 12 13Q13.65 13 15.25 13.39Q16.85 13.77 18.4 14.55Q19.12 14.92 19.56 15.64Q20 16.35 20 17.2V20ZM6 18H18V17.2Q18 16.93 17.86 16.7Q17.73 16.48 17.5 16.35Q16.15 15.67 14.78 15.34Q13.4 15 12 15Q10.6 15 9.23 15.34Q7.85 15.67 6.5 16.35Q6.28 16.48 6.14 16.7Q6 16.93 6 17.2ZM12 10Q12.83 10 13.41 9.41Q14 8.82 14 8Q14 7.18 13.41 6.59Q12.83 6 12 6Q11.18 6 10.59 6.59Q10 7.18 10 8Q10 8.82 10.59 9.41Q11.18 10 12 10ZM12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8ZM12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Z" fill="#757575"/>
+<text id="Profile" x="307.9" y="816.0" font-family="Inter" font-size="11" font-weight="500" fill="#757575">Profile</text>
+</g>
+</g>
+<rect id="Home indicator" x="128" y="830" width="134" height="5" rx="2.5" fill="#212121"/>
+</svg>

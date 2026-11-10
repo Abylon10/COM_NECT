@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+<title>Hi-fi dark / 07 Profile</title>
+
+
+<rect id="Profile background" x="0" y="0" width="390" height="844" fill="#0E1415"/>
+<g id="Status bar">
+<text id="Time" x="39.6" y="33.0" font-family="Inter" font-size="16" font-weight="600" fill="#ECEDEE">9:41</text>
+<rect id="Signal" x="296" y="26" width="3" height="3" rx="1" fill="#ECEDEE"/>
+<rect id="Signal 2" x="301" y="23" width="3" height="6" rx="1" fill="#ECEDEE"/>
+<rect id="Signal 3" x="306" y="20" width="3" height="9" rx="1" fill="#ECEDEE"/>
+<rect id="Signal 4" x="311" y="17" width="3" height="12" rx="1" fill="#ECEDEE"/>
+<rect id="Battery" x="322" y="21" width="25" height="12" rx="3.5" fill="none" stroke="#ECEDEE" stroke-width="1"/>
+<rect id="Battery level" x="324" y="23" width="19" height="8" rx="2" fill="#ECEDEE"/>
+<rect id="Battery cap" x="348" y="25" width="2" height="4" rx="1" fill="#ECEDEE"/>
+</g>
+<text id="Screen title" x="168.2" y="84.0" font-family="Inter" font-size="17" font-weight="600" fill="#ECEDEE">Profile</text>
+<g id="Identity">
+<circle id="Avatar" cx="195" cy="154" r="48" fill="#173634"/>
+<text id="Initials" x="169.7" y="167.0" font-family="Inter" font-size="36" font-weight="700" fill="#38BDB4">AR</text>
+<text id="Name" x="128.5" y="232.0" font-family="Inter" font-size="20" font-weight="700" fill="#ECEDEE">Ashley Reyes</text>
+<text id="Email" x="122.4" y="256.0" font-family="Inter" font-size="14" font-weight="400" fill="#A3ADB0">ashley@example.com</text>
+<g id="Tag/Resident">
+<rect id="Tag background" x="159.21" y="268" width="71.5801" height="22" rx="8" fill="#38BDB4"/>
+<text id="Resident" x="169.2" y="283.3" font-family="Inter" font-size="12" font-weight="700" fill="#FFFFFF">Resident</text>
+</g>
+<text id="Location" x="125.4" y="312.0" font-family="Inter" font-size="12" font-weight="500" fill="#A3ADB0">Brgy. Caraycaray, Naval</text>
+</g>
+<g id="Stats">
+<rect id="Stats background" x="16" y="332" width="358" height="76" rx="16" fill="#1A2223"/>
+<text id="Saved count" x="69.4" y="366.0" font-family="Inter" font-size="20" font-weight="700" fill="#38BDB4">2</text>
+<text id="Saved" x="57.7" y="388.0" font-family="Inter" font-size="12" font-weight="500" fill="#A3ADB0">Saved</text>
+<text id="Going count" x="190.7" y="366.0" font-family="Inter" font-size="20" font-weight="700" fill="#38BDB4">1</text>
+<text id="Going" x="178.1" y="388.0" font-family="Inter" font-size="12" font-weight="500" fill="#A3ADB0">Going</text>
+<text id="Interested count" x="310.0" y="366.0" font-family="Inter" font-size="20" font-weight="700" fill="#38BDB4">1</text>
+<text id="Interested" x="285.2" y="388.0" font-family="Inter" font-size="12" font-weight="500" fill="#A3ADB0">Interested</text>
+</g>
+<g id="Appearance">
+<path id="icon/contrast" transform="translate(24 432) scale(0.8333)" d="M12 22Q9.93 22 8.1 21.21Q6.28 20.43 4.93 19.08Q3.58 17.73 2.79 15.9Q2 14.07 2 12Q2 9.92 2.79 8.1Q3.58 6.27 4.93 4.92Q6.28 3.57 8.1 2.79Q9.93 2 12 2Q14.08 2 15.9 2.79Q17.73 3.57 19.08 4.92Q20.43 6.27 21.21 8.1Q22 9.92 22 12Q22 14.07 21.21 15.9Q20.43 17.73 19.08 19.08Q17.73 20.43 15.9 21.21Q14.08 22 12 22ZM13 19.93Q15.98 19.55 17.99 17.31Q20 15.07 20 12Q20 8.92 17.99 6.69Q15.98 4.45 13 4.07Z" fill="#A3ADB0"/>
+<text id="Appearance 2" x="56.0" y="447.0" font-family="Inter" font-size="15" font-weight="400" fill="#ECEDEE">Appearance</text>
+<g id="Chip/System">
+<rect id="Chip background" x="24" y="464" width="79.2266" height="34" rx="17" fill="#38BDB4"/>
+<text id="System" x="40.0" y="485.7" font-family="Inter" font-size="13" font-weight="600" fill="#06201E">System</text>
+</g>
+<g id="Chip/Day">
+<rect id="Chip background 2" x="111.227" y="464" width="56.502" height="34" rx="17" fill="#0E1415" stroke="#253031" stroke-width="1"/>
+<text id="Day" x="127.2" y="485.7" font-family="Inter" font-size="13" font-weight="600" fill="#A3ADB0">Day</text>
+</g>
+<g id="Chip/Night">
+<rect id="Chip background 3" x="175.729" y="464" width="65.9536" height="34" rx="17" fill="#0E1415" stroke="#253031" stroke-width="1"/>
+<text id="Night" x="191.7" y="485.7" font-family="Inter" font-size="13" font-weight="600" fill="#A3ADB0">Night</text>
+</g>
+<line id="Divider" x1="16" y1="514" x2="374" y2="514" stroke="#253031" stroke-width="1"/>
+</g>
+<g id="Menu/Edit Profile">
+<path id="icon/edit" transform="translate(24 530) scale(0.8333)" d="M5 19H6.43L16.2 9.22L14.78 7.8L5 17.57ZM3 21V16.75L16.2 3.57Q16.5 3.3 16.86 3.15Q17.23 3 17.62 3Q18.03 3 18.4 3.15Q18.78 3.3 19.05 3.6L20.43 5Q20.73 5.27 20.86 5.65Q21 6.02 21 6.4Q21 6.8 20.86 7.16Q20.73 7.52 20.43 7.82L7.25 21ZM19 6.4 17.6 5ZM15.48 8.52 14.78 7.8 16.2 9.22Z" fill="#A3ADB0"/>
+<text id="Edit Profile" x="56.0" y="545.0" font-family="Inter" font-size="15" font-weight="400" fill="#ECEDEE">Edit Profile</text>
+<path id="icon/chevron_right" transform="translate(350 532) scale(0.6667)" d="M12.6 12 8 7.4 9.4 6 15.4 12 9.4 18 8 16.6Z" fill="#A3ADB0"/>
+<line id="Divider 2" x1="16" y1="566" x2="374" y2="566" stroke="#253031" stroke-width="1"/>
+</g>
+<g id="Menu/Organizer Tools">
+<path id="icon/campaign" transform="translate(24 582) scale(0.8333)" d="M18 13V11H22V13ZM19.2 20 16 17.6 17.2 16 20.4 18.4ZM17.2 8 16 6.4 19.2 4 20.4 5.6ZM5 19V15H4Q3.18 15 2.59 14.41Q2 13.82 2 13V11Q2 10.17 2.59 9.59Q3.18 9 4 9H8L13 6V18L8 15H7V19ZM11 14.45V9.55L8.55 11H4Q4 11 4 11Q4 11 4 11V13Q4 13 4 13Q4 13 4 13H8.55ZM14 15.35V8.65Q14.68 9.25 15.09 10.11Q15.5 10.97 15.5 12Q15.5 13.02 15.09 13.89Q14.68 14.75 14 15.35ZM7.5 12Q7.5 12 7.5 12Q7.5 12 7.5 12Q7.5 12 7.5 12Q7.5 12 7.5 12Z" fill="#A3ADB0"/>
+<text id="Organizer Tools" x="56.0" y="597.0" font-family="Inter" font-size="15" font-weight="400" fill="#ECEDEE">Organizer Tools</text>
+<path id="icon/chevron_right 2" transform="translate(350 584) scale(0.6667)" d="M12.6 12 8 7.4 9.4 6 15.4 12 9.4 18 8 16.6Z" fill="#A3ADB0"/>
+<line id="Divider 3" x1="16" y1="618" x2="374" y2="618" stroke="#253031" stroke-width="1"/>
+</g>
+<g id="Menu/Notifications">
+<path id="icon/notifications" transform="translate(24 634) scale(0.8333)" d="M4 19V17H6V10Q6 7.93 7.25 6.31Q8.5 4.7 10.5 4.2V3.5Q10.5 2.88 10.94 2.44Q11.38 2 12 2Q12.62 2 13.06 2.44Q13.5 2.88 13.5 3.5V4.2Q15.5 4.7 16.75 6.31Q18 7.93 18 10V17H20V19ZM12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5Q12 11.5 12 11.5ZM12 22Q11.18 22 10.59 21.41Q10 20.82 10 20H14Q14 20.82 13.41 21.41Q12.83 22 12 22ZM8 17H16V10Q16 8.35 14.82 7.17Q13.65 6 12 6Q10.35 6 9.18 7.17Q8 8.35 8 10Z" fill="#A3ADB0"/>
+<text id="Notifications" x="56.0" y="649.0" font-family="Inter" font-size="15" font-weight="400" fill="#ECEDEE">Notifications</text>
+<path id="icon/chevron_right 3" transform="translate(350 636) scale(0.6667)" d="M12.6 12 8 7.4 9.4 6 15.4 12 9.4 18 8 16.6Z" fill="#A3ADB0"/>
+<line id="Divider 4" x1="16" y1="670" x2="374" y2="670" stroke="#253031" stroke-width="1"/>
+</g>
+<g id="Menu/Privacy Policy">
+<path id="icon/privacy_tip" transform="translate(24 686) scale(0.8333)" d="M11 17H13V11H11ZM12 9Q12.43 9 12.71 8.71Q13 8.42 13 8Q13 7.57 12.71 7.29Q12.43 7 12 7Q11.58 7 11.29 7.29Q11 7.57 11 8Q11 8.42 11.29 8.71Q11.58 9 12 9ZM12 22Q8.53 21.12 6.26 18.01Q4 14.9 4 11.1V5L12 2L20 5V11.1Q20 14.9 17.74 18.01Q15.48 21.12 12 22ZM12 19.9Q14.6 19.07 16.3 16.6Q18 14.12 18 11.1V6.38L12 4.12L6 6.38V11.1Q6 14.12 7.7 16.6Q9.4 19.07 12 19.9ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Z" fill="#A3ADB0"/>
+<text id="Privacy Policy" x="56.0" y="701.0" font-family="Inter" font-size="15" font-weight="400" fill="#ECEDEE">Privacy Policy</text>
+<path id="icon/chevron_right 4" transform="translate(350 688) scale(0.6667)" d="M12.6 12 8 7.4 9.4 6 15.4 12 9.4 18 8 16.6Z" fill="#A3ADB0"/>
+<line id="Divider 5" x1="16" y1="722" x2="374" y2="722" stroke="#253031" stroke-width="1"/>
+</g>
+<g id="Menu/Log Out">
+<path id="icon/logout" transform="translate(24 738) scale(0.8333)" d="M5 21Q4.17 21 3.59 20.41Q3 19.82 3 19V5Q3 4.17 3.59 3.59Q4.17 3 5 3H12V5H5Q5 5 5 5Q5 5 5 5V19Q5 19 5 19Q5 19 5 19H12V21ZM16 17 14.62 15.55 17.18 13H9V11H17.18L14.62 8.45L16 7L21 12Z" fill="#FF6369"/>
+<text id="Log Out" x="56.0" y="753.0" font-family="Inter" font-size="15" font-weight="400" fill="#FF6369">Log Out</text>
+</g>
+<g id="Tab bar">
+<rect id="Tab bar background" x="0" y="761" width="390" height="83" fill="#0E1415"/>
+<line id="Divider 6" x1="0" y1="761" x2="390" y2="761" stroke="#253031" stroke-width="1"/>
+<g id="Tab/Browse">
+<path id="icon/event" transform="translate(52 770) scale(1.0833)" d="M14.5 18Q13.45 18 12.73 17.27Q12 16.55 12 15.5Q12 14.45 12.73 13.72Q13.45 13 14.5 13Q15.55 13 16.27 13.72Q17 14.45 17 15.5Q17 16.55 16.27 17.27Q15.55 18 14.5 18ZM5 22Q4.17 22 3.59 21.41Q3 20.82 3 20V6Q3 5.18 3.59 4.59Q4.17 4 5 4H6V2H8V4H16V2H18V4H19Q19.83 4 20.41 4.59Q21 5.18 21 6V20Q21 20.82 20.41 21.41Q19.83 22 19 22ZM5 20H19Q19 20 19 20Q19 20 19 20V10H5V20Q5 20 5 20Q5 20 5 20ZM5 8H19V6Q19 6 19 6Q19 6 19 6H5Q5 6 5 6Q5 6 5 6ZM5 8V6Q5 6 5 6Q5 6 5 6Q5 6 5 6Q5 6 5 6V8Z" fill="#A3ADB0"/>
+<text id="Browse" x="45.2" y="816.0" font-family="Inter" font-size="11" font-weight="500" fill="#A3ADB0">Browse</text>
+</g>
+<g id="Tab/Saved">
+<path id="icon/bookmark_border" transform="translate(182 770) scale(1.0833)" d="M5 21V5Q5 4.17 5.59 3.59Q6.18 3 7 3H17Q17.82 3 18.41 3.59Q19 4.17 19 5V21L12 18ZM7 17.95 12 15.8 17 17.95V5Q17 5 17 5Q17 5 17 5H7Q7 5 7 5Q7 5 7 5ZM7 5Q7 5 7 5Q7 5 7 5H17Q17 5 17 5Q17 5 17 5H12Z" fill="#A3ADB0"/>
+<text id="Saved 2" x="178.5" y="816.0" font-family="Inter" font-size="11" font-weight="500" fill="#A3ADB0">Saved</text>
+</g>
+<g id="Tab/Profile">
+<rect id="Indicator" x="295" y="767" width="60" height="32" rx="16" fill="#173634"/>
+<path id="icon/person" transform="translate(312 770) scale(1.0833)" d="M12 12Q10.35 12 9.18 10.82Q8 9.65 8 8Q8 6.35 9.18 5.17Q10.35 4 12 4Q13.65 4 14.82 5.17Q16 6.35 16 8Q16 9.65 14.82 10.82Q13.65 12 12 12ZM4 20V17.2Q4 16.35 4.44 15.64Q4.88 14.92 5.6 14.55Q7.15 13.77 8.75 13.39Q10.35 13 12 13Q13.65 13 15.25 13.39Q16.85 13.77 18.4 14.55Q19.12 14.92 19.56 15.64Q20 16.35 20 17.2V20ZM6 18H18V17.2Q18 16.93 17.86 16.7Q17.73 16.48 17.5 16.35Q16.15 15.67 14.78 15.34Q13.4 15 12 15Q10.6 15 9.23 15.34Q7.85 15.67 6.5 16.35Q6.28 16.48 6.14 16.7Q6 16.93 6 17.2ZM12 10Q12.83 10 13.41 9.41Q14 8.82 14 8Q14 7.18 13.41 6.59Q12.83 6 12 6Q11.18 6 10.59 6.59Q10 7.18 10 8Q10 8.82 10.59 9.41Q11.18 10 12 10ZM12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8Q12 8 12 8ZM12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Q12 18 12 18Z" fill="#38BDB4"/>
+<text id="Profile" x="307.7" y="816.0" font-family="Inter" font-size="11" font-weight="600" fill="#38BDB4">Profile</text>
+</g>
+</g>
+<rect id="Home indicator" x="128" y="830" width="134" height="5" rx="2.5" fill="#ECEDEE"/>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+<title>Wireframe / 06 Notifications</title>
+
+
+<rect id="Notifications background" x="0" y="0" width="390" height="844" fill="#FFFFFF"/>
+<g id="Status bar">
+<text id="Time" x="39.6" y="33.0" font-family="Inter" font-size="16" font-weight="600" fill="#212121">9:41</text>
+<rect id="Signal" x="296" y="26" width="3" height="3" rx="1" fill="#212121"/>
+<rect id="Signal 2" x="301" y="23" width="3" height="6" rx="1" fill="#212121"/>
+<rect id="Signal 3" x="306" y="20" width="3" height="9" rx="1" fill="#212121"/>
+<rect id="Signal 4" x="311" y="17" width="3" height="12" rx="1" fill="#212121"/>
+<rect id="Battery" x="322" y="21" width="25" height="12" rx="3.5" fill="none" stroke="#212121" stroke-width="1"/>
+<rect id="Battery level" x="324" y="23" width="19" height="8" rx="2" fill="#212121"/>
+<rect id="Battery cap" x="348" y="25" width="2" height="4" rx="1" fill="#212121"/>
+</g>
+<g id="Nav bar">
+<path id="icon/arrow_back" transform="translate(16 61) scale(1.0000)" d="M7.83 13 13.43 18.6 12 20 4 12 12 4 13.43 5.4 7.83 11H20V13Z" fill="#212121"/>
+<text id="Screen title" x="142.5" y="80.0" font-family="Inter" font-size="17" font-weight="600" fill="#212121">Notifications</text>
+<text id="Mark all read" x="286.5" y="80.0" font-family="Inter" font-size="14" font-weight="600" fill="#5F5F5F">Mark all read</text>
+</g>
+<g id="Chip/All">
+<rect id="Chip background" x="16" y="106" width="48.2627" height="34" rx="17" fill="#5F5F5F"/>
+<text id="All" x="32.0" y="127.7" font-family="Inter" font-size="13" font-weight="600" fill="#FFFFFF">All</text>
+</g>
+<g id="Chip/Event updates">
+<rect id="Chip background 2" x="72.2627" y="106" width="122.073" height="34" rx="17" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Event updates" x="88.3" y="127.7" font-family="Inter" font-size="13" font-weight="600" fill="#757575">Event updates</text>
+</g>
+<g id="Chip/Reminders">
+<rect id="Chip background 3" x="202.336" y="106" width="99.3296" height="34" rx="17" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
+<text id="Reminders" x="218.3" y="127.7" font-family="Inter" font-size="13" font-weight="600" fill="#757575">Reminders</text>
+</g>
+<g id="Notification/Schedule changed">
+<circle id="Ellipse" cx="40" cy="192" r="22" fill="#EEEEEE"/>
+<path id="icon/update" transform="translate(29 181) scale(0.9167)" d="M12 21Q10.12 21 8.49 20.29Q6.85 19.57 5.64 18.36Q4.42 17.15 3.71 15.51Q3 13.88 3 12Q3 10.12 3.71 8.49Q4.42 6.85 5.64 5.64Q6.85 4.42 8.49 3.71Q10.12 3 12 3Q14.05 3 15.89 3.88Q17.73 4.75 19 6.35V4H21V10H15V8H17.75Q16.73 6.6 15.23 5.8Q13.73 5 12 5Q9.08 5 7.04 7.04Q5 9.07 5 12Q5 14.92 7.04 16.96Q9.08 19 12 19Q14.62 19 16.59 17.3Q18.55 15.6 18.9 13H20.95Q20.58 16.43 18.01 18.71Q15.45 21 12 21ZM14.8 16.2 11 12.4V7H13V11.6L16.2 14.8Z" fill="#8A8A8A"/>
+<text id="Title" x="72.0" y="186.0" font-family="Inter" font-size="15" font-weight="600" fill="#212121">Schedule changed</text>
+<text id="Biliranon Cultural Night moved to Sat," x="72.0" y="208.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">Biliranon Cultural Night moved to Sat,</text>
+<text id="Nov 7 · 6:00 PM." x="72.0" y="228.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">Nov 7 · 6:00 PM.</text>
+<text id="Time 2" x="72.0" y="250.0" font-family="Inter" font-size="12" font-weight="500" fill="#757575">2h ago</text>
+<circle id="Unread dot" cx="370" cy="181" r="5" fill="#5F5F5F"/>
+<line id="Divider" x1="72" y1="268" x2="390" y2="268" stroke="#BDBDBD" stroke-width="1"/>
+</g>
+<g id="Notification/Event cancelled">
+<circle id="Ellipse 2" cx="40" cy="304" r="22" fill="#EEEEEE"/>
+<path id="icon/cancel" transform="translate(29 293) scale(0.9167)" d="M8.4 17 12 13.4 15.6 17 17 15.6 13.4 12 17 8.4 15.6 7 12 10.6 8.4 7 7 8.4 10.6 12 7 15.6ZM12 22Q9.93 22 8.1 21.21Q6.28 20.43 4.93 19.08Q3.58 17.73 2.79 15.9Q2 14.07 2 12Q2 9.92 2.79 8.1Q3.58 6.27 4.93 4.92Q6.28 3.57 8.1 2.79Q9.93 2 12 2Q14.08 2 15.9 2.79Q17.73 3.57 19.08 4.92Q20.43 6.27 21.21 8.1Q22 9.92 22 12Q22 14.07 21.21 15.9Q20.43 17.73 19.08 19.08Q17.73 20.43 15.9 21.21Q14.08 22 12 22ZM12 20Q15.35 20 17.68 17.68Q20 15.35 20 12Q20 8.65 17.68 6.32Q15.35 4 12 4Q8.65 4 6.33 6.32Q4 8.65 4 12Q4 15.35 6.33 17.68Q8.65 20 12 20ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Z" fill="#5F5F5F"/>
+<text id="Title 2" x="72.0" y="298.0" font-family="Inter" font-size="15" font-weight="600" fill="#212121">Event cancelled</text>
+<text id="Run for a Cause 5K was cancelled due to" x="72.0" y="320.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">Run for a Cause 5K was cancelled due to</text>
+<text id="the weather advisory." x="72.0" y="340.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">the weather advisory.</text>
+<text id="Time 3" x="72.0" y="362.0" font-family="Inter" font-size="12" font-weight="500" fill="#757575">5h ago</text>
+<circle id="Unread dot 2" cx="370" cy="293" r="5" fill="#5F5F5F"/>
+<line id="Divider 2" x1="72" y1="380" x2="390" y2="380" stroke="#BDBDBD" stroke-width="1"/>
+</g>
+<g id="Notification/Reminder: tomorrow">
+<circle id="Ellipse 3" cx="40" cy="416" r="22" fill="#E6E6E6"/>
+<path id="icon/schedule" transform="translate(29 405) scale(0.9167)" d="M15.3 16.7 16.7 15.3 13 11.6V7H11V12.4ZM12 22Q9.93 22 8.1 21.21Q6.28 20.43 4.93 19.08Q3.58 17.73 2.79 15.9Q2 14.07 2 12Q2 9.92 2.79 8.1Q3.58 6.27 4.93 4.92Q6.28 3.57 8.1 2.79Q9.93 2 12 2Q14.08 2 15.9 2.79Q17.73 3.57 19.08 4.92Q20.43 6.27 21.21 8.1Q22 9.92 22 12Q22 14.07 21.21 15.9Q20.43 17.73 19.08 19.08Q17.73 20.43 15.9 21.21Q14.08 22 12 22ZM12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12Q12 12 12 12ZM12 20Q15.33 20 17.66 17.66Q20 15.32 20 12Q20 8.67 17.66 6.34Q15.33 4 12 4Q8.68 4 6.34 6.34Q4 8.67 4 12Q4 15.32 6.34 17.66Q8.68 20 12 20Z" fill="#5F5F5F"/>
+<text id="Title 3" x="72.0" y="410.0" font-family="Inter" font-size="15" font-weight="600" fill="#212121">Reminder: tomorrow</text>
+<text id="Youth Leadership Summit starts at 8:00" x="72.0" y="432.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">Youth Leadership Summit starts at 8:00</text>
+<text id="AM at NSU Gymnasium." x="72.0" y="452.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">AM at NSU Gymnasium.</text>
+<text id="Time 4" x="72.0" y="474.0" font-family="Inter" font-size="12" font-weight="500" fill="#757575">1d ago</text>
+<line id="Divider 3" x1="72" y1="492" x2="390" y2="492" stroke="#BDBDBD" stroke-width="1"/>
+</g>
+<g id="Notification/New in Volunteer">
+<circle id="Ellipse 4" cx="40" cy="528" r="22" fill="#E6E6E6"/>
+<path id="icon/volunteer_activism" transform="translate(29 517) scale(0.9167)" d="M16 13 11.85 8.95Q11.08 8.2 10.54 7.29Q10 6.38 10 5.3Q10 3.92 10.96 2.96Q11.93 2 13.3 2Q14.1 2 14.8 2.34Q15.5 2.67 16 3.25Q16.5 2.67 17.2 2.34Q17.9 2 18.7 2Q20.08 2 21.04 2.96Q22 3.92 22 5.3Q22 6.38 21.48 7.29Q20.95 8.2 20.18 8.95ZM16 10.2 18.73 7.52Q19.2 7.05 19.6 6.51Q20 5.97 20 5.3Q20 4.75 19.62 4.38Q19.25 4 18.7 4Q18.35 4 18.04 4.14Q17.73 4.27 17.5 4.55L16 6.35L14.5 4.55Q14.28 4.27 13.96 4.14Q13.65 4 13.3 4Q12.75 4 12.38 4.38Q12 4.75 12 5.3Q12 5.97 12.4 6.51Q12.8 7.05 13.28 7.52ZM7 18.5 13.95 20.4 19.9 18.55Q19.78 18.32 19.54 18.16Q19.3 18 19 18H13.95Q13.28 18 12.88 17.95Q12.48 17.9 12.05 17.75L9.73 16.98L10.28 15.03L12.3 15.7Q12.73 15.82 13.3 15.9Q13.88 15.97 15 16Q15 16 15 16Q15 16 15 16Q15 15.72 14.84 15.47Q14.68 15.22 14.45 15.15L8.6 13Q8.6 13 8.6 13Q8.6 13 8.6 13H7ZM1 22V11H8.6Q8.78 11 8.95 11.04Q9.12 11.07 9.28 11.12L15.15 13.3Q15.98 13.6 16.49 14.35Q17 15.1 17 16H19Q20.25 16 21.12 16.82Q22 17.65 22 19V20L14 22.5L7 20.55V22ZM3 20H5V13H3ZM16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Q16 6.35 16 6.35Z" fill="#5F5F5F"/>
+<text id="Title 4" x="72.0" y="522.0" font-family="Inter" font-size="15" font-weight="600" fill="#212121">New in Volunteer</text>
+<text id="Community Blood Donation Drive was" x="72.0" y="544.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">Community Blood Donation Drive was</text>
+<text id="posted by Biliran Red Cross Youth." x="72.0" y="564.0" font-family="Inter" font-size="14" font-weight="400" fill="#757575">posted by Biliran Red Cross Youth.</text>
+<text id="Time 5" x="72.0" y="586.0" font-family="Inter" font-size="12" font-weight="500" fill="#757575">2d ago</text>
+<line id="Divider 4" x1="72" y1="604" x2="390" y2="604" stroke="#BDBDBD" stroke-width="1"/>
+</g>
+<text id="Footnote" x="43.3" y="644.0" font-family="Inter" font-size="13" font-weight="400" fill="#757575">You get alerts for events you saved or RSVP’d to.</text>
+<rect id="Home indicator" x="128" y="830" width="134" height="5" rx="2.5" fill="#212121"/>
+</svg>

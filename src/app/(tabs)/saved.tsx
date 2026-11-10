@@ -67,7 +67,7 @@ export default function SavedScreen() {
           renderItem={({ item }) => <EventCard event={item} />}
           contentContainerStyle={styles.list}
           ListEmptyComponent={
-            loading ? null : (
+            loading ? undefined : (
               <EmptyState
                 icon={current.empty.icon}
                 title={`No ${current.label.toLowerCase()} events yet`}

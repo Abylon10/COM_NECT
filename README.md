@@ -3,7 +3,7 @@
 A mobile app for discovering local community events and announcements in
 Naval, Biliran. BSCS-3C group project.
 
-Built with Expo (SDK 57) and Expo Router. See `CLAUDE.md` for project
+Built with Expo (SDK 58) and Expo Router. See `CLAUDE.md` for project
 context, structure, and next steps.
 
 ## Run it
