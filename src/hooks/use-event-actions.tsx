@@ -7,6 +7,7 @@ import {
   setRsvp as saveRsvp,
   type RsvpResponse,
 } from '@/data/events';
+import { useDataVersion } from '@/hooks/use-events';
 
 type EventActions = {
   savedIds: string[];
@@ -28,12 +29,19 @@ export function EventActionsProvider({ children }: PropsWithChildren) {
   const [savedIds, setSavedIds] = useState<string[]>([]);
   const [rsvps, setRsvps] = useState<Record<string, RsvpResponse>>({});
 
+  // Reload whenever data changes, e.g. after switching demo accounts.
+  const version = useDataVersion();
   useEffect(() => {
+    let active = true;
     Promise.all([getSavedEventIds(), getRsvps()]).then(([saved, responses]) => {
+      if (!active) return;
       setSavedIds(saved);
       setRsvps(responses);
     });
-  }, []);
+    return () => {
+      active = false;
+    };
+  }, [version]);
 
   const toggleSaved = (eventId: string) => {
     const saved = !savedIds.includes(eventId);

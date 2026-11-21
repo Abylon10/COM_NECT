@@ -1,19 +1,20 @@
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { Alert, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Avatar } from '@/components/avatar';
 import { Icon, Icons } from '@/components/icon';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { ThemedText } from '@/components/themed-text';
 import { Spacing } from '@/constants/theme';
-import { useCurrentUser } from '@/hooks/use-events';
+import { useCurrentUser, useNotifications } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 
 /** Top bar for the tab screens: avatar, logo, notifications bell. */
 export function AppHeader() {
   const theme = useTheme();
   const user = useCurrentUser();
+  const { unread } = useNotifications();
 
   return (
     <View style={styles.header}>
@@ -38,12 +39,11 @@ export function AppHeader() {
       <View style={[styles.side, styles.sideRight]}>
         <ThemeToggle />
         <Pressable
-          onPress={() =>
-            Alert.alert('Notifications', 'Event reminders and update alerts are coming soon.')
-          }
-          accessibilityLabel="Notifications"
+          onPress={() => router.push('/notifications')}
+          accessibilityLabel={unread > 0 ? `Notifications, ${unread} unread` : 'Notifications'}
           hitSlop={8}>
           <Icon name={Icons.bell} size={22} color={theme.text} />
+          {unread > 0 && <View style={[styles.unreadDot, { backgroundColor: theme.danger }]} />}
         </Pressable>
       </View>
     </View>
@@ -76,6 +76,14 @@ const styles = StyleSheet.create({
   logo: {
     width: 28,
     height: 28,
+  },
+  unreadDot: {
+    position: 'absolute',
+    top: -1,
+    right: -1,
+    width: 9,
+    height: 9,
+    borderRadius: 4.5,
   },
   brandText: {
     fontSize: 18,

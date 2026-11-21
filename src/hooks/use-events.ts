@@ -1,36 +1,50 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 
 import {
   getCurrentUser,
+  getDataVersion,
+  getDemoUsers,
   getEvent,
   getEvents,
   getEventsByIds,
   getLocations,
+  getMyOrganizations,
+  getNotifications,
   getOrganizations,
+  subscribeToChanges,
+  type AppNotification,
   type EventFilters,
   type EventWithOrganization,
   type Organization,
+  type OrganizationMembership,
   type Profile,
 } from '@/data/events';
 
+/** Increases whenever data changes (an event is edited, the demo account switches, ...). */
+export function useDataVersion() {
+  return useSyncExternalStore(subscribeToChanges, getDataVersion, getDataVersion);
+}
+
 /**
- * Runs an async loader whenever `key` changes and ignores results from
- * stale requests. `key` must describe everything the loader depends on.
+ * Runs an async loader whenever `key` or the data changes, and ignores results
+ * from stale requests. `key` must describe everything the loader depends on.
  */
 function useLoader<T>(key: string, load: () => Promise<T>, initial: T) {
-  const [state, setState] = useState({ data: initial, loading: true, key });
+  const version = useDataVersion();
+  const fullKey = `${key}#${version}`;
+  const [state, setState] = useState({ data: initial, loading: true });
 
   useEffect(() => {
     let active = true;
     load().then((data) => {
-      if (active) setState({ data, loading: false, key });
+      if (active) setState({ data, loading: false });
     });
     return () => {
       active = false;
     };
-    // `load` is recreated every render; `key` captures its inputs.
+    // `load` is recreated every render; `fullKey` captures its inputs.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key]);
+  }, [fullKey]);
 
   return { data: state.data, loading: state.loading };
 }
@@ -60,4 +74,23 @@ export function useLocations() {
 
 export function useCurrentUser() {
   return useLoader<Profile | null>('current-user', getCurrentUser, null).data;
+}
+
+export function useDemoUsers() {
+  return useLoader<Profile[]>('demo-users', getDemoUsers, []).data;
+}
+
+/** Verified organizations the current user can post for (empty for residents). */
+export function useMyOrganizations() {
+  const { data, loading } = useLoader<OrganizationMembership[]>(
+    'my-organizations',
+    getMyOrganizations,
+    []
+  );
+  return { memberships: data, loading };
+}
+
+export function useNotifications() {
+  const { data, loading } = useLoader<AppNotification[]>('notifications', getNotifications, []);
+  return { notifications: data, loading, unread: data.filter((n) => !n.read).length };
 }
