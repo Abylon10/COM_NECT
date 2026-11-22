@@ -19,12 +19,13 @@ function subscribe(listener: () => void) {
 
 function apply(next: ColorSchemePreference) {
   preference = next;
+  // Re-render the app first so all text and backgrounds switch together.
+  listeners.forEach((listener) => listener());
   // On iOS/Android this also switches native UI (tab bar, alerts, status bar).
   // react-native-web doesn't support it; the web hook reads `preference` instead.
   if (Platform.OS !== 'web') {
     Appearance.setColorScheme(next === 'system' ? 'auto' : next);
   }
-  listeners.forEach((listener) => listener());
 }
 
 /** Changes the appearance right away and remembers it on this device. */

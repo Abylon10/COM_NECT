@@ -1,4 +1,3 @@
-import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -7,6 +6,7 @@ import { Button } from '@/components/button';
 import { Chip } from '@/components/chip';
 import { TextField } from '@/components/form-field';
 import { Icon, Icons } from '@/components/icon';
+import { useCroppedPhotoPicker } from '@/components/photo-cropper';
 import { SettingsScreen, SettingsSection } from '@/components/settings-screen';
 import { ThemedText } from '@/components/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
@@ -39,15 +39,9 @@ function EditProfileForm({ user }: { user: Profile }) {
   const [error, setError] = useState<{ field?: string; message: string } | null>(null);
   const [saved, setSaved] = useState(false);
 
-  const pickPhoto = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 0.7,
-    });
-    if (!result.canceled) setAvatarUri(result.assets[0].uri);
-  };
+  // Pick, then crop in the app (square, shown as a circle).
+  const photo = useCroppedPhotoPicker(setAvatarUri, { aspect: 1, shape: 'circle', outputWidth: 600 });
+  const pickPhoto = photo.pick;
 
   const save = async () => {
     setError(null);
@@ -148,6 +142,7 @@ function EditProfileForm({ user }: { user: Profile }) {
         )}
         <TextField label="Barangay" value={barangay} onChangeText={setBarangay} placeholder="e.g. Caraycaray" maxLength={40} />
       </SettingsSection>
+      {photo.cropper}
     </SettingsScreen>
   );
 }

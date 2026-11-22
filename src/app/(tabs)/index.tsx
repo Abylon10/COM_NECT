@@ -41,7 +41,7 @@ export default function BrowseScreen() {
           <SearchBar
             value={query}
             onChangeText={setQuery}
-            placeholder="Search events, organizers, venues"
+            placeholder="Search events or organizers"
             onFilterPress={() => setSheetOpen(true)}
             filtersActive={activeFilterCount > 0}
           />

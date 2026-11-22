@@ -235,6 +235,8 @@ type DataTableProps<T> = {
   onRowPress?: (row: T) => void;
   pageSize?: number;
   empty?: ReactNode;
+  /** Phones: left indent of the second line, e.g. to line up with a name next to an avatar. */
+  compactMetaIndent?: number;
 };
 
 /**
@@ -254,6 +256,7 @@ export function DataTable<T>({
   onRowPress,
   pageSize = 8,
   empty,
+  compactMetaIndent = 0,
 }: DataTableProps<T>) {
   const theme = useTheme();
   const compact = useCompactTable();
@@ -338,7 +341,7 @@ export function DataTable<T>({
           const content = compact ? (
             <View style={styles.compactBody}>
               <View>{primary.render(row)}</View>
-              <View style={styles.metaRow}>
+              <View style={[styles.metaRow, { paddingLeft: compactMetaIndent }]}>
                 {meta.map((c) => (
                   <View key={c.key} style={styles.metaItem}>
                     {c.render(row)}

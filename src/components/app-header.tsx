@@ -22,7 +22,7 @@ export function AppHeader() {
         onPress={() => router.navigate('/profile')}
         accessibilityLabel="Open profile"
         style={styles.side}>
-        <Avatar name={user?.displayName ?? ''} size={36} />
+        <Avatar name={user?.displayName ?? ''} uri={user?.avatarUri} size={36} />
       </Pressable>
 
       <View style={styles.brand}>
@@ -31,7 +31,11 @@ export function AppHeader() {
           style={styles.logo}
           contentFit="contain"
         />
-        <ThemedText style={[styles.brandText, { color: theme.primary }]}>
+        <ThemedText
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={0.8}
+          style={[styles.brandText, { color: theme.primary }]}>
           Community Connect
         </ThemedText>
       </View>
@@ -57,8 +61,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.two,
   },
+  // Same width on both sides keeps the logo centered.
   side: {
-    width: 68,
+    width: 60,
   },
   sideRight: {
     flexDirection: 'row',
@@ -68,6 +73,7 @@ const styles = StyleSheet.create({
   },
   brand: {
     flex: 1,
+    minWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -86,7 +92,8 @@ const styles = StyleSheet.create({
     borderRadius: 4.5,
   },
   brandText: {
-    fontSize: 18,
+    flexShrink: 1,
+    fontSize: 16,
     fontWeight: 700,
   },
 });

@@ -46,6 +46,7 @@ export default function RootLayout() {
             <Stack.Screen name="admin/organizations" />
             <Stack.Screen name="admin/users" />
             <Stack.Screen name="admin/feedback" />
+            <Stack.Screen name="admin/profile" />
           </Stack.Protected>
           <Stack.Protected guard={session === 'signedOut'}>
             <Stack.Screen name="sign-in" />
