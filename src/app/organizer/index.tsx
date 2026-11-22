@@ -10,7 +10,7 @@ import { StatusBadge } from '@/components/status-badge';
 import { ThemedText } from '@/components/themed-text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import type { EventWithOrganization } from '@/data/events';
-import { useEvents, useMyOrganizations } from '@/hooks/use-events';
+import { useEvents, useEventStats, useMyOrganizations } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 import { formatEventDate, formatTimeRange } from '@/utils/format';
 
@@ -81,6 +81,7 @@ export default function OrganizerToolsScreen() {
 
 function ManagedEventRow({ event }: { event: EventWithOrganization }) {
   const theme = useTheme();
+  const stats = useEventStats(event.id);
 
   return (
     <Pressable
@@ -103,7 +104,7 @@ function ManagedEventRow({ event }: { event: EventWithOrganization }) {
           {formatEventDate(event.startAt)} · {formatTimeRange(event.startAt, event.endAt)}
         </ThemedText>
         <ThemedText type="caption" themeColor="textSecondary">
-          {event.goingCount} going · {event.interestedCount} interested
+          {stats.going} going · {stats.interested} interested · {stats.saved} saved
         </ThemedText>
       </View>
       <Icon name={Icons.edit} size={18} color={theme.primary} />

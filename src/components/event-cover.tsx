@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
@@ -35,6 +36,7 @@ export function EventCover({
   const { icon, color } = CategoryStyles[event.category];
   const { month, day } = dateTileParts(event.startAt);
   const saved = isSaved(event.id);
+  const cover = event.photos[0];
 
   return (
     <View
@@ -43,7 +45,20 @@ export function EventCover({
         { height, backgroundColor: color, paddingTop: Spacing.three + topInset },
         rounded && styles.rounded,
       ]}>
-      <Icon name={icon} size={height * 0.75} color="rgba(255,255,255,0.18)" style={styles.bigIcon} />
+      {cover ? (
+        <>
+          <Image
+            source={{ uri: cover }}
+            style={StyleSheet.absoluteFill}
+            contentFit="cover"
+            accessibilityLabel={`Photo of ${event.title}`}
+          />
+          {/* Light shade so the white badges stay readable on any photo. */}
+          <View style={[StyleSheet.absoluteFill, styles.shade]} />
+        </>
+      ) : (
+        <Icon name={icon} size={height * 0.75} color="rgba(255,255,255,0.18)" style={styles.bigIcon} />
+      )}
 
       <View style={styles.topRow}>
         <View style={styles.badges}>
@@ -76,6 +91,9 @@ export function EventCover({
 }
 
 const styles = StyleSheet.create({
+  shade: {
+    backgroundColor: 'rgba(0,0,0,0.18)',
+  },
   cover: {
     overflow: 'hidden',
     padding: Spacing.three,

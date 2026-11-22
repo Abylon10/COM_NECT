@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Chip } from '@/components/chip';
 import { EmptyState } from '@/components/empty-state';
 import { EventCard } from '@/components/event-card';
+import { LoadingAnimation } from '@/components/loading-animation';
 import { Icons, type IconName } from '@/components/icon';
 import { ThemedText } from '@/components/themed-text';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
@@ -35,7 +36,10 @@ const SEGMENTS: { id: Segment; label: string; empty: { icon: IconName; message: 
 export default function SavedScreen() {
   const theme = useTheme();
   const { savedIds, rsvps } = useEventActions();
-  const [segment, setSegment] = useState<Segment>('saved');
+  // The selected list lives in the URL (?segment=going), so Profile's counts can link to it.
+  const params = useLocalSearchParams<{ segment?: Segment }>();
+  const segment: Segment = SEGMENTS.some((s) => s.id === params.segment) ? params.segment! : 'saved';
+  const setSegment = (next: Segment) => router.setParams({ segment: next });
 
   const ids =
     segment === 'saved'
@@ -67,7 +71,9 @@ export default function SavedScreen() {
           renderItem={({ item }) => <EventCard event={item} />}
           contentContainerStyle={styles.list}
           ListEmptyComponent={
-            loading ? undefined : (
+            loading ? (
+              <LoadingAnimation label="Loading your events…" />
+            ) : (
               <EmptyState
                 icon={current.empty.icon}
                 title={`No ${current.label.toLowerCase()} events yet`}

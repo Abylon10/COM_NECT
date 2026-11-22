@@ -1,4 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -7,13 +8,18 @@ import { EmptyState } from '@/components/empty-state';
 import { EventCover } from '@/components/event-cover';
 import { Icon, Icons } from '@/components/icon';
 import { InfoRow } from '@/components/info-row';
+import { LoadingAnimation } from '@/components/loading-animation';
+import { ManageEventPanel } from '@/components/manage-event-panel';
+import { PhotoGallery } from '@/components/photo-gallery';
+import { ReportEventSheet } from '@/components/report-event-sheet';
 import { RsvpButtons } from '@/components/rsvp-buttons';
 import { ThemedText } from '@/components/themed-text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useEventActions } from '@/hooks/use-event-actions';
 import { useEvent, useMyOrganizations } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
-import { formatEventDate, formatTimeRange, timeAgo } from '@/utils/format';
+import { formatEventDate, formatTimeRange } from '@/utils/format';
+import { openInGoogleMaps } from '@/utils/maps';
 
 function goBack() {
   if (router.canGoBack()) router.back();
@@ -27,11 +33,17 @@ export default function EventDetailsScreen() {
   const { event, loading } = useEvent(id);
   const { rsvpFor } = useEventActions();
   const { memberships } = useMyOrganizations();
+  const [reporting, setReporting] = useState(false);
+  const [reported, setReported] = useState(false);
 
   if (!event) {
     return (
       <SafeAreaView style={[styles.screen, { backgroundColor: theme.background }]}>
-        {!loading && (
+        {loading ? (
+          <View style={styles.notFound}>
+            <LoadingAnimation label="Loading event…" />
+          </View>
+        ) : (
           <View style={styles.notFound}>
             <EmptyState
               icon={Icons.eventBusy}
@@ -95,30 +107,27 @@ export default function EventDetailsScreen() {
             </ThemedText>
           </View>
 
-          {canManage && (
-            <View style={[styles.manageBox, { backgroundColor: theme.primarySoft }]}>
-              <View style={styles.flex}>
-                <ThemedText type="smallBold">You manage this event</ThemedText>
-                <ThemedText type="caption" themeColor="textSecondary">
-                  Last updated {timeAgo(event.updatedAt)}
-                </ThemedText>
-              </View>
-              <Button
-                label="Edit"
-                icon={Icons.edit}
-                variant="outline"
-                onPress={() => router.push({ pathname: '/organizer/[id]', params: { id: event.id } })}
-                style={styles.editButton}
-              />
-            </View>
-          )}
+          {canManage && <ManageEventPanel event={event} />}
 
           <View style={[styles.card, { backgroundColor: theme.backgroundElement }]}>
             <InfoRow icon={Icons.calendar} text={formatEventDate(event.startAt)} />
             <InfoRow icon={Icons.clock} text={formatTimeRange(event.startAt, event.endAt)} />
             <InfoRow icon={Icons.venue} text={event.venue} />
             <InfoRow icon={Icons.location} text={event.location} />
+            <Pressable
+              onPress={() => openInGoogleMaps(event.coordinates, event.venue)}
+              accessibilityRole="link"
+              style={styles.mapLink}>
+              <Icon name={Icons.map} size={16} color={theme.primary} />
+              <ThemedText type="link">Open in Google Maps</ThemedText>
+            </Pressable>
           </View>
+
+          {event.photos.length > 0 && (
+            <Section title="Photos">
+              <PhotoGallery photos={event.photos} title={event.title} />
+            </Section>
+          )}
 
           <Section title="About">
             <ThemedText type="small" style={styles.paragraph}>
@@ -156,7 +165,33 @@ export default function EventDetailsScreen() {
             </View>
           </Section>
         </View>
+        {!canManage && (
+          <View style={styles.reportRow}>
+            {reported ? (
+              <ThemedText type="caption" themeColor="textSecondary">
+                Thanks. Administrators will review this event.
+              </ThemedText>
+            ) : (
+              <Pressable onPress={() => setReporting(true)} hitSlop={8} accessibilityRole="button" style={styles.reportLink}>
+                <Icon name={Icons.flag} size={14} color={theme.textSecondary} />
+                <ThemedText type="caption" themeColor="textSecondary">
+                  Report this event
+                </ThemedText>
+              </Pressable>
+            )}
+          </View>
+        )}
       </ScrollView>
+
+      <ReportEventSheet
+        eventId={event.id}
+        visible={reporting}
+        onClose={() => setReporting(false)}
+        onReported={() => {
+          setReporting(false);
+          setReported(true);
+        }}
+      />
 
       <View
         style={[
@@ -214,6 +249,21 @@ const styles = StyleSheet.create({
   },
   noticeText: {
     flex: 1,
+  },
+  mapLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+    marginTop: Spacing.one,
+  },
+  reportRow: {
+    alignItems: 'center',
+    paddingBottom: Spacing.three,
+  },
+  reportLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.one,
   },
   manageBox: {
     flexDirection: 'row',
