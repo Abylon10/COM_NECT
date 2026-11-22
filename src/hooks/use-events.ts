@@ -4,8 +4,20 @@ import {
   getCurrentUser,
   getMyApplication,
   getMyOrganizations,
+  getSessionKind,
   isSignedIn,
 } from '@/data/account';
+import {
+  getAdminOrganizations,
+  getAdminStats,
+  getApplication,
+  getApplications,
+  getFeedback,
+  getReportGroups,
+  getUsers,
+  type AdminStats,
+  type ApplicationWithApplicant,
+} from '@/data/admin';
 import {
   getDataVersion,
   getEvent,
@@ -39,6 +51,11 @@ export function useDataVersion() {
 /** Whether someone is signed in. Synchronous so navigation never flashes. */
 export function useIsSignedIn() {
   return useSyncExternalStore(subscribeToChanges, isSignedIn, isSignedIn);
+}
+
+/** 'signedOut' | 'user' | 'admin', synchronously, for the navigation guards. */
+export function useSessionKind() {
+  return useSyncExternalStore(subscribeToChanges, getSessionKind, getSessionKind);
 }
 
 /**
@@ -154,4 +171,56 @@ export function useNotificationSettings() {
     null
   );
   return { settings: data, loading };
+}
+
+// ---------------------------------------------------------------------------
+// Admin console
+// ---------------------------------------------------------------------------
+
+const EMPTY_STATS: AdminStats = {
+  pendingApplications: 0,
+  openReports: 0,
+  users: 0,
+  organizers: 0,
+  verifiedOrganizations: 0,
+  upcomingEvents: 0,
+  feedback: 0,
+};
+
+export function useAdminStats() {
+  return useLoader('admin-stats', getAdminStats, EMPTY_STATS).data;
+}
+
+export function useApplications(filter: 'pending' | 'all') {
+  const { data, loading } = useLoader(`admin-apps:${filter}`, () => getApplications(filter), []);
+  return { applications: data, loading };
+}
+
+export function useApplication(id: string) {
+  const { data, loading } = useLoader<ApplicationWithApplicant | null>(
+    `admin-app:${id}`,
+    () => getApplication(id),
+    null
+  );
+  return { application: data, loading };
+}
+
+export function useReportGroups(filter: 'open' | 'resolved') {
+  const { data, loading } = useLoader(`admin-reports:${filter}`, () => getReportGroups(filter), []);
+  return { groups: data, loading };
+}
+
+export function useAdminOrganizations() {
+  const { data, loading } = useLoader('admin-orgs', getAdminOrganizations, []);
+  return { organizations: data, loading };
+}
+
+export function useAdminUsers(query: string) {
+  const { data, loading } = useLoader(`admin-users:${query}`, () => getUsers(query), []);
+  return { users: data, loading };
+}
+
+export function useFeedback() {
+  const { data, loading } = useLoader('admin-feedback', getFeedback, []);
+  return { feedback: data, loading };
 }

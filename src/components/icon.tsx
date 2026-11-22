@@ -68,4 +68,10 @@ export const Icons = {
   sun: { ios: 'sun.max', md: 'light_mode' },
   moon: { ios: 'moon', md: 'dark_mode' },
   appearance: { ios: 'circle.lefthalf.filled', md: 'contrast' },
+  shield: { ios: 'checkmark.shield', md: 'admin_panel_settings' },
+  people: { ios: 'person.2', md: 'group' },
+  building: { ios: 'building.2', md: 'apartment' },
+  chat: { ios: 'bubble.left', md: 'chat_bubble' },
+  block: { ios: 'nosign', md: 'block' },
+  trash: { ios: 'trash', md: 'delete' },
 } satisfies Record<string, IconName>;

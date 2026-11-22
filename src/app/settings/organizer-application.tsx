@@ -1,7 +1,7 @@
 import * as DocumentPicker from 'expo-document-picker';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Button } from '@/components/button';
 import { Chip } from '@/components/chip';
@@ -13,7 +13,6 @@ import { ThemedText } from '@/components/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import {
   APPLICATION_STATUS_LABEL,
-  demoReviewApplication,
   ORGANIZATION_TYPES,
   submitOrganizerApplication,
 } from '@/data/account';
@@ -66,7 +65,6 @@ export default function OrganizerApplicationScreen() {
         {application.status === 'rejected' && (
           <Button label="Apply again" icon={Icons.add} onPress={() => setEditing(true)} style={styles.full} />
         )}
-        {application.status === 'pending' && <DemoReviewPanel />}
       </SettingsScreen>
     );
   }
@@ -110,33 +108,6 @@ function StatusCard({ application, approvedOrg }: { application: OrganizerApplic
   );
 }
 
-/** Stand-in for the admin review, which isn't built yet. Clearly marked as a demo. */
-function DemoReviewPanel() {
-  const theme = useTheme();
-  const [note, setNote] = useState('');
-
-  return (
-    <View style={[styles.card, { borderWidth: 1, borderColor: theme.border, borderStyle: 'dashed' }]}>
-      <ThemedText type="smallBold">Demo: administrator review</ThemedText>
-      <ThemedText type="caption" themeColor="textSecondary">
-        The admin side isn’t built yet. Use these buttons to see what happens after review.
-      </ThemedText>
-      <TextInput
-        value={note}
-        onChangeText={setNote}
-        placeholder="Optional note to the applicant"
-        placeholderTextColor={theme.textSecondary}
-        style={[styles.input, { color: theme.text, borderColor: theme.border }]}
-        accessibilityLabel="Administrator note"
-      />
-      <View style={styles.row}>
-        <Button label="Approve" onPress={() => demoReviewApplication('approved', note)} />
-        <Button label="Needs revision" variant="outline" onPress={() => demoReviewApplication('requires_revision', note || 'Please attach your barangay certification.')} />
-      </View>
-      <Button label="Reject" variant="outline" onPress={() => demoReviewApplication('rejected', note)} style={styles.full} />
-    </View>
-  );
-}
 
 function ApplicationForm({
   user,

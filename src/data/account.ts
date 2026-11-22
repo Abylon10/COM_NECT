@@ -23,9 +23,9 @@ import {
   rsvpsByUser,
   savedByUser,
   session,
+  suspended,
   users,
 } from './db';
-import { deliver } from './notifications';
 import type {
   ApplicationStatus,
   FeedbackKind,
@@ -85,15 +85,45 @@ export function isSignedIn() {
   return session.userId !== null;
 }
 
+/**
+ * Who is signed in, synchronously: `admin` accounts get the admin console,
+ * everyone else the regular app.
+ */
+export function getSessionKind(): 'signedOut' | 'user' | 'admin' {
+  if (!session.userId) return 'signedOut';
+  return users.find((u) => u.id === session.userId)?.role === 'admin' ? 'admin' : 'user';
+}
+
 export async function getCurrentUser(): Promise<Profile | null> {
   return users.find((u) => u.id === session.userId) ?? null;
 }
 
-/** Signs in. Signing in to a deactivated account reactivates it. */
-export async function signIn(email: string, password: string): Promise<{ reactivated: boolean }> {
+/** Which form the sign-in screen is showing (toggled by tapping the logo). */
+export type SignInMode = 'user' | 'admin';
+
+const NO_ACCOUNT = 'Incorrect email or password.';
+
+/**
+ * Signs in. Signing in to a deactivated account reactivates it.
+ *
+ * Administrator accounts can only sign in with `mode: 'admin'`, and only
+ * administrators can use that mode. A mismatch gets the same message as a
+ * wrong password, so the form can't be used to find out which emails are
+ * admin accounts. With Supabase the role check runs right after
+ * signInWithPassword, signing out again on a mismatch.
+ */
+export async function signIn(
+  email: string,
+  password: string,
+  mode: SignInMode = 'user'
+): Promise<{ reactivated: boolean }> {
   const user = users.find((u) => u.email.toLowerCase() === email.trim().toLowerCase());
-  if (!user || passwords.get(user.id) !== password) {
-    throw new ValidationError('Incorrect email or password.');
+  if (!user || passwords.get(user.id) !== password) throw new ValidationError(NO_ACCOUNT);
+  if ((user.role === 'admin') !== (mode === 'admin')) throw new ValidationError(NO_ACCOUNT);
+  if (suspended.has(user.id)) {
+    throw new ValidationError(
+      'This account has been suspended. Contact the Community Connect team through Help & Feedback.'
+    );
   }
   const reactivated = deactivated.delete(user.id);
   session.userId = user.id;
@@ -319,43 +349,6 @@ export async function submitOrganizerApplication(input: OrganizerApplicationInpu
   notifyChange();
 }
 
-/**
- * DEMO ONLY: stands in for an administrator reviewing the application, since
- * the admin side isn't built yet (open question: who verifies organizations).
- * Approval creates a verified organization with the applicant as admin.
- */
-export async function demoReviewApplication(
-  status: Exclude<ApplicationStatus, 'pending'>,
-  adminNote?: string
-): Promise<void> {
-  const userId = requireUserId();
-  const app = [...applications].reverse().find((a) => a.userId === userId);
-  if (!app || app.status !== 'pending') throw new Error('No pending application.');
-  app.status = status;
-  app.adminNote = adminNote?.trim() || undefined;
-  app.updatedAt = new Date().toISOString();
-
-  if (status === 'approved') {
-    const org = {
-      id: newId('org'),
-      name: app.organizationName,
-      description: app.description,
-      contactInfo: [app.contactEmail, app.contactPhone].filter(Boolean).join(' · '),
-      isVerified: true,
-    };
-    organizations.push(org);
-    memberships.push({ userId, organizationId: org.id, memberRole: 'admin' });
-    users.find((u) => u.id === userId)!.role = 'organizer';
-  }
-  const text: Record<typeof status, string> = {
-    approved: `${app.organizationName} is now a verified organizer. You can post events from Organizer Tools.`,
-    rejected: `Your application for ${app.organizationName} was not approved.`,
-    requires_revision: `Your application for ${app.organizationName} needs more information.`,
-  };
-  deliver([userId], null, { kind: 'application', title: 'Organizer application', body: text[status] });
-  notifyChange();
-}
-
 // ---------------------------------------------------------------------------
 // Help & feedback
 // ---------------------------------------------------------------------------
@@ -371,4 +364,5 @@ export async function submitFeedback(kind: FeedbackKind, message: string): Promi
     message: message.trim(),
     createdAt: new Date().toISOString(),
   });
+  notifyChange();
 }

@@ -12,13 +12,13 @@ import type {
   AppNotification,
   CommunityEvent,
   Coordinates,
-  FeedbackKind,
+  EventReport,
+  Feedback,
   Membership,
   NotificationSettings,
   Organization,
   OrganizerApplication,
   Profile,
-  ReportReason,
   RsvpResponse,
   UserInterests,
 } from './types';
@@ -332,6 +332,37 @@ export const users: Profile[] = [
     location: 'Brgy. Larrazabal, Naval',
     role: 'organizer',
   },
+  {
+    id: 'user-resident-2',
+    displayName: 'Maria Santos',
+    email: 'maria.santos@example.com',
+    phone: '09191234567',
+    municipality: 'Naval',
+    barangay: 'P.I. Garcia',
+    location: 'Brgy. P.I. Garcia, Naval',
+    role: 'resident',
+  },
+  {
+    id: 'user-resident-3',
+    displayName: 'Jomar Dela Cruz',
+    email: 'jomar.dc@example.com',
+    phone: '',
+    municipality: 'Biliran',
+    barangay: '',
+    location: 'Biliran',
+    role: 'resident',
+  },
+  {
+    // Admin console only. Signs in through the administrator toggle on Sign in.
+    id: 'user-admin',
+    displayName: 'Community Connect Admin',
+    email: 'admin@example.com',
+    phone: '',
+    municipality: 'Naval',
+    barangay: '',
+    location: 'Naval',
+    role: 'admin',
+  },
 ];
 
 /** Demo password for the seeded accounts (mock auth only). */
@@ -340,6 +371,9 @@ export const DEMO_PASSWORD = 'community123';
 export const passwords = new Map<string, string>(users.map((u) => [u.id, DEMO_PASSWORD]));
 
 export const deactivated = new Set<string>();
+
+/** Accounts an administrator suspended; they can't sign in. */
+export const suspended = new Set<string>();
 
 export const memberships: Membership[] = [
   { userId: 'user-organizer', organizationId: 'org-sk-naval', memberRole: 'admin' },
@@ -396,24 +430,72 @@ export const interestsByUser = new Map<string, UserInterests>([
   ['user-resident', { selected: ['sports', 'community', 'environment'], custom: [] }],
 ]);
 
-export const applications: OrganizerApplication[] = [];
+// Sample items so the admin console has something to review.
+export const applications: OrganizerApplication[] = [
+  {
+    id: 'app-seed-1',
+    userId: 'user-resident-2',
+    organizationName: 'NSU Volunteers Club',
+    organizationType: 'school',
+    description:
+      'Student volunteer group of Naval State University. We run coastal cleanups, tutoring for elementary pupils and relief packing during typhoon season.',
+    contactEmail: 'nsu.volunteers@example.com',
+    contactPhone: '09191234567',
+    documents: [
+      { name: 'OSA-recognition-2026.pdf', uri: '', size: 184_000 },
+      { name: 'Adviser-endorsement.pdf', uri: '', size: 96_000 },
+    ],
+    status: 'pending',
+    submittedAt: at(-1, '15:20'),
+    updatedAt: at(-1, '15:20'),
+  },
+  {
+    id: 'app-seed-2',
+    userId: 'user-resident-3',
+    organizationName: 'Biliran Bikers Group',
+    organizationType: 'other',
+    description: 'Weekend cycling group that organizes fun rides around the island.',
+    contactEmail: 'jomar.dc@example.com',
+    contactPhone: '',
+    documents: [{ name: 'group-photo.jpg', uri: '', size: 420_000 }],
+    status: 'pending',
+    submittedAt: at(-3, '10:05'),
+    updatedAt: at(-3, '10:05'),
+  },
+];
 
-export const reports: {
-  id: string;
-  userId: string;
-  eventId: string;
-  reason: ReportReason;
-  details: string;
-  createdAt: string;
-}[] = [];
+export const reports: EventReport[] = [
+  {
+    id: 'rpt-seed-1',
+    userId: 'user-resident-3',
+    eventId: 'evt-coding-workshop',
+    eventTitle: 'Build Your First App Workshop',
+    reason: 'wrong_details',
+    details: 'The post says it is free but the sign-up form asks for a ₱200 fee.',
+    createdAt: at(-1, '19:40'),
+    status: 'open',
+  },
+  {
+    id: 'rpt-seed-2',
+    userId: 'user-resident-2',
+    eventId: 'evt-coding-workshop',
+    eventTitle: 'Build Your First App Workshop',
+    reason: 'misleading',
+    details: '',
+    createdAt: at(0, '07:10'),
+    status: 'open',
+  },
+];
 
-export const feedback: {
-  id: string;
-  userId: string | null;
-  kind: FeedbackKind;
-  message: string;
-  createdAt: string;
-}[] = [];
+export const feedback: Feedback[] = [
+  {
+    id: 'fb-seed-1',
+    userId: 'user-resident',
+    kind: 'suggestion',
+    message: 'Please add a way to share an event to Messenger so I can invite friends.',
+    createdAt: at(-2, '21:15'),
+  },
+];
 
 // ---------------------------------------------------------------------------
 // Session

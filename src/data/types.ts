@@ -6,7 +6,8 @@ export type EventStatus = 'scheduled' | 'cancelled' | 'postponed';
 
 export type RsvpResponse = 'going' | 'interested';
 
-export type UserRole = 'resident' | 'organizer';
+/** `admin` accounts only use the admin console (they don't browse as residents). */
+export type UserRole = 'resident' | 'organizer' | 'admin';
 
 export type Coordinates = { latitude: number; longitude: number };
 
@@ -114,7 +115,8 @@ export type NotificationKind =
   | 'new'
   | 'reminder'
   | 'announcement'
-  | 'application';
+  | 'application'
+  | 'moderation';
 
 export type AppNotification = {
   id: string;
@@ -194,7 +196,30 @@ export type OrganizerApplication = OrganizerApplicationInput & {
 
 export type ReportReason = 'misleading' | 'inappropriate' | 'spam' | 'wrong_details' | 'other';
 
+export type ReportStatus = 'open' | 'dismissed' | 'removed';
+
+export type EventReport = {
+  id: string;
+  userId: string;
+  eventId: string;
+  /** Kept so the report still makes sense after the event is removed. */
+  eventTitle: string;
+  reason: ReportReason;
+  details: string;
+  createdAt: string;
+  status: ReportStatus;
+  resolvedAt?: string;
+};
+
 export type FeedbackKind = 'issue' | 'suggestion' | 'question';
+
+export type Feedback = {
+  id: string;
+  userId: string | null;
+  kind: FeedbackKind;
+  message: string;
+  createdAt: string;
+};
 
 /** Thrown when the current user isn't allowed to do something (mirrors database rules). */
 export class PermissionError extends Error {}

@@ -22,6 +22,7 @@ const KIND_STYLE: Record<NotificationKind, { icon: IconName; color: ThemeColor; 
   reminder: { icon: Icons.bellActive, color: 'primary', bg: 'primarySoft' },
   announcement: { icon: Icons.megaphone, color: 'primary', bg: 'primarySoft' },
   application: { icon: Icons.verified, color: 'success', bg: 'primarySoft' },
+  moderation: { icon: Icons.shield, color: 'danger', bg: 'dangerSoft' },
 };
 
 export default function NotificationsScreen() {

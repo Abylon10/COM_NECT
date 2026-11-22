@@ -362,17 +362,22 @@ export async function reportEvent(
   if (reason === 'other' && details.trim().length < 10) {
     throw new ValidationError('Tell us what is wrong (at least 10 characters).', 'details');
   }
-  if (reports.some((r) => r.userId === userId && r.eventId === eventId)) {
+  const event = events.find((e) => e.id === eventId);
+  if (!event) throw new ValidationError('This event is no longer available.');
+  if (reports.some((r) => r.userId === userId && r.eventId === eventId && r.status === 'open')) {
     throw new ValidationError('You already reported this event. Thank you!');
   }
   reports.push({
     id: newId('rpt'),
     userId,
     eventId,
+    eventTitle: event.title,
     reason,
     details: details.trim(),
     createdAt: new Date().toISOString(),
+    status: 'open',
   });
+  notifyChange();
 }
 
 // ---------------------------------------------------------------------------

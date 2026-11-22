@@ -6,11 +6,11 @@ import { StartupSplash } from '@/components/startup-splash';
 import { loadColorSchemePreference } from '@/hooks/color-scheme-preference';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { EventActionsProvider } from '@/hooks/use-event-actions';
-import { useIsSignedIn } from '@/hooks/use-events';
+import { useSessionKind } from '@/hooks/use-events';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const signedIn = useIsSignedIn();
+  const session = useSessionKind();
 
   useEffect(() => {
     loadColorSchemePreference();
@@ -20,8 +20,8 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <EventActionsProvider>
         <Stack screenOptions={{ headerShown: false }}>
-          {/* Signed-in app. Logging out swaps these for the sign-in screens. */}
-          <Stack.Protected guard={signedIn}>
+          {/* Residents and organizers. Logging out swaps these for the sign-in screens. */}
+          <Stack.Protected guard={session === 'user'}>
             <Stack.Screen name="(tabs)" />
             <Stack.Screen name="event/[id]" />
             <Stack.Screen name="notifications" />
@@ -37,7 +37,17 @@ export default function RootLayout() {
             <Stack.Screen name="settings/privacy" />
             <Stack.Screen name="settings/help" />
           </Stack.Protected>
-          <Stack.Protected guard={!signedIn}>
+          {/* Administrators only get the admin console. */}
+          <Stack.Protected guard={session === 'admin'}>
+            <Stack.Screen name="admin/index" />
+            <Stack.Screen name="admin/applications" />
+            <Stack.Screen name="admin/application/[id]" />
+            <Stack.Screen name="admin/reports" />
+            <Stack.Screen name="admin/organizations" />
+            <Stack.Screen name="admin/users" />
+            <Stack.Screen name="admin/feedback" />
+          </Stack.Protected>
+          <Stack.Protected guard={session === 'signedOut'}>
             <Stack.Screen name="sign-in" />
             <Stack.Screen name="sign-up" />
           </Stack.Protected>

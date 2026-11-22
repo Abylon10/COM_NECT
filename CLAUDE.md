@@ -138,7 +138,8 @@ are decided.
 src/
   app/                    routes (expo-router)
     _layout.tsx           root Stack; Stack.Protected switches between the
-                          signed-in app and sign-in / sign-up
+                          resident/organizer app, the admin console and
+                          sign-in / sign-up (useSessionKind)
     sign-in.tsx, sign-up.tsx
     (tabs)/index.tsx      Browse: Recommended for you, search, chips, filters, list
     (tabs)/map.tsx        Map of Biliran with the user's Going / Interested events
@@ -147,6 +148,8 @@ src/
     event/[id].tsx        Event details (Google Maps link, report, organizer panel)
     organizer/            Organizer Tools: list, new event, edit event
     notifications.tsx     In-app notifications (bell icon)
+    admin/                Admin console: dashboard (index), applications,
+                          application/[id], reports, organizations, users, feedback
     settings/             edit-profile, security (password, deactivate, delete),
                           interests, notifications (settings), organizer-application,
                           history, privacy, help
@@ -157,6 +160,7 @@ src/
     account.ts            sign-in, profile, password, organizer applications, feedback
     interests.ts          interest options, matching, user interests
     notifications.ts      delivery rules, reminders, notification settings
+    admin.ts              admin-only queries/actions (requireAdmin → PermissionError)
   hooks/use-events.ts     loaders screens use; re-load when data changes
   hooks/use-event-actions.tsx  saved events + RSVPs shared across screens
   components/             UI pieces (event-card, event-form, events-map(.web),
@@ -184,8 +188,25 @@ src/
   events that already ended (they appear in My Event History).
 - **Sign-in (mock):** the app starts at Sign in. Demo accounts (password
   `community123`): resident ashley@example.com, organizer
-  carlo.sk@example.com. Sign up creates a resident. Log out (with a
-  confirmation) returns to Sign in. All data resets on reload.
+  carlo.sk@example.com, administrator admin@example.com. Sign up creates a
+  resident. Log out (with a confirmation) returns to Sign in. All data
+  resets on reload.
+- **Admin sign-in** follows Justin Dave's Biliran Flood Risk Monitor:
+  tapping the logo on Sign in toggles "Welcome, Administrator" mode.
+  Admin accounts can only sign in in that mode and only admins can use
+  it; a mismatch shows the same "Incorrect email or password." as a wrong
+  password, so the form doesn't reveal which emails are admins.
+  Suspended accounts can't sign in.
+- **Admin console** (`src/app/admin/`, admins see only this): dashboard
+  with counts, organizer applications (approve / needs revision / reject,
+  note required for the last two; approval creates a verified org and
+  makes the applicant an organizer), event reports grouped by event
+  (dismiss, or remove the event with a reason sent to its organizers),
+  organizations (verify / unverify; unverified orgs can't post or edit),
+  users (search, suspend / reinstate) and Help & Feedback messages.
+  Seeded with two pending applications (Maria Santos, Jomar Dela Cruz),
+  two reports and one feedback message. All checks live in
+  `data/admin.ts`, ready to become RLS on `profiles.role = 'admin'`.
 - **Profile & Settings:** tappable Saved/Going/Interested counts, Edit
   Profile (photo via expo-image-picker, name, email with a verification
   step, contact number, municipality/barangay), Account & Security
@@ -195,9 +216,9 @@ src/
   Help & Feedback (FAQ, email, feedback form).
 - **Become an Organizer:** application form (organization, type,
   description, contacts, supporting documents via expo-document-picker),
-  statuses Pending / Approved / Not approved / Needs revision. The admin
-  side isn't built, so a clearly-labeled demo panel approves/rejects.
-  Approval creates a verified organization and unlocks Organizer Tools.
+  statuses Pending / Approved / Not approved / Needs revision, reviewed
+  in the admin console. Approval creates a verified organization and
+  unlocks Organizer Tools.
 - **Map tab:** react-native-maps (Google Maps on Android, Apple Maps on
   iOS in Expo Go), centered on Biliran, pins for the user's upcoming Going
   (teal) / Interested (amber) events. Coordinates are approximate
@@ -257,8 +278,8 @@ src/
    `src/data/` with real database calls, replace the mock sign-in with
    Supabase Auth, and add row-level security matching the checks in
    `createEvent` / `updateEvent` / `postAnnouncement`.
-4. Build the administrator side (review organizer applications and
-   event reports) to replace the demo review panel.
+4. Admin extras: activity log of admin actions, managing organization
+   members, more than one admin account.
 5. Push notifications (`expo-notifications`) for the alerts that are
    in-app only today.
 6. Organizer extras: manage organization members, event photos,
