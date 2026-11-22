@@ -61,7 +61,7 @@ changes that assume multiple people are committing at once.
 
 - **Build the UI with mock data first.** Screens don't depend on the
   backend decision, so work can continue while it's pending.
-- **Keep all data access in one place** (planned: `src/data/events.ts`).
+- **Keep all data access in one place:** the modules in `src/data/`.
   Screens call functions from that file and never know where data comes
   from. Switching from mock data to Supabase, or another backend, should
   only require changing that file.
@@ -137,37 +137,72 @@ are decided.
 ```
 src/
   app/                    routes (expo-router)
-    _layout.tsx           root Stack + EventActionsProvider
-    (tabs)/_layout.tsx    tab bar (NativeTabs via components/app-tabs)
-    (tabs)/index.tsx      Browse: search, category chips, filter sheet, event list
-    (tabs)/saved.tsx      My Events: Saved / Going / Interested
-    (tabs)/profile.tsx    Profile (mock user, menu items are "coming soon")
-    event/[id].tsx        Event details, pushed over the tabs (Edit button for organizers)
-    organizer/index.tsx   Organizer Tools: the organization's events + New event
-    organizer/new.tsx     Create event form
-    organizer/[id].tsx    Edit event form (incl. postpone / cancel with a note)
-    notifications.tsx     In-app alerts for saved/RSVP'd events that changed
-  data/events.ts          ALL data access + mock data (swap this for the backend)
-  hooks/use-events.ts     loaders that screens use (useEvents, useEvent, ...); they
-                          re-load when the data layer signals a change
+    _layout.tsx           root Stack; Stack.Protected switches between the
+                          signed-in app and sign-in / sign-up
+    sign-in.tsx, sign-up.tsx
+    (tabs)/index.tsx      Browse: Recommended for you, search, chips, filters, list
+    (tabs)/map.tsx        Map of Biliran with the user's Going / Interested events
+    (tabs)/saved.tsx      My Events: Saved / Going / Interested (?segment=going)
+    (tabs)/profile.tsx    Profile: tappable stats, appearance, settings menu, log out
+    event/[id].tsx        Event details (Google Maps link, report, organizer panel)
+    organizer/            Organizer Tools: list, new event, edit event
+    notifications.tsx     In-app notifications (bell icon)
+    settings/             edit-profile, security (password, deactivate, delete),
+                          interests, notifications (settings), organizer-application,
+                          history, privacy, help
+  data/                   ALL data access (swap these for the backend)
+    types.ts              shared types
+    db.ts                 in-memory mock tables, session, change signal, places
+    events.ts             events, saves/RSVPs, organizer actions, reports, map
+    account.ts            sign-in, profile, password, organizer applications, feedback
+    interests.ts          interest options, matching, user interests
+    notifications.ts      delivery rules, reminders, notification settings
+  hooks/use-events.ts     loaders screens use; re-load when data changes
   hooks/use-event-actions.tsx  saved events + RSVPs shared across screens
-  components/             UI pieces (event-card, event-cover, filter-sheet,
-                          event-form, date-time-pickers, bottom-sheet, ...)
-  constants/theme.ts      colors (teal brand), spacing, radius
-  utils/format.ts         date/time formatting (always Asia/Manila time)
+  components/             UI pieces (event-card, event-form, events-map(.web),
+                          bottom-sheet, confirm-dialog, settings-screen, ...)
+  constants/              theme.ts (colors, spacing), app.ts (support email)
+  utils/                  format.ts (dates in Asia/Manila), maps.ts (Biliran region,
+                          open in Google Maps)
 ```
 
 - Icons: `components/icon.tsx` wraps `SymbolView` (SF Symbols on iOS,
   Material Symbols on Android/web). Add new icons to `Icons` there.
-- Event covers are category-colored placeholders, not photos. An image
-  field can be added later.
+- Event covers are category-colored placeholders, not photos.
 - UI style follows the "Plandoon" reference mockups: teal accent, pill
   chips, rounded cards, outline + filled button pairs.
+- Use `ConfirmDialog` instead of `Alert.alert` with buttons (those do
+  nothing on the web preview).
 
 ## Current status
 
-- Browse, Saved, and Profile tabs plus the Event details screen are built
-  with mock data (8 events, 7 organizations in Naval, Biliran).
+- Tabs: Browse, Map, Saved, Profile, plus Event details, built with mock
+  data (organizations and events in Naval, Biliran). Mock event dates are
+  relative to today, so there are always upcoming events; Browse hides
+  events that already ended (they appear in My Event History).
+- **Sign-in (mock):** the app starts at Sign in. Demo accounts (password
+  `community123`): resident ashley@example.com, organizer
+  carlo.sk@example.com. Sign up creates a resident. Log out (with a
+  confirmation) returns to Sign in. All data resets on reload.
+- **Profile & Settings:** tappable Saved/Going/Interested counts, Edit
+  Profile (photo via expo-image-picker, name, email with a verification
+  step, contact number, municipality/barangay), Account & Security
+  (change password, deactivate, delete), My Interests (drives
+  "Recommended for you" on Browse), Notification settings (6 toggles that
+  the alert rules respect), My Event History, Privacy Policy (draft),
+  Help & Feedback (FAQ, email, feedback form).
+- **Become an Organizer:** application form (organization, type,
+  description, contacts, supporting documents via expo-document-picker),
+  statuses Pending / Approved / Not approved / Needs revision. The admin
+  side isn't built, so a clearly-labeled demo panel approves/rejects.
+  Approval creates a verified organization and unlocks Organizer Tools.
+- **Map tab:** react-native-maps (Google Maps on Android, Apple Maps on
+  iOS in Expo Go), centered on Biliran, pins for the user's upcoming Going
+  (teal) / Interested (amber) events. Coordinates are approximate
+  (`PLACES` / `MUNICIPALITIES` in `data/db.ts`). Web preview shows an
+  embedded Google Map. Events also have "Open in Google Maps".
+- Organizers can post announcements to an event's followers and see
+  going / interested / saved counts. Residents can report events.
 - Search matches title, organizer, venue, and location. Filters: category
   chips, plus a sheet for date range, location, and organizer.
 - Save (bookmark) and RSVP (Interested / Going) work in memory and reset
@@ -178,17 +213,17 @@ src/
 - Day/night toggle: sun/moon button in the Browse header, plus System /
   Day / Night choice on Profile (`hooks/color-scheme-preference.ts`).
   Native uses `Appearance.setColorScheme`, so the tab bar and alerts
-  follow too. The choice is in memory and resets to System on reload.
-- **Organizer tools (mock data):** two demo accounts, switched on Profile
-  (resident Ashley Reyes; organizer Carlo Mendoza, admin of the verified
-  SK Federation of Naval). Organizers create events and edit, postpone
+  follow too. The choice is saved on the device (AsyncStorage).
+- **Organizer tools (mock data):** organizer Carlo Mendoza is admin of the
+  verified SK Federation of Naval. Organizers create events and edit, postpone
   or cancel them (a note is required). Permissions are checked in
   `src/data/events.ts` (`PermissionError`), mirroring the planned
   database rules, not only by hiding buttons.
-- **In-app alerts:** when an organizer changes an event's date, time,
-  place or status, everyone who saved or RSVP'd gets a notification
-  (bell icon with unread dot → Notifications screen). This stands in
-  for push notifications until `expo-notifications` is decided.
+- **In-app alerts:** event changes/cancellations (to followers),
+  reminders the day before Going events, organizer announcements, new
+  events / recommendations, and application results, each respecting the
+  user's notification settings. This stands in for push notifications
+  until `expo-notifications` is decided.
 - Date/time pickers are custom (calendar + 30-minute time slots), so no
   native picker package is needed and they work on web too. Events are
   single-day; times are entered in Philippine time.
@@ -199,14 +234,19 @@ src/
 
 ## Next steps
 
-1. Run on device (Expo Go) and check the tab bar, filter sheet, details,
-   organizer form, date/time pickers and notifications.
-2. Get team confirmation on Supabase, then replace the mock data in
-   `src/data/events.ts` with real database calls, add sign-in (replacing
-   the demo account switch) and row-level security matching the checks
-   in `createEvent` / `updateEvent`.
-3. Push notifications (`expo-notifications`) for the alerts that are
-   in-app only today; add reminders before saved events.
-4. Organizer extras: manage organization members, event photos,
-   multi-day events.
-5. Answer the open questions above (announcements, who verifies, area).
+1. Run on device (Expo Go) and check the tab bar (4 tabs), Map, image and
+   document pickers, settings screens, organizer form and notifications.
+2. Replace `SUPPORT_EMAIL` in `src/constants/app.ts` with the team's real
+   address. Before a production Android build, add a Google Maps API key
+   (`android.config.googleMaps.apiKey` in app.json); Expo Go needs none.
+3. Get team confirmation on Supabase, then replace the mock data in
+   `src/data/` with real database calls, replace the mock sign-in with
+   Supabase Auth, and add row-level security matching the checks in
+   `createEvent` / `updateEvent` / `postAnnouncement`.
+4. Build the administrator side (review organizer applications and
+   event reports) to replace the demo review panel.
+5. Push notifications (`expo-notifications`) for the alerts that are
+   in-app only today.
+6. Organizer extras: manage organization members, event photos,
+   multi-day events, picking a map pin for the venue.
+7. Answer the open questions above (announcements, who verifies, area).

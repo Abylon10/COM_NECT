@@ -8,12 +8,8 @@ import { Icon, Icons, type IconName } from '@/components/icon';
 import { ScreenHeader } from '@/components/screen-header';
 import { ThemedText } from '@/components/themed-text';
 import { MaxContentWidth, Spacing, type ThemeColor } from '@/constants/theme';
-import {
-  getNotifications,
-  markNotificationsRead,
-  type AppNotification,
-  type NotificationKind,
-} from '@/data/events';
+import { getNotifications, markNotificationsRead } from '@/data/notifications';
+import type { AppNotification, NotificationKind } from '@/data/types';
 import { useTheme } from '@/hooks/use-theme';
 import { timeAgo } from '@/utils/format';
 
@@ -21,6 +17,10 @@ const KIND_STYLE: Record<NotificationKind, { icon: IconName; color: ThemeColor; 
   updated: { icon: Icons.editCalendar, color: 'primary', bg: 'primarySoft' },
   postponed: { icon: Icons.clock, color: 'warning', bg: 'warningSoft' },
   cancelled: { icon: Icons.eventBusy, color: 'danger', bg: 'dangerSoft' },
+  new: { icon: Icons.add, color: 'primary', bg: 'primarySoft' },
+  reminder: { icon: Icons.bellActive, color: 'primary', bg: 'primarySoft' },
+  announcement: { icon: Icons.megaphone, color: 'primary', bg: 'primarySoft' },
+  application: { icon: Icons.verified, color: 'success', bg: 'primarySoft' },
 };
 
 export default function NotificationsScreen() {
@@ -82,7 +82,11 @@ function NotificationRow({ item, unread }: { item: AppNotification; unread: bool
 
   return (
     <Pressable
-      onPress={() => router.push({ pathname: '/event/[id]', params: { id: item.eventId } })}
+      onPress={() =>
+        item.eventId
+          ? router.push({ pathname: '/event/[id]', params: { id: item.eventId } })
+          : router.push('/settings/organizer-application')
+      }
       accessibilityRole="button"
       style={({ pressed }) => [
         styles.row,

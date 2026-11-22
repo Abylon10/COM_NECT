@@ -26,6 +26,8 @@ type TextFieldProps = {
   multiline?: boolean;
   maxLength?: number;
   error?: string;
+  secureTextEntry?: boolean;
+  keyboardType?: 'default' | 'email-address' | 'phone-pad';
 };
 
 export function TextField({
@@ -36,6 +38,8 @@ export function TextField({
   multiline = false,
   maxLength,
   error,
+  secureTextEntry,
+  keyboardType,
 }: TextFieldProps) {
   const theme = useTheme();
 
@@ -49,6 +53,9 @@ export function TextField({
         placeholderTextColor={theme.textSecondary}
         multiline={multiline}
         maxLength={maxLength}
+        secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
+        autoCapitalize={keyboardType === 'email-address' || secureTextEntry ? 'none' : undefined}
         textAlignVertical={multiline ? 'top' : 'center'}
         accessibilityLabel={label}
         style={[

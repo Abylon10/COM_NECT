@@ -2,27 +2,43 @@ import { useEffect, useState, useSyncExternalStore } from 'react';
 
 import {
   getCurrentUser,
+  getMyApplication,
+  getMyOrganizations,
+  isSignedIn,
+} from '@/data/account';
+import {
   getDataVersion,
-  getDemoUsers,
   getEvent,
+  getEventHistory,
   getEvents,
   getEventsByIds,
+  getEventStats,
   getLocations,
-  getMyOrganizations,
-  getNotifications,
+  getMyMapEvents,
   getOrganizations,
+  getRecommendedEvents,
   subscribeToChanges,
   type AppNotification,
   type EventFilters,
   type EventWithOrganization,
+  type NotificationSettings,
   type Organization,
   type OrganizationMembership,
+  type OrganizerApplication,
   type Profile,
+  type UserInterests,
 } from '@/data/events';
+import { getMyInterests } from '@/data/interests';
+import { getNotifications, getNotificationSettings } from '@/data/notifications';
 
-/** Increases whenever data changes (an event is edited, the demo account switches, ...). */
+/** Increases whenever data changes (an event is edited, the user signs in, ...). */
 export function useDataVersion() {
   return useSyncExternalStore(subscribeToChanges, getDataVersion, getDataVersion);
+}
+
+/** Whether someone is signed in. Synchronous so navigation never flashes. */
+export function useIsSignedIn() {
+  return useSyncExternalStore(subscribeToChanges, isSignedIn, isSignedIn);
 }
 
 /**
@@ -36,13 +52,18 @@ function useLoader<T>(key: string, load: () => Promise<T>, initial: T) {
 
   useEffect(() => {
     let active = true;
-    load().then((data) => {
-      if (active) setState({ data, loading: false });
-    });
+    load()
+      .then((data) => {
+        if (active) setState({ data, loading: false });
+      })
+      // Signed-out screens may still be mounted for a moment after log out.
+      .catch(() => {
+        if (active) setState({ data: initial, loading: false });
+      });
     return () => {
       active = false;
     };
-    // `load` is recreated every render; `fullKey` captures its inputs.
+    // `load` and `initial` are recreated every render; `fullKey` captures the inputs.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fullKey]);
 
@@ -54,6 +75,10 @@ export function useEvents(filters: EventFilters) {
   return { events: data, loading };
 }
 
+export function useRecommendedEvents() {
+  return useLoader<EventWithOrganization[]>('recommended', getRecommendedEvents, []).data;
+}
+
 export function useEventsByIds(ids: string[]) {
   const { data, loading } = useLoader(ids.join(','), () => getEventsByIds(ids), []);
   return { events: data, loading };
@@ -62,6 +87,20 @@ export function useEventsByIds(ids: string[]) {
 export function useEvent(id: string) {
   const { data, loading } = useLoader<EventWithOrganization | null>(id, () => getEvent(id), null);
   return { event: data, loading };
+}
+
+export function useEventStats(id: string) {
+  return useLoader(`stats:${id}`, () => getEventStats(id), { going: 0, interested: 0, saved: 0 }).data;
+}
+
+export function useEventHistory() {
+  const { data, loading } = useLoader('history', getEventHistory, []);
+  return { events: data, loading };
+}
+
+export function useMyMapEvents() {
+  const { data, loading } = useLoader('map-events', getMyMapEvents, []);
+  return { events: data, loading };
 }
 
 export function useOrganizations() {
@@ -76,10 +115,6 @@ export function useCurrentUser() {
   return useLoader<Profile | null>('current-user', getCurrentUser, null).data;
 }
 
-export function useDemoUsers() {
-  return useLoader<Profile[]>('demo-users', getDemoUsers, []).data;
-}
-
 /** Verified organizations the current user can post for (empty for residents). */
 export function useMyOrganizations() {
   const { data, loading } = useLoader<OrganizationMembership[]>(
@@ -90,7 +125,33 @@ export function useMyOrganizations() {
   return { memberships: data, loading };
 }
 
+export function useMyApplication() {
+  const { data, loading } = useLoader<OrganizerApplication | null>(
+    'my-application',
+    getMyApplication,
+    null
+  );
+  return { application: data, loading };
+}
+
+export function useMyInterests() {
+  const { data, loading } = useLoader<UserInterests>('interests', getMyInterests, {
+    selected: [],
+    custom: [],
+  });
+  return { interests: data, loading };
+}
+
 export function useNotifications() {
   const { data, loading } = useLoader<AppNotification[]>('notifications', getNotifications, []);
   return { notifications: data, loading, unread: data.filter((n) => !n.read).length };
+}
+
+export function useNotificationSettings() {
+  const { data, loading } = useLoader<NotificationSettings | null>(
+    'notification-settings',
+    getNotificationSettings,
+    null
+  );
+  return { settings: data, loading };
 }

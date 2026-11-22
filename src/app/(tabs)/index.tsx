@@ -13,6 +13,7 @@ import {
   type SheetFilters,
 } from '@/components/filter-sheet';
 import { Icons } from '@/components/icon';
+import { RecommendedStrip } from '@/components/recommended-strip';
 import { SearchBar } from '@/components/search-bar';
 import { ThemedText } from '@/components/themed-text';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
@@ -66,11 +67,15 @@ export default function BrowseScreen() {
           contentContainerStyle={styles.list}
           keyboardDismissMode="on-drag"
           ListHeaderComponent={
-            <ThemedText type="caption" themeColor="textSecondary">
-              {loading
-                ? 'Loading events…'
-                : `${events.length} ${events.length === 1 ? 'event' : 'events'}`}
-            </ThemedText>
+            <View style={styles.listHeader}>
+              {/* Interests come first, but only when the user isn't searching or filtering. */}
+              {!query && !category && activeFilterCount === 0 && <RecommendedStrip />}
+              <ThemedText type="caption" themeColor="textSecondary">
+                {loading
+                  ? 'Loading events…'
+                  : `${events.length} upcoming ${events.length === 1 ? 'event' : 'events'}`}
+              </ThemedText>
+            </View>
           }
           ListEmptyComponent={
             loading ? undefined : (
@@ -115,6 +120,9 @@ const styles = StyleSheet.create({
   chips: {
     gap: Spacing.two,
     paddingHorizontal: Spacing.three,
+  },
+  listHeader: {
+    gap: Spacing.two,
   },
   list: {
     gap: Spacing.three,

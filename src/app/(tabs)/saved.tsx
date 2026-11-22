@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -35,7 +35,10 @@ const SEGMENTS: { id: Segment; label: string; empty: { icon: IconName; message: 
 export default function SavedScreen() {
   const theme = useTheme();
   const { savedIds, rsvps } = useEventActions();
-  const [segment, setSegment] = useState<Segment>('saved');
+  // The selected list lives in the URL (?segment=going), so Profile's counts can link to it.
+  const params = useLocalSearchParams<{ segment?: Segment }>();
+  const segment: Segment = SEGMENTS.some((s) => s.id === params.segment) ? params.segment! : 'saved';
+  const setSegment = (next: Segment) => router.setParams({ segment: next });
 
   const ids =
     segment === 'saved'
