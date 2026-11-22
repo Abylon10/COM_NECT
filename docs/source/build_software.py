@@ -330,15 +330,16 @@ PH = lambda s: f'[[{s}]]'  # noqa: E731
 # ===========================================================================
 # CONTENT
 # ===========================================================================
-h1('Community Connect: Software and Paper Documentation')
+h1('Community Connect: Software Documentation')
 para('Application Development and Emerging Technologies · BSCS-3C · Group 7')
-para('**Part I** documents the software itself (for developers, testers and users). '
-     '**Part II** is the academic paper (for instructors and panelists). Text '
-     'highlighted in yellow and [in brackets] still has to be filled in by the team, '
-     'mostly data from the evaluation that has not been conducted yet.', italic=False)
+para('This document describes the software itself, for developers, testers and users. The academic paper '
+     '(Chapters 1–5) is a separate document. Text highlighted in yellow and [in brackets] is still to be '
+     'filled in by the team.', italic=False)
+para('**Table of Contents**')
+toc('TOC \\o "1-4" \\h \\z \\u', 'Right-click here and choose Update Field to build the table of contents.')
+page_break()
 
 # ---------------------------------------------------------------------------
-h2('Part I: Software Documentation')
 # ---------------------------------------------------------------------------
 h3('1. Project Information')
 table(['Field', 'Details'], [
@@ -357,7 +358,7 @@ table(['Field', 'Details'], [
     ['Instructor', 'Mary Angel Palma'],
     ['Repository link', 'https://github.com/Abylon10/COM_NECT'],
     ['Live demo link', 'Not deployed yet. The app runs on phones through Expo Go during '
-                       'development (see Section 6). ' + PH('Add an EAS build link once available')],
+                       'development (see Section 6).'],
     ['Date', 'November 22, 2026'],
 ], [2.0, 4.5])
 
@@ -446,8 +447,8 @@ table(['ID', 'Requirement', 'Priority', 'Status'], [
 
 para('**3.2 Non-functional requirements**')
 table(['ID', 'Category', 'Requirement'], [
-    ['NFR-01', 'Performance', 'The event list scrolls smoothly and an event page opens in under 1 second '
-                              'on a mid-range Android phone. ' + PH('Measure during device testing')],
+    ['NFR-01', 'Performance', 'The event list scrolls smoothly and an event page opens in under 1 to 3 seconds '
+                              'on a mid-range Android phone.'],
     ['NFR-02', 'Security', 'Only members of verified organizations can create or edit events, and only '
                            'administrators can use the admin console. These checks run in the data layer '
                            '(and in the database with row-level security once connected), not only by hiding '
@@ -501,11 +502,12 @@ table(['Layer', 'Technology', 'Version', 'Reason for choice'], [
                       'expo-image-manipulator, expo-document-picker, AsyncStorage',
      '4.7.1, 58.0.18, 58.0.4, 1.29.11, 58.0.10, 58.0.16, 58.0.4, 2.2.0',
      'Animations, native icons, maps, photo picking and cropping, documents, saved settings.'],
-    ['Backend', 'Supabase (proposed)', PH('version'), 'Managed auth, database, storage and access rules; '
+    ['Backend', 'Supabase (proposed)', 'Not used yet', 'Managed auth, database, storage and access rules; '
                 'free tier suits a class project. Pending team approval.'],
-    ['Database', 'PostgreSQL via Supabase (proposed)', PH('version'), 'Relational model fits events, '
+    ['Database', 'PostgreSQL via Supabase (proposed)', 'Not used yet (comes with Supabase)', 'Relational model fits events, '
                  'organizations, members, saves, RSVPs, applications and reports.'],
-    ['Hosting / Cloud', 'Supabase cloud; EAS Build / EAS Update', PH('region/plan'),
+    ['Hosting / Cloud', 'Supabase cloud; EAS Build / EAS Update', 'Not deployed yet (planned: free plan, '
+                                                                     'Singapore region)',
      'No server to maintain; installable builds and over-the-air updates for testers.'],
     ['Emerging tech / APIs', 'expo-notifications (proposed)', '—', 'Push alerts when saved events change.'],
     ['Design', 'Figma (SVG import)', '—', 'Wireframes and high-fidelity prototype.'],
@@ -539,7 +541,8 @@ lead('4.4 UI/UX design.',
      'pill-shaped filter chips, rounded event cards and paired outline/filled buttons. The admin console '
      'follows a dashboard reference: a sidebar with counts, data tables with checkboxes, a ⋮ menu per row '
      'and pagination; on phones the sidebar becomes a slide-out menu and rows stack. Wireframes and a '
-     'high-fidelity prototype are in the repository under design/figma/. ' + PH('Add the Figma share link'))
+     'high-fidelity prototype are in the repository under design/figma/ and on Figma: '
+     'https://www.figma.com/design/4lJsZIl6yW6iq5Zm6udR0A/app-dev?node-id=1-2&t=L1WA7zfuLD9xyazv-1')
 figure('wireframes-board.png', 'Wireframes (design/figma/wireframes)', max_h=7.0)
 figure('hifi-board.png', 'High-fidelity screens, light and dark (design/figma/hifi)', max_h=7.0)
 figure('design-system.png', 'Design system: colors, type and components', max_h=5.0)
@@ -606,7 +609,9 @@ table(['Variable', 'Description', 'Example'], [
 ], [2.3, 2.6, 1.6], cap='Environment variables (planned)')
 
 h3('7. User Manual')
-para('Screenshots are from the current build (Expo SDK 58) shown at phone size.', italic=True)
+para('Screenshots are from Community Connect version 0.9.0 (Expo SDK 58, React Native 0.88), shown at '
+     'phone size and taken with the demo accounts. All events and accounts in the screenshots are sample '
+     'data.', italic=True)
 lead('7.1 Getting started.', '')
 numbered([
     'Open Community Connect. A short loading animation plays, then **Sign in** appears.',
@@ -640,9 +645,8 @@ numbered([
     'The **Saved** tab lists Saved, Going and Interested events.',
     'The **bell** at the top of Browse opens notifications about changes, reminders and announcements.',
 ])
-figure('event-locations.png', 'Demo event locations across Biliran that appear as map pins (approximate)',
-       max_h=4.6)
-para(PH('Insert a phone screenshot of the Map tab from Expo Go here (the web preview cannot load map tiles)'))
+figure('map-phone.jpg', 'Map tab on an Android phone (Expo Go): Ashley\'s Going (teal) and Interested '
+       '(amber) events around Biliran', max_h=5.2)
 screens([('s06-saved.png', 'Saved tab'), ('s12-notifications.png', 'Notifications')], width=2.2)
 h4('Profile and settings')
 numbered([
@@ -692,7 +696,7 @@ lead('8.1 Test plan.',
      'feature is exercised end to end in the web build at phone size with automated Playwright scripts '
      '(32 screens visited as resident, organizer and administrator at 360 px wide, checking that nothing '
      'overflows the screen) and on an Android phone through Expo Go. **User acceptance testing:** residents, '
-     'organizers and IT experts evaluate the app with the instruments in Part II, Chapter 3.')
+     'organizers and IT experts evaluate the app with the instruments in the Paper Documentation, Chapter 3.')
 para('**8.2 Test cases**')
 W = PH('Not yet run')
 table(['Test ID', 'Feature', 'Steps', 'Expected result', 'Actual result', 'Pass/Fail'], [
@@ -702,8 +706,8 @@ table(['Test ID', 'Feature', 'Steps', 'Expected result', 'Actual result', 'Pass/
     ['TC-04', 'Details', 'Tap an event card', 'All event fields and photos', 'As expected', 'Pass'],
     ['TC-05', 'Save / RSVP', 'Bookmark; tap Going', 'Listed in Saved / Going; count +1', 'As expected', 'Pass'],
     ['TC-06', 'Cancelled event', 'Open Run for a Cause 5K', 'Badge, note, RSVP disabled', 'As expected', 'Pass'],
-    ['TC-07', 'Map', 'Open Map as Ashley', '10 events across all 8 towns', 'As expected (list); pins on phone: ' + W,
-     'Pass'],
+    ['TC-07', 'Map', 'Open Map as Ashley', '10 events across all 8 towns', 'As expected (list and pins on '
+     'an Android phone)', 'Pass'],
     ['TC-08', 'Photo crop', 'Edit Profile → Change photo → zoom, drag, Done', 'Cropped round photo', 'As expected', 'Pass'],
     ['TC-09', 'Organizer', 'Apply; admin approves; create event with 3 photos', 'Organizer Tools unlocked; cover '
                                                                                'photo on card', 'As expected', 'Pass'],
@@ -711,7 +715,9 @@ table(['Test ID', 'Feature', 'Steps', 'Expected result', 'Actual result', 'Pass/
     ['TC-11', 'Admin', 'Remove a reported event; suspend a user', 'Event gone; user cannot sign in', 'As expected', 'Pass'],
     ['TC-12', 'Phone layout', 'Visit all screens at 360 px', 'Nothing past the screen edge', 'As expected', 'Pass'],
     ['TC-13', 'Device', 'Run in Expo Go (Android)', 'No crash; tabs, map, pickers work', 'Crash found and fixed '
-                                                                                       '(BUG-07, BUG-08)', W],
+                                                                                       '(BUG-07, BUG-08); then '
+                                                                                       'ran without errors',
+     'Pass'],
     ['TC-14', 'Code quality', 'npx tsc --noEmit; npx expo lint', 'No errors', 'No errors', 'Pass'],
 ], [0.55, 0.85, 1.35, 1.45, 1.25, 0.6], cap='Test cases', font_size=8)
 para('**8.3 Bug log**')
@@ -757,7 +763,7 @@ lead('10.1 Hosting environment.',
      'Current: development only. The app is served from the developer\'s computer with npx expo start '
      'and opened in Expo Go. Planned: Supabase cloud project in the Southeast Asia (Singapore) region for '
      'low latency from Biliran, on the free tier for the class project, and EAS Build for an installable '
-     'Android APK. ' + PH('Confirm plan and region'))
+     'Android APK.')
 lead('10.2 Deployment steps or CI/CD pipeline.',
      'Code is pushed to a branch on GitHub, reviewed through a pull request, and merged into main. Before '
      'merging, TypeScript and ESLint must pass. Planned: EAS Build produces test builds from main; EAS '
@@ -817,489 +823,9 @@ para('**Coding standards:** TypeScript strict mode; ESLint with eslint-config-ex
 para('**Third-party licenses and credits:** Expo, React Native, React, Expo Router, react-native-maps (MIT); '
      'Material Symbols icons (Apache 2.0); Inter font in the design files (SIL Open Font License 1.1); '
      'diagrams drawn with Mermaid (MIT). UI style inspired by the "Plandoon" and "Safemind" reference mockups. '
-     'Logo by ' + PH('designer\'s name') + '.')
+     'Logo by Monsales, Justin Dave.')
 
 # ---------------------------------------------------------------------------
-page_break()
-h2('Part II: Paper Documentation')
-# ---------------------------------------------------------------------------
-h3('Preliminary Pages')
-para('**Title Page**')
-for txt, sz, b in [('COMMUNITY CONNECT', 20, True),
-                   ('A Community Events and Announcement Application', 14, False),
-                   ('', 11, False),
-                   ('A Project Presented to', 11, False),
-                   (PH('Department / College, School name'), 11, False),
-                   ('', 11, False),
-                   ('In Partial Fulfillment of the Requirements in', 11, False),
-                   ('Application Development and Emerging Technologies', 11, True),
-                   ('', 11, False),
-                   ('By', 11, False),
-                   ('Salundaguit, Henjiel A.', 11, False), ('Ucag, Jennifer N.', 11, False),
-                   ('Monsales, Justin Dave', 11, False), ('Bohol, Philip', 11, False),
-                   ('Doloeras, Patricia', 11, False), ('Pedida, Toroi', 11, False),
-                   ('', 11, False),
-                   ('BSCS-3C', 11, False),
-                   ('Instructor: Mary Angel Palma', 11, False),
-                   (PH('Month YYYY of final submission'), 11, False)]:
-    p = para(txt, align='center', space_after=2)
-    for r in p.runs:
-        r.font.size = Pt(sz)
-        if b:
-            r.bold = True
-
-page_break()
-para('**Abstract**')
-para('Residents often miss community events and announcements because information is spread across '
-     'social-media pages, group chats, printed notices and word of mouth, and later changes are easy to '
-     'overlook. This study developed Community Connect, a mobile application that gathers local events '
-     'from verified organizers in one searchable place. Residents can browse and filter events by '
-     'category, date, location and organizing group, view complete event details, save events and give an '
-     'RSVP or interest signal, while cancelled and postponed events are clearly marked. The application was '
-     'built with Expo and React Native using an iterative, prototype-driven process, with wireframes and a '
-     'high-fidelity prototype designed in Figma. It supports three roles: residents, verified organizers who '
-     'publish and update events, and administrators who approve organizers and handle reports. It also shows '
-     'each resident\'s events on a map of Biliran and alerts them when events change. A cloud backend (Supabase) '
-     'is proposed for persistent accounts and data. The prototype was evaluated by '
-     + PH('number') + ' respondents using a questionnaire based on ISO/IEC 25010 and the System Usability '
-     'Scale. ' + PH('Key results: overall mean, verbal interpretation and SUS score') + '. '
-     + PH('One-sentence conclusion based on the results') + '.', align='justify')
-para('**Keywords:** community events, mobile application, React Native, verified organizers, usability')
-
-para('**Acknowledgment**')
-para('The researchers sincerely thank Ms. Mary Angel Palma, their instructor in Application Development '
-     'and Emerging Technologies, for her guidance throughout this project; '
-     + PH('adviser / panel members') + ' for their feedback; the respondents and community organizers who '
-     'took time to evaluate the application; ' + PH('organizations, e.g., SK officials or barangay office') +
-     ' for their cooperation; and their families and friends for their constant support.', align='justify')
-
-para('**Table of Contents**')
-toc('TOC \\o "1-4" \\h \\z \\u', 'Right-click here and choose Update Field to build the table of contents.')
-para('**List of Tables**')
-toc('TOC \\h \\z \\c "Table"', 'Right-click here and choose Update Field to build the list of tables.')
-para('**List of Figures**')
-toc('TOC \\h \\z \\c "Figure"', 'Right-click here and choose Update Field to build the list of figures.')
-
-# Chapter 1 -----------------------------------------------------------------
-page_break()
-h3('Chapter 1: Introduction')
-lead('1.1 Background of the Study.',
-     'Smartphones have become the main way young people look for information about what is happening around '
-     'them, and mobile apps are now a common channel for public services and community activities. Yet in many '
-     'local communities, information about events and announcements is still shared through a mixture of '
-     'social-media pages, printed posters, group chats, word of mouth and organization-specific channels.')
-para('In the researchers\' community, youth programs, school activities, sports leagues, cultural events and '
-     'volunteer drives are announced by different groups (Sangguniang Kabataan, barangay offices, schools, '
-     'non-profits and volunteer groups), each on its own page or chat. Residents who do not follow every page or '
-     'belong to every group chat learn about activities late, often after registration has closed, and cannot '
-     'easily tell whether an older post still has the latest venue and time.', align='justify')
-para('Organizers face the opposite problem: they post the same information repeatedly in several places and '
-     'still have no simple way to reach every interested resident, especially when an event is moved or '
-     'cancelled. These gaps motivated Community Connect, a centralized mobile application where trusted, verified '
-     'organizers publish events and residents can find, save and follow them.', align='justify')
-lead('1.2 Statement of the Problem.',
-     'Residents have difficulty keeping track of community events and announcements because information is '
-     'scattered across platforms and channels, and important details can be missed, outdated or hard to confirm. '
-     'Specifically, this study sought to answer the following questions:')
-numbered([
-    'What is the current process of sharing and finding community events and announcements, and what are its '
-    'weaknesses for residents and organizers?',
-    'How can a mobile application with verified organizer posts, search and filters, saving, RSVP and change '
-    'notices address these weaknesses?',
-    'How effective and acceptable is the developed application in terms of functional suitability, usability, '
-    'performance efficiency, reliability and security, as evaluated by residents, organizers and IT experts?',
-])
-lead('1.3 Objectives of the Study.',
-     'The general objective is to develop Community Connect, a mobile application that helps residents discover '
-     'local community events and receive important announcements in one convenient place. Specifically, it aims to:')
-numbered([
-    'Identify the weaknesses of the current ways events are announced and found, through the proposal\'s problem '
-    'analysis and user personas.',
-    'Design and develop a mobile application where residents can browse, search and filter events; view complete '
-    'event details; save events; and give a simple RSVP, while verified organizers create and manage listings.',
-    'Evaluate the application using ISO/IEC 25010 quality characteristics and the System Usability Scale.',
-])
-lead('1.4 Scope and Delimitations.',
-     'The study covers a mobile application for Android and iOS with three user types: residents, who browse, '
-     'search, filter, save, RSVP to and report events; verified organizers, who create and manage their '
-     'organization\'s listings and post announcements; and administrators, who verify organizers and moderate '
-     'content. It covers five event categories (youth, educational, sports, cultural and volunteer), in-app '
-     'alerts for changes and reminders, and a map of each resident\'s events. The prototype uses sample events '
-     'in all eight municipalities of Biliran; the final coverage area is ' + PH('Naval only / all of Biliran') + '.')
-para('The study does not cover ticket sales or payments, chat or messaging between users, social-media features '
-     'such as comments and followers, or a web version for the public (a web preview is used only during '
-     'development). Organizations are verified manually by administrators rather than through an automated '
-     'process. Alerts are shown inside the app; push notifications to a closed app depend on the backend being '
-     'completed during the study period.', align='justify')
-lead('1.5 Significance of the Study.', '')
-bullets([
-    '**Residents and youth:** one reliable place to find activities, details and updates, so fewer missed '
-    'registrations and wasted trips.',
-    '**Community organizers (SK, barangay, schools, non-profits):** post once, update once, and reach '
-    'interested residents, with a "verified" mark that builds trust.',
-    '**Local government units:** a channel for public programs and urgent community updates.',
-    '**Future researchers and developers:** a documented, open codebase and design files to extend, e.g., '
-    'with notifications, maps or other municipalities.',
-])
-lead('1.6 Conceptual Framework.',
-     'The study follows the Input-Process-Output model shown below. Feedback from the evaluation returns to '
-     'the process for refinement.')
-caption('Figure', 'Conceptual framework (Input-Process-Output)')
-table(['INPUT', 'PROCESS', 'OUTPUT'], [[
-    ['Problems: scattered posts, missed updates, unverified sources',
-     'Event details from verified organizers',
-     'Resident needs: youth, educational, sports, cultural and volunteer events',
-     'Hardware, software and personnel requirements'],
-    ['Requirements gathering (proposal, personas)',
-     'Design: wireframes and high-fidelity prototype (Figma)',
-     'Iterative development (Expo / React Native)',
-     'Testing and evaluation (ISO/IEC 25010, SUS)'],
-    ['Community Connect mobile application',
-     'Centralized, searchable list of trusted local events',
-     'Evaluation results and recommendations'],
-]], [2.15, 2.15, 2.2])
-lead('1.7 Definition of Terms.', '')
-table(['Term', 'Operational definition'], [
-    ['Community Connect', 'The mobile application developed in this study.'],
-    ['Resident', 'A user who browses, searches, saves and responds to events.'],
-    ['Verified organizer', 'A member of an organization approved by administrators to post and manage events.'],
-    ['Administrator', 'A team member who reviews organizer applications, reported events and accounts.'],
-    ['Organizer application', 'A request, with supporting documents, from a resident to become a verified organizer.'],
-    ['Event', 'A community activity with a title, schedule, venue, organizer, category and registration details.'],
-    ['RSVP', 'A resident\'s response to an event: Going or Interested.'],
-    ['Saved event', 'An event a resident bookmarked to find again later.'],
-    ['Expo / React Native', 'Frameworks used to build one app that runs natively on Android and iOS.'],
-    ['Expo Go', 'A phone app used to run and test the project during development.'],
-    ['Supabase', 'A cloud service providing a PostgreSQL database, sign-in and access rules (proposed backend).'],
-    ['Row-level security', 'Database rules that decide which rows each user may read or change.'],
-    ['Push notification', 'A message shown on the phone even when the app is closed.'],
-    ['Mock data', 'Sample events and accounts stored in the app, used before the real database is connected.'],
-    ['Map pin', 'A marker on the map showing where one of the resident\'s events takes place.'],
-    ['ISO/IEC 25010', 'International standard describing software product quality characteristics.'],
-    ['System Usability Scale (SUS)', 'A 10-item questionnaire that produces a usability score from 0 to 100.'],
-], [1.8, 4.7], cap='Definition of terms')
-
-# Chapter 2 -----------------------------------------------------------------
-page_break()
-h3('Chapter 2: Review of Related Literature and Studies')
-lead('2.1 Related Literature.',
-     'Davis (1989) showed that people adopt an information system when they find it useful and easy to use; '
-     'this is why Community Connect puts the essential details of an event (date, time, venue, organizer and '
-     'how to join) on the first screens instead of behind menus. Nielsen\'s (1994) usability heuristics, such '
-     'as visibility of system status, consistency and recognition rather than recall, guided the design of '
-     'clear status badges for cancelled and postponed events and consistent chips and buttons across screens.')
-para('ISO/IEC 25010 (International Organization for Standardization [ISO], 2011) defines software product '
-     'quality through characteristics such as functional suitability, performance efficiency, usability, '
-     'reliability and security, and is widely used to evaluate student and community information systems. '
-     'Brooke (1996) introduced the System Usability Scale as a quick, reliable ten-item measure of perceived '
-     'usability, and Bangor et al. (2008) and Sauro (2011) provided benchmarks for interpreting its scores.',
-     align='justify')
-para('For development, React Native (Meta Platforms, n.d.) lets one JavaScript/TypeScript codebase render '
-     'native interface components on both Android and iOS, and Expo (Expo, n.d.) adds tooling for building, '
-     'testing on real devices and updating apps. Supabase (Supabase, n.d.) provides a managed PostgreSQL '
-     'database with authentication and row-level security. ' +
-     PH('Add 2–3 more books or journal articles on community information, e-participation or event apps'),
-     align='justify')
-lead('2.2 Related Studies (Local and Foreign).',
-     'Several existing platforms address parts of the problem. **Facebook Events** reaches many users but '
-     'mixes event information with unrelated posts and depends on following the right pages. **Eventbrite** '
-     'focuses on ticketed events and registration for organizers, and **Meetup** organizes recurring interest '
-     'groups; both are designed for broad audiences rather than one community\'s verified local organizations. '
-     'Locally, barangay and SK Facebook pages and group chats remain the main channels, which is the situation '
-     'described in Chapter 1.')
-para(PH('Add at least three local and three foreign studies the group has read: author (year), what system '
-        'they built or studied, method, and main findings. Cite each one in the References.'))
-lead('2.3 Emerging Technologies Reviewed.', '')
-bullets([
-    '**Cross-platform native frameworks:** React Native renders real platform components; Expo SDK 58 '
-    'packages React Native 0.88 with modules for icons, images and native tab bars.',
-    '**Backend-as-a-service:** platforms such as Supabase provide database, authentication and access rules '
-    'as managed cloud services, lowering the cost of building secure apps for small teams.',
-    '**Push notifications:** services that deliver alerts through Apple and Google notification systems, '
-    'used here for event changes and reminders.',
-    '**Over-the-air updates:** delivering JavaScript fixes to installed apps without a new store release.',
-    '**Collaborative interface design:** Figma prototypes let teams test screen flows before building them.',
-])
-lead('2.4 Synthesis and Research Gap.',
-     'Existing platforms show that people do use digital tools to find events, but general social media '
-     'buries local events among unrelated posts, event platforms target ticketed or interest-based '
-     'gatherings, and none centers on verified local organizations with clear change notices. Community '
-     'Connect fills this gap with a single, mobile-first, community-specific list of events posted only by '
-     'verified organizers, with saving, RSVP and clearly marked cancellations and postponements.')
-
-# Chapter 3 -----------------------------------------------------------------
-page_break()
-h3('Chapter 3: Methodology')
-lead('3.1 Research Design.',
-     'The study uses a **descriptive-developmental** design. It is developmental because it produces a '
-     'working application through design and iterative building, and descriptive because it describes the '
-     'current situation and the respondents\' evaluation of the application using survey data.')
-lead('3.2 Software Development Model.',
-     'The team follows an **Agile, prototype-driven** model: short iterations that each produce a working '
-     'version, reviewed and refined before the next. The phases so far are shown below.')
-table(['Phase', 'Activities', 'Dates'], [
-    ['Planning and requirements', 'Problem analysis, personas, project proposal, draft data model',
-     'Until Sept 30, 2026'],
-    ['Iteration 1: core screens', 'Expo project, Browse, Saved, Profile, Event details, search, filters, '
-                                  'save, RSVP (mock data)', 'Oct 2, 2026'],
-    ['Iteration 2: refinements', 'Day/night mode, bug fixes', 'Oct 5, 2026'],
-    ['Design', 'Wireframes, hi-fi prototype, user flow, design system (Figma)', 'Oct 13, 2026'],
-    ['Maintenance', 'Upgrade to Expo SDK 58', 'Nov 10, 2026'],
-    ['Iteration 3: organizers and alerts', 'Organizer tools, demo accounts, in-app alerts', 'Nov 21, 2026'],
-    ['Iteration 4: accounts and map', 'Sign-in, Profile & Settings, organizer applications, Biliran map, '
-                                      'event photos', 'Nov 22, 2026'],
-    ['Iteration 5: administration', 'Admin console, photo cropping, Android fixes, code guide', 'Nov 22, 2026'],
-    ['Iteration 6: backend', 'Supabase accounts, persistent data, push notifications', PH('planned dates')],
-    ['Testing and evaluation', 'Device testing, respondent evaluation', PH('planned dates')],
-], [1.7, 3.3, 1.5], cap='Development phases')
-lead('3.3 Respondents and Sampling.',
-     'Respondents are ' + PH('number') + ' residents aged 18–20 from ' + PH('barangays') + ', '
-     + PH('number') + ' community organizers (e.g., SK, school and volunteer groups) and ' + PH('number') +
-     ' IT practitioners or faculty, for a total of ' + PH('N') + '. They are chosen through purposive '
-     'sampling: residents must match the target users, and organizers must currently announce events.')
-lead('3.4 Data Gathering Instruments and Procedures.', '')
-numbered([
-    'Short interviews with organizers about how they currently announce events and handle changes.',
-    'A survey questionnaire (Appendix B) with ISO/IEC 25010 items on a 5-point Likert scale and the ten SUS items.',
-    'Respondents use the application on a phone following a task list for their role (residents: find, filter, '
-    'open, save, RSVP and check the map; organizers: apply, create and update an event; IT experts: all roles '
-    'including the admin console).',
-    'Respondents answer the questionnaire right after the session; answers are encoded and tallied.',
-    'Test cases and bug logs (Part I, Section 8) document technical testing.',
-])
-lead('3.5 System Requirements Summary.', '')
-table(['Type', 'Requirement'], [
-    ['Hardware (development)', 'Laptop/desktop with 8 GB RAM or more; Android phone (and iPhone if available)'],
-    ['Hardware (users)', 'Android or iOS smartphone with internet access'],
-    ['Software', 'Node.js LTS, Git, Visual Studio Code, Expo Go (SDK 58), Figma; Supabase (planned)'],
-    ['Personnel', 'Developer(s), UI/UX designer, tester/QA, documentation; see Part I, Section 1'],
-], [1.8, 4.7], cap='System requirements summary')
-lead('3.6 Evaluation Tools.',
-     'The application is evaluated on five ISO/IEC 25010 characteristics: functional suitability, usability, '
-     'performance efficiency, reliability and security. Each item is rated on the 5-point scale below. '
-     'Usability is also measured with the System Usability Scale (Brooke, 1996).')
-table(['Scale', 'Mean range', 'Verbal interpretation'], [
-    ['5', '4.21 – 5.00', 'Strongly Agree (Excellent)'],
-    ['4', '3.41 – 4.20', 'Agree (Very Good)'],
-    ['3', '2.61 – 3.40', 'Neutral (Good)'],
-    ['2', '1.81 – 2.60', 'Disagree (Fair)'],
-    ['1', '1.00 – 1.80', 'Strongly Disagree (Poor)'],
-], [1.0, 1.8, 3.7], cap='Likert scale and interpretation')
-lead('3.7 Statistical Treatment.', '')
-bullets([
-    '**Weighted mean:** x̄ = Σ(f × w) / N, where f is the number of respondents choosing a rating, w the '
-    'rating (1–5) and N the number of respondents; used for every item and characteristic.',
-    '**Percentage:** P = (f / N) × 100, for respondent profile data.',
-    '**SUS score:** for odd items subtract 1 from the rating; for even items subtract the rating from 5; '
-    'add the ten results and multiply by 2.5 (range 0–100). A score above 68 is above average (Sauro, 2011).',
-])
-lead('3.8 Ethical Considerations.',
-     'Participation is voluntary, and respondents sign an informed consent form (Appendix A) explaining the '
-     'purpose, what they will do and that they may stop at any time. Responses are anonymous and used only for '
-     'this study. Any personal data is handled according to the Data Privacy Act of 2012 (Republic Act No. '
-     '10173) and deleted after the study. Respondents who are minors are not included.')
-
-# Chapter 4 -----------------------------------------------------------------
-page_break()
-h3('Chapter 4: Results and Discussion')
-lead('4.1 Presentation of the Developed System.',
-     'The current version of Community Connect covers all three roles on sample data. **Residents** sign in, get '
-     'recommendations, search and filter events, open detailed event pages with photos, save and RSVP, see their '
-     'events on a map of Biliran and receive in-app alerts. **Verified organizers** apply with documents and, once '
-     'approved, publish, update, postpone or cancel events and post announcements. **Administrators** use a '
-     'separate console to approve organizers, handle reports, verify organizations and manage users. Only '
-     'permanent storage and push notifications wait for the backend.')
-screens([('s01-browse.png', 'Event list'), ('s18-details-photos.png', 'Event details'),
-         ('s17-new-event.png', 'Organizer: new event')])
-screens([('s07-profile.png', 'Profile'), ('s19-admin-dashboard.png', 'Admin dashboard'),
-         ('s20-admin-users.png', 'User management')])
-lead('4.2 Evaluation Results.',
-     PH('The evaluation has not been conducted yet. After it, fill in the tables below and write one '
-        'interpretation paragraph under each table.'))
-table(['Criteria', 'Mean', 'Verbal interpretation'], [
-    ['Functional suitability', PH(' '), PH(' ')],
-    ['Usability', PH(' '), PH(' ')],
-    ['Performance efficiency', PH(' '), PH(' ')],
-    ['Reliability', PH(' '), PH(' ')],
-    ['Security', PH(' '), PH(' ')],
-    ['**Overall**', PH(' '), PH(' ')],
-], [2.6, 1.2, 2.7], cap='Evaluation results by ISO/IEC 25010 characteristic')
-table(['Respondent group', 'n', 'Mean SUS score', 'Interpretation'], [
-    ['Residents', PH(' '), PH(' '), PH(' ')],
-    ['Organizers', PH(' '), PH(' '), PH(' ')],
-    ['IT experts', PH(' '), PH(' '), PH(' ')],
-], [2.0, 0.8, 1.6, 2.1], cap='System Usability Scale results')
-lead('4.3 Discussion.',
-     PH('Explain what the results mean and compare them with Chapter 2, e.g., whether usability results support '
-        'Davis (1989) and Nielsen (1994), and how the SUS score compares with the benchmark of 68.'))
-lead('4.4 Challenges Encountered.', '')
-table(['Challenge', 'How it was handled'], [
-    ['Backend not yet decided by the team', 'Built the interface on mock data behind one data-access module, so '
-                                            'switching to Supabase changes only that file.'],
-    ['Event times displayed wrongly on phones in other time zones', 'Formatted all times in Philippine time '
-                                                                     '(Asia/Manila).'],
-    ['Breaking changes when upgrading to Expo SDK 58', 'Followed the new React Native types and re-ran type checks, '
-                                                       'lint and a full click-through.'],
-    ['Flaky connections during npm install and Expo Go testing', 'Re-ran installs; used same Wi-Fi or tunnel mode.'],
-    ['Bugs that appeared only on Android phones (an animation crash, squeezed buttons)', 'Tested on a real '
-     'phone with Expo Go, fixed the cause and wrote the rules in the code guide.'],
-    ['Layouts that did not fit small phones', 'Checked all 32 screens automatically at 360 px wide.'],
-    ['Solo development while the team finalizes roles', 'Organized the code by purpose and wrote CODE_GUIDE.md '
-                                                        'so members can find things and join quickly.'],
-], [2.6, 3.9], cap='Challenges and solutions')
-
-# Chapter 5 -----------------------------------------------------------------
-page_break()
-h3('Chapter 5: Summary, Conclusions and Recommendations')
-lead('5.1 Summary of Findings.', '')
-numbered([
-    '**Current process:** event information is scattered across social-media pages, group chats, posters and '
-    'word of mouth; residents miss events and updates, and organizers repeat posts across channels.',
-    '**Proposed application:** Community Connect was developed with a centralized event list, search, filters and '
-    'recommendations, complete event details with photos, saving, RSVP, a map of the resident\'s events, in-app '
-    'alerts, verified-organizer publishing and an admin console for verification and moderation.',
-    '**Evaluation:** ' + PH('summarize the results for each ISO/IEC 25010 characteristic and the SUS score'),
-])
-lead('5.2 Conclusions.',
-     'A single mobile application can present community events in a consistent, searchable form that addresses '
-     'the scattered-information problem identified in this study. ' +
-     PH('Add conclusions drawn from the evaluation results, e.g., whether respondents found it effective and '
-        'acceptable.'))
-lead('5.3 Recommendations.', '')
-bullets([
-    '**For users and organizers:** pilot the app with a few SK councils and school organizations first, and '
-    'agree on who verifies organizations.',
-    '**For the organization / LGU:** use the app as an official channel for public programs and urgent updates.',
-    '**For future developers:** connect the Supabase backend and push notifications; let organizers drop a map '
-    'pin for the venue and manage members; add multi-day events and local-language support; measure performance '
-    'on low-end phones.',
-    '**For future researchers:** study long-term use and whether the app increases event attendance.',
-])
-
-# References ------------------------------------------------------------------
-page_break()
-h3('References')
-refs = [
-    'Bangor, A., Kortum, P. T., & Miller, J. T. (2008). An empirical evaluation of the System Usability Scale. '
-    '~~International Journal of Human–Computer Interaction, 24~~(6), 574–594. '
-    'https://doi.org/10.1080/10447310802205776',
-    'Brooke, J. (1996). SUS: A "quick and dirty" usability scale. In P. W. Jordan, B. Thomas, B. A. Weerdmeester, '
-    '& I. L. McClelland (Eds.), ~~Usability evaluation in industry~~ (pp. 189–194). Taylor & Francis.',
-    'Davis, F. D. (1989). Perceived usefulness, perceived ease of use, and user acceptance of information '
-    'technology. ~~MIS Quarterly, 13~~(3), 319–340. https://doi.org/10.2307/249008',
-    'Expo. (n.d.). ~~Expo documentation~~. Retrieved November 22, 2026, from https://docs.expo.dev',
-    'International Organization for Standardization. (2011). ~~Systems and software engineering — Systems and '
-    'software Quality Requirements and Evaluation (SQuaRE) — System and software quality models~~ '
-    '(ISO/IEC Standard No. 25010:2011).',
-    'Meta Platforms. (n.d.). ~~React Native documentation~~. Retrieved November 19, 2026, from https://reactnative.dev',
-    'Nielsen, J. (1994). Enhancing the explanatory power of usability heuristics. In ~~Proceedings of the SIGCHI '
-    'Conference on Human Factors in Computing Systems~~ (pp. 152–158). ACM. https://doi.org/10.1145/191666.191729',
-    'Republic Act No. 10173. (2012). ~~Data Privacy Act of 2012~~. Official Gazette of the Republic of the Philippines.',
-    'Sauro, J. (2011). ~~A practical guide to the System Usability Scale: Background, benchmarks & best practices~~. '
-    'Measuring Usability LLC.',
-    'Supabase. (n.d.). ~~Supabase documentation~~. Retrieved November 19, 2026, from https://supabase.com/docs',
-    PH('Add the related studies from Section 2.2 in APA 7th edition format'),
-]
-for r in refs:
-    p = para(r)
-    pf = p.paragraph_format
-    pf.left_indent = Inches(0.5)
-    pf.first_line_indent = Inches(-0.5)
-
-# Appendices -------------------------------------------------------------------
-page_break()
-h3('Appendices')
-table(['Appendix', 'Content'], [
-    ['A', 'Informed consent form'],
-    ['B', 'Survey questionnaire'],
-    ['C', 'Raw data and computations'],
-    ['D', 'Sample system screenshots'],
-    ['E', 'Project timeline'],
-    ['F', 'Curriculum vitae of researchers'],
-], [1.2, 5.3])
-
-h4('Appendix A: Informed Consent Form')
-para('**Title of study:** Community Connect: A Community Events and Announcement Application')
-para('**Researchers:** BSCS-3C Group 7, ' + PH('school name'))
-para('You are invited to try the Community Connect mobile application and answer a short questionnaire. The '
-     'session takes about 20 minutes. You will perform simple tasks (find an event, filter, open details, save '
-     'and RSVP) and then rate the application. There are no known risks. Participation is voluntary; you may '
-     'skip any question or stop at any time. Your answers are anonymous, used only for this study, and handled '
-     'according to the Data Privacy Act of 2012 (RA 10173).', align='justify')
-para('I have read and understood the information above and agree to take part.')
-para('Name and signature: ____________________________     Date: ______________')
-
-h4('Appendix B: Survey Questionnaire')
-para('**Part 1. Respondent profile:** Age ___  Barangay ________  Respondent type: ☐ Resident  ☐ Organizer  '
-     '☐ IT expert')
-para('**Part 2. Software quality (ISO/IEC 25010).** 5 = Strongly Agree, 4 = Agree, 3 = Neutral, '
-     '2 = Disagree, 1 = Strongly Disagree.')
-q = [
-    ('Functional suitability', ['The app lists the community events I need in one place.',
-                                'Search and filters help me find the events I want.',
-                                'Event pages show complete details (date, time, venue, organizer, how to join).',
-                                'Saving and RSVP work as expected.',
-                                'The map shows where my events are.',
-                                'I am alerted when an event I follow changes.']),
-    ('Usability', ['The app is easy to learn.', 'The screens are clear and easy to read.',
-                   'I can tell easily when an event is cancelled or postponed.']),
-    ('Performance efficiency', ['Screens open quickly.', 'Scrolling the event list is smooth.']),
-    ('Reliability', ['The app works without crashing or errors.', 'Information stays correct after changes.']),
-    ('Security', ['Only verified organizers can post events.', 'I trust the app with my personal information.']),
-]
-rows = []
-n = 1
-for cat, items in q:
-    rows.append([f'**{cat}**', '', '', '', '', ''])
-    for it in items:
-        rows.append([f'{n}. {it}', '', '', '', '', ''])
-        n += 1
-table(['Statement', '5', '4', '3', '2', '1'], rows, [4.5, 0.4, 0.4, 0.4, 0.4, 0.4],
-      cap='Questionnaire: software quality', font_size=9)
-para('**Part 3. System Usability Scale (Brooke, 1996).** 1 = Strongly Disagree … 5 = Strongly Agree.')
-sus = ['I think that I would like to use this system frequently.',
-       'I found the system unnecessarily complex.',
-       'I thought the system was easy to use.',
-       'I think that I would need the support of a technical person to be able to use this system.',
-       'I found the various functions in this system were well integrated.',
-       'I thought there was too much inconsistency in this system.',
-       'I would imagine that most people would learn to use this system very quickly.',
-       'I found the system very cumbersome to use.',
-       'I felt very confident using the system.',
-       'I needed to learn a lot of things before I could get going with this system.']
-table(['Statement', '1', '2', '3', '4', '5'], [[f'{i + 1}. {s}', '', '', '', '', ''] for i, s in enumerate(sus)],
-      [4.5, 0.4, 0.4, 0.4, 0.4, 0.4], cap='Questionnaire: System Usability Scale', font_size=9)
-para('**Part 4. Comments and suggestions:** ______________________________________________')
-
-h4('Appendix C: Raw Data and Computations')
-para(PH('Insert the tally of responses per item and the weighted-mean and SUS computations after the evaluation.'))
-
-h4('Appendix D: Sample System Screenshots')
-para('More screenshots are in Part I, Section 7 (User Manual) and Chapter 4.')
-screens([('s24-interests.png', 'My Interests'), ('s13-edit-profile.png', 'Edit Profile'),
-         ('s25-admin-reports.png', 'Reported events (admin)')])
-figure('s22-admin-dashboard-wide.png', 'Admin dashboard on a tablet or wide screen', max_h=4.0)
-
-h4('Appendix E: Project Timeline')
-table(['Milestone', 'Target date', 'Status'], [
-    ['Project proposal submitted', 'Sept 30, 2026', 'Done'],
-    ['Core resident screens (mock data)', 'Oct 2, 2026', 'Done'],
-    ['Day/night mode', 'Oct 5, 2026', 'Done'],
-    ['Figma wireframes and hi-fi prototype', 'Oct 13, 2026', 'Done'],
-    ['Upgrade to Expo SDK 58', 'Nov 10, 2026', 'Done'],
-    ['Organizer tools and in-app alerts', 'Nov 21, 2026', 'Done'],
-    ['Sign-in, settings, organizer applications, map, photos', 'Nov 22, 2026', 'Done'],
-    ['Admin console', 'Nov 22, 2026', 'Done'],
-    ['Team decision on backend; Supabase setup', PH('date'), 'Pending'],
-    ['Push notifications', PH('date'), 'Planned'],
-    ['Device testing and evaluation', PH('date'), 'Planned'],
-    ['Final documentation and presentation', PH('date'), 'Planned'],
-], [3.2, 1.6, 1.7], cap='Project timeline')
-
-h4('Appendix F: Curriculum Vitae of Researchers')
-for name in ['Salundaguit, Henjiel A.', 'Ucag, Jennifer N.', 'Monsales, Justin Dave', 'Bohol, Philip',
-             'Doloeras, Patricia', 'Pedida, Toroi']:
-    para(f'**{name}**: ' + PH('contact, education, skills, photo'))
 
 doc.save(OUT)
 print('figures', counters['Figure'], 'tables', counters['Table'])
