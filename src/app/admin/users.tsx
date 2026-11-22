@@ -210,6 +210,8 @@ export default function AdminUsersScreen() {
         sort={sort}
         onSort={toggleSort}
         pageSize={6}
+        // Line up role / status / date with the name (34px avatar + 16px gap).
+        compactMetaIndent={50}
         actions={(u) => [
           u.status === 'suspended'
             ? {

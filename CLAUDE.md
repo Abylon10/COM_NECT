@@ -149,7 +149,8 @@ src/
     organizer/            Organizer Tools: list, new event, edit event
     notifications.tsx     In-app notifications (bell icon)
     admin/                Admin console: dashboard (index), applications,
-                          application/[id], reports, organizations, users, feedback
+                          application/[id], reports, organizations, users, feedback,
+                          profile (admin's own photo, name, number, password)
     settings/             edit-profile, security (password, deactivate, delete),
                           interests, notifications (settings), organizer-application,
                           history, privacy, help
@@ -164,7 +165,7 @@ src/
   hooks/use-events.ts     loaders screens use; re-load when data changes
   hooks/use-event-actions.tsx  saved events + RSVPs shared across screens
   components/             UI pieces (event-card, event-form, events-map(.web),
-                          photo-picker, photo-gallery, loading-animation,
+                          photo-picker, photo-cropper, photo-gallery, loading-animation,
                           startup-splash, admin-shell, admin-table, admin-ui,
                           bottom-sheet, confirm-dialog, ...)
   constants/              theme.ts (colors, spacing), app.ts (support email)
@@ -180,6 +181,10 @@ src/
   chips, rounded cards, outline + filled button pairs.
 - Use `ConfirmDialog` instead of `Alert.alert` with buttons (those do
   nothing on the web preview).
+- **Reanimated:** any helper function called inside `useAnimatedStyle`
+  (or other worklets) must start with `'worklet';`. Otherwise it crashes
+  on the phone with "[Worklets] Tried to synchronously call a Remote
+  Function", while the web preview works fine, so web tests don't catch it.
 
 ## Current status
 
@@ -246,8 +251,16 @@ src/
 - App icon, splash, and header use the Community Connect logo (teal).
 - Day/night toggle: sun/moon button in the Browse header, plus System /
   Day / Night choice on Profile (`hooks/color-scheme-preference.ts`).
-  Native uses `Appearance.setColorScheme`, so the tab bar and alerts
-  follow too. The choice is saved on the device (AsyncStorage).
+  `useColorScheme` reads the app's own preference store first (the phone's
+  setting only when "System"), so all text and backgrounds switch in the
+  same frame. Native also calls `Appearance.setColorScheme`, so the tab bar
+  and alerts follow. The choice is saved on the device (AsyncStorage).
+- **Photo cropping** is done in the app (`photo-cropper.tsx`,
+  `useCroppedPhotoPicker`): drag to move, pinch or − / + to zoom, Done.
+  Uses expo-image-manipulator, not the phone's own crop screen. Used for
+  profile photos (resident Edit Profile and admin My Profile).
+- Layout is checked at 360px wide (common Android width): nothing may
+  stick out past the screen edge.
 - **Organizer tools (mock data):** organizer Carlo Mendoza is admin of the
   verified SK Federation of Naval. Organizers create events and edit, postpone
   or cancel them (a note is required). Permissions are checked in

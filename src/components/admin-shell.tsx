@@ -32,7 +32,8 @@ export type AdminSection =
   | 'reports'
   | 'users'
   | 'organizations'
-  | 'feedback';
+  | 'feedback'
+  | 'profile';
 
 type NavItem = { key: AdminSection; label: string; icon: IconName; href: Href };
 
@@ -109,14 +110,22 @@ export function AdminShell({ active, title, subtitle, onBack, footer, children }
             )}
             <View style={styles.flex} />
             <ThemeToggle />
-            <View style={[styles.userChip, { borderColor: theme.border }]}>
-              <Avatar name={user?.displayName ?? 'Admin'} size={26} />
+            <Pressable
+              onPress={() => active !== 'profile' && router.replace('/admin/profile')}
+              accessibilityRole="button"
+              accessibilityLabel="My profile"
+              style={({ pressed }) => [
+                styles.userChip,
+                width >= 420 && { borderColor: theme.border, borderWidth: 1 },
+                pressed && { backgroundColor: theme.backgroundElement },
+              ]}>
+              <Avatar name={user?.displayName ?? 'Admin'} uri={user?.avatarUri} size={28} />
               {width >= 420 && (
                 <ThemedText type="caption" numberOfLines={1} style={styles.userName}>
-                  Administrator
+                  {user?.displayName ?? 'Administrator'}
                 </ThemedText>
               )}
-            </View>
+            </Pressable>
           </View>
 
           <KeyboardAvoidingView
@@ -142,7 +151,7 @@ export function AdminShell({ active, title, subtitle, onBack, footer, children }
                   </Pressable>
                 )}
                 <View style={styles.flex}>
-                  <ThemedText type="title" style={styles.pageTitle}>
+                  <ThemedText type="title" style={[styles.pageTitle, !wide && styles.pageTitlePhone]} numberOfLines={2}>
                     {title}
                   </ThemedText>
                   {subtitle && (
@@ -239,7 +248,9 @@ function Sidebar({
 }) {
   const theme = useTheme();
   const stats = useAdminStats();
+  const user = useCurrentUser();
   const dark = useColorScheme() === 'dark';
+  const onProfile = active === 'profile';
   const counts: Partial<Record<AdminSection, number>> = {
     applications: stats.pendingApplications,
     reports: stats.openReports,
@@ -286,6 +297,32 @@ function Sidebar({
         <ThemedText type="caption" themeColor="textSecondary" style={styles.navHeading}>
           Account
         </ThemedText>
+        <Pressable
+          onPress={() => {
+            onNavigate();
+            if (!onProfile) router.replace('/admin/profile');
+          }}
+          accessibilityRole="button"
+          accessibilityState={{ selected: onProfile }}
+          accessibilityLabel="Edit profile"
+          style={({ pressed }) => [
+            styles.navItem,
+            onProfile && { backgroundColor: theme.primary },
+            !onProfile && pressed && { backgroundColor: theme.backgroundElement },
+          ]}>
+          <Avatar name={user?.displayName ?? 'Admin'} uri={user?.avatarUri} size={24} />
+          <View style={styles.navLabel}>
+            <ThemedText type="small" style={{ color: onProfile ? theme.onPrimary : theme.text }} numberOfLines={1}>
+              Edit profile
+            </ThemedText>
+            <ThemedText
+              type="caption"
+              numberOfLines={1}
+              style={{ color: onProfile ? theme.onPrimary : theme.textSecondary }}>
+              {user?.displayName ?? 'Administrator'}
+            </ThemedText>
+          </View>
+        </Pressable>
         <Pressable
           onPress={() => setColorSchemePreference(dark ? 'light' : 'dark')}
           accessibilityRole="button"
@@ -380,14 +417,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.two,
-    borderWidth: 1,
     borderRadius: Radius.sm,
     paddingVertical: Spacing.one,
     paddingLeft: Spacing.one,
     paddingRight: Spacing.two,
   },
   userName: {
-    maxWidth: 120,
+    maxWidth: 140,
   },
   content: {
     width: '100%',
@@ -403,6 +439,10 @@ const styles = StyleSheet.create({
   pageTitle: {
     fontSize: 28,
     lineHeight: 34,
+  },
+  pageTitlePhone: {
+    fontSize: 24,
+    lineHeight: 30,
   },
   back: {
     width: 40,

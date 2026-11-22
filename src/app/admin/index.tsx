@@ -102,7 +102,7 @@ export default function AdminDashboardScreen() {
       </View>
 
       <View style={styles.panels}>
-        <Panel title="Pending organizer requests" onViewAll={() => router.replace('/admin/applications')}>
+        <Panel title="Organizer requests" onViewAll={() => router.replace('/admin/applications')}>
           <DataTable
             rows={applications}
             columns={requestColumns}
@@ -186,7 +186,9 @@ const styles = StyleSheet.create({
   },
   panel: {
     flexGrow: 1,
+    flexShrink: 1,
     flexBasis: 340,
+    minWidth: 0,
     gap: Spacing.three,
   },
   panelHead: {

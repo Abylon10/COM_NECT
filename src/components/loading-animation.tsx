@@ -20,6 +20,16 @@ const HOLD = 650;
 const ease = Easing.inOut(Easing.quad);
 
 /**
+ * Gentle bob while walking (peaks mid-step). Runs inside useAnimatedStyle
+ * on the UI thread, so it must be a worklet; a plain function crashes on
+ * native ("Tried to synchronously call a Remote Function").
+ */
+function bob(v: number) {
+  'worklet';
+  return -Math.sin(v * Math.PI) * 4;
+}
+
+/**
  * Two people (man and woman pictograms) walking up to each other and
  * high-fiving, with a heart popping between them. Used while things load.
  */
@@ -60,9 +70,6 @@ export function LoadingAnimation({ label, scale = 1 }: { label?: string; scale?:
       -1
     );
   }, [step, arm, heart]);
-
-  // Gentle bob while walking (peaks mid-step).
-  const bob = (v: number) => -Math.sin(v * Math.PI) * 4;
 
   const manStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: step.value * 14 }, { translateY: bob(step.value) }],

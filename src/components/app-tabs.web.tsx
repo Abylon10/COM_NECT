@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     paddingVertical: Spacing.two,
-    paddingHorizontal: Spacing.three,
+    paddingHorizontal: Spacing.two,
     borderRadius: Radius.pill,
     borderWidth: 1,
     flexDirection: 'row',
