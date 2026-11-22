@@ -13,6 +13,7 @@ import {
   type SheetFilters,
 } from '@/components/filter-sheet';
 import { Icons } from '@/components/icon';
+import { LoadingAnimation } from '@/components/loading-animation';
 import { RecommendedStrip } from '@/components/recommended-strip';
 import { SearchBar } from '@/components/search-bar';
 import { ThemedText } from '@/components/themed-text';
@@ -78,7 +79,9 @@ export default function BrowseScreen() {
             </View>
           }
           ListEmptyComponent={
-            loading ? undefined : (
+            loading ? (
+              <LoadingAnimation label="Loading events…" />
+            ) : (
               <EmptyState
                 icon={Icons.search}
                 title="No events found"

@@ -160,7 +160,8 @@ src/
   hooks/use-events.ts     loaders screens use; re-load when data changes
   hooks/use-event-actions.tsx  saved events + RSVPs shared across screens
   components/             UI pieces (event-card, event-form, events-map(.web),
-                          bottom-sheet, confirm-dialog, settings-screen, ...)
+                          photo-picker, photo-gallery, loading-animation,
+                          startup-splash, bottom-sheet, confirm-dialog, ...)
   constants/              theme.ts (colors, spacing), app.ts (support email)
   utils/                  format.ts (dates in Asia/Manila), maps.ts (Biliran region,
                           open in Google Maps)
@@ -168,7 +169,8 @@ src/
 
 - Icons: `components/icon.tsx` wraps `SymbolView` (SF Symbols on iOS,
   Material Symbols on Android/web). Add new icons to `Icons` there.
-- Event covers are category-colored placeholders, not photos.
+- Event covers use the organizer's first photo; events without photos show
+  a category-colored placeholder.
 - UI style follows the "Plandoon" reference mockups: teal accent, pill
   chips, rounded cards, outline + filled button pairs.
 - Use `ConfirmDialog` instead of `Alert.alert` with buttons (those do
@@ -224,6 +226,18 @@ src/
   events / recommendations, and application results, each respecting the
   user's notification settings. This stands in for push notifications
   until `expo-notifications` is decided.
+- **Loading animation:** two people pictograms (man in teal, woman in
+  amber) walk up, high-five and a heart pops (`loading-animation.tsx`,
+  built with Views + reanimated, no image assets). Shown on a short
+  startup splash and on loading states (Browse, Saved, Notifications,
+  Event details).
+- **Event photos:** organizers add up to 6 photos (`MAX_EVENT_PHOTOS`)
+  in the event form via expo-image-picker; the first is the cover on
+  cards, the details header and Recommended. Details has a Photos strip
+  with a full-screen viewer. Photos are local URIs for now (they reset on
+  reload); with Supabase they'd be uploaded to Storage. Sample events
+  have no photos.
+- New events can't be published for a time that has already passed.
 - Date/time pickers are custom (calendar + 30-minute time slots), so no
   native picker package is needed and they work on web too. Events are
   single-day; times are entered in Philippine time.

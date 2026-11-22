@@ -34,7 +34,7 @@ import type {
   ReportReason,
   RsvpResponse,
 } from './types';
-import { PermissionError, ValidationError } from './types';
+import { MAX_EVENT_PHOTOS, PermissionError, ValidationError } from './types';
 
 export * from './types';
 export { getDataVersion, subscribeToChanges } from './db';
@@ -212,7 +212,9 @@ function canManageOrganization(organizationId: string) {
   );
 }
 
-function validateEvent(e: Pick<EventInput, 'title' | 'venue' | 'location' | 'startAt' | 'endAt'>) {
+function validateEvent(
+  e: Pick<EventInput, 'title' | 'venue' | 'location' | 'startAt' | 'endAt' | 'photos'>
+) {
   if (!e.title.trim()) throw new ValidationError('Title is required.', 'title');
   if (!e.venue.trim()) throw new ValidationError('Venue is required.', 'venue');
   if (!e.location.trim()) throw new ValidationError('Location is required.', 'location');
@@ -222,6 +224,9 @@ function validateEvent(e: Pick<EventInput, 'title' | 'venue' | 'location' | 'sta
   if (Date.parse(e.endAt) <= Date.parse(e.startAt)) {
     throw new ValidationError('The event must end after it starts.', 'end');
   }
+  if (e.photos.length > MAX_EVENT_PHOTOS) {
+    throw new ValidationError(`Add up to ${MAX_EVENT_PHOTOS} photos.`, 'photos');
+  }
 }
 
 export async function createEvent(input: EventInput): Promise<EventWithOrganization> {
@@ -229,6 +234,9 @@ export async function createEvent(input: EventInput): Promise<EventWithOrganizat
     throw new PermissionError('Only members of a verified organization can post its events.');
   }
   validateEvent(input);
+  if (Date.parse(input.endAt) <= Date.now()) {
+    throw new ValidationError('This time has already passed.', 'end');
+  }
   const location = input.location.trim();
   const event: CommunityEvent = {
     ...input,

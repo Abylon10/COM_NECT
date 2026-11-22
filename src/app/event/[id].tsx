@@ -8,7 +8,9 @@ import { EmptyState } from '@/components/empty-state';
 import { EventCover } from '@/components/event-cover';
 import { Icon, Icons } from '@/components/icon';
 import { InfoRow } from '@/components/info-row';
+import { LoadingAnimation } from '@/components/loading-animation';
 import { ManageEventPanel } from '@/components/manage-event-panel';
+import { PhotoGallery } from '@/components/photo-gallery';
 import { ReportEventSheet } from '@/components/report-event-sheet';
 import { RsvpButtons } from '@/components/rsvp-buttons';
 import { ThemedText } from '@/components/themed-text';
@@ -37,7 +39,11 @@ export default function EventDetailsScreen() {
   if (!event) {
     return (
       <SafeAreaView style={[styles.screen, { backgroundColor: theme.background }]}>
-        {!loading && (
+        {loading ? (
+          <View style={styles.notFound}>
+            <LoadingAnimation label="Loading event…" />
+          </View>
+        ) : (
           <View style={styles.notFound}>
             <EmptyState
               icon={Icons.eventBusy}
@@ -116,6 +122,12 @@ export default function EventDetailsScreen() {
               <ThemedText type="link">Open in Google Maps</ThemedText>
             </Pressable>
           </View>
+
+          {event.photos.length > 0 && (
+            <Section title="Photos">
+              <PhotoGallery photos={event.photos} title={event.title} />
+            </Section>
+          )}
 
           <Section title="About">
             <ThemedText type="small" style={styles.paragraph}>

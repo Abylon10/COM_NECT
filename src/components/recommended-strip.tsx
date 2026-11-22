@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 
@@ -74,7 +75,11 @@ function MiniCard({ event }: { event: EventWithOrganization }) {
         pressed && { opacity: 0.85 },
       ]}>
       <View style={[styles.cover, { backgroundColor: color }]}>
-        <Icon name={icon} size={56} color="#FFFFFF" style={styles.coverIcon} />
+        {event.photos[0] ? (
+          <Image source={{ uri: event.photos[0] }} style={StyleSheet.absoluteFill} contentFit="cover" />
+        ) : (
+          <Icon name={icon} size={56} color="#FFFFFF" style={styles.coverIcon} />
+        )}
         <View style={styles.date}>
           <ThemedText type="caption" style={{ color, fontWeight: 700 }}>
             {month} {day}

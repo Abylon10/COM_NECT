@@ -2,6 +2,7 @@ import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
+import { StartupSplash } from '@/components/startup-splash';
 import { loadColorSchemePreference } from '@/hooks/color-scheme-preference';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { EventActionsProvider } from '@/hooks/use-event-actions';
@@ -41,6 +42,7 @@ export default function RootLayout() {
             <Stack.Screen name="sign-up" />
           </Stack.Protected>
         </Stack>
+        <StartupSplash />
         <StatusBar style="auto" />
       </EventActionsProvider>
     </ThemeProvider>

@@ -4,6 +4,7 @@ import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { EmptyState } from '@/components/empty-state';
+import { LoadingAnimation } from '@/components/loading-animation';
 import { Icon, Icons, type IconName } from '@/components/icon';
 import { ScreenHeader } from '@/components/screen-header';
 import { ThemedText } from '@/components/themed-text';
@@ -56,7 +57,9 @@ export default function NotificationsScreen() {
           <NotificationRow item={item} unread={!item.read} />
         )}
         ListEmptyComponent={
-          loading ? undefined : (
+          loading ? (
+            <LoadingAnimation label="Loading notifications…" />
+          ) : (
             <EmptyState
               icon={Icons.bell}
               title="No notifications"

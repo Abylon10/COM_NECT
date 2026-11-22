@@ -126,7 +126,7 @@ export const organizations: Organization[] = [
   },
 ];
 
-type EventSeed = Omit<CommunityEvent, 'coordinates' | 'updatedAt'> & { updatedDaysAgo: number };
+type EventSeed = Omit<CommunityEvent, 'coordinates' | 'updatedAt' | 'photos'> & { updatedDaysAgo: number };
 
 const eventSeeds: EventSeed[] = [
   {
@@ -307,6 +307,7 @@ const eventSeeds: EventSeed[] = [
 export const events: CommunityEvent[] = eventSeeds.map(({ updatedDaysAgo, ...e }) => ({
   ...e,
   coordinates: coordinatesFor(e.location),
+  photos: [],
   updatedAt: at(-updatedDaysAgo, '09:00'),
 }));
 

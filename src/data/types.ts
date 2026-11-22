@@ -32,6 +32,11 @@ export type CommunityEvent = {
   location: string;
   /** Map pin. Approximate for the mock data. */
   coordinates: Coordinates;
+  /**
+   * Photo URIs added by the organizer; the first is the cover. Local file
+   * URIs for now; with the backend these become uploaded storage URLs.
+   */
+  photos: string[];
   registrationInfo: string;
   status: EventStatus;
   /** Shown when an organizer changes or cancels the event. */
@@ -41,6 +46,8 @@ export type CommunityEvent = {
   interestedCount: number;
   updatedAt: string;
 };
+
+export const MAX_EVENT_PHOTOS = 6;
 
 export type EventWithOrganization = CommunityEvent & { organization: Organization };
 
@@ -90,6 +97,8 @@ export type EventInput = {
   venue: string;
   location: string;
   registrationInfo: string;
+  /** Up to MAX_EVENT_PHOTOS; the first is the cover. */
+  photos: string[];
 };
 
 /** What an organizer can change on an existing event. */

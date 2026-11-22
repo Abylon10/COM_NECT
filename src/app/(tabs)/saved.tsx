@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Chip } from '@/components/chip';
 import { EmptyState } from '@/components/empty-state';
 import { EventCard } from '@/components/event-card';
+import { LoadingAnimation } from '@/components/loading-animation';
 import { Icons, type IconName } from '@/components/icon';
 import { ThemedText } from '@/components/themed-text';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
@@ -70,7 +71,9 @@ export default function SavedScreen() {
           renderItem={({ item }) => <EventCard event={item} />}
           contentContainerStyle={styles.list}
           ListEmptyComponent={
-            loading ? undefined : (
+            loading ? (
+              <LoadingAnimation label="Loading your events…" />
+            ) : (
               <EmptyState
                 icon={current.empty.icon}
                 title={`No ${current.label.toLowerCase()} events yet`}

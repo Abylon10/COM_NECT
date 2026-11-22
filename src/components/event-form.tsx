@@ -6,6 +6,7 @@ import { Button } from '@/components/button';
 import { Chip } from '@/components/chip';
 import { DatePickerSheet, TimePickerSheet } from '@/components/date-time-pickers';
 import { PickerField, TextField } from '@/components/form-field';
+import { PhotoPicker } from '@/components/photo-picker';
 import { Icon, Icons } from '@/components/icon';
 import { ThemedText } from '@/components/themed-text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
@@ -38,6 +39,7 @@ export type EventFormValues = {
   registrationInfo: string;
   status: EventStatus;
   statusNote: string;
+  photos: string[];
 };
 
 type EventFormProps = {
@@ -79,6 +81,7 @@ export function EventForm({ memberships, event, submitLabel, onSubmit }: EventFo
   const [registrationInfo, setRegistrationInfo] = useState(event?.registrationInfo ?? '');
   const [status, setStatus] = useState<EventStatus>(event?.status ?? 'scheduled');
   const [statusNote, setStatusNote] = useState(event?.statusNote ?? '');
+  const [photos, setPhotos] = useState<string[]>(event?.photos ?? []);
 
   const [picker, setPicker] = useState<'date' | 'start' | 'end' | null>(null);
   const [showErrors, setShowErrors] = useState(false);
@@ -90,6 +93,8 @@ export function EventForm({ memberships, event, submitLabel, onSubmit }: EventFo
   if (!location.trim()) errors.location = 'Required';
   if (!editing && date < todayInManila()) errors.date = 'Pick today or a later date';
   if (endTime <= startTime) errors.end = 'Must be after the start';
+  else if (!editing && new Date(fromManilaParts(date, endTime)) <= new Date())
+    errors.end = 'This time has already passed';
   if (status !== 'scheduled' && !statusNote.trim()) errors.statusNote = 'Tell residents what changed';
   const visibleErrors = showErrors ? errors : {};
 
@@ -110,6 +115,7 @@ export function EventForm({ memberships, event, submitLabel, onSubmit }: EventFo
         registrationInfo: registrationInfo.trim(),
         status,
         statusNote: statusNote.trim(),
+        photos,
       });
     } finally {
       setSubmitting(false);
@@ -148,6 +154,8 @@ export function EventForm({ memberships, event, submitLabel, onSubmit }: EventFo
             </View>
           )}
         </View>
+
+        <PhotoPicker photos={photos} onChange={setPhotos} />
 
         <TextField
           label="Title"
