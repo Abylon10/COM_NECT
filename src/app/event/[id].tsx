@@ -3,17 +3,17 @@ import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Button } from '@/components/button';
-import { EmptyState } from '@/components/empty-state';
-import { EventCover } from '@/components/event-cover';
-import { Icon, Icons } from '@/components/icon';
-import { InfoRow } from '@/components/info-row';
-import { LoadingAnimation } from '@/components/loading-animation';
-import { ManageEventPanel } from '@/components/manage-event-panel';
-import { PhotoGallery } from '@/components/photo-gallery';
-import { ReportEventSheet } from '@/components/report-event-sheet';
-import { RsvpButtons } from '@/components/rsvp-buttons';
-import { ThemedText } from '@/components/themed-text';
+import { Button } from '@/components/ui/button';
+import { EmptyState } from '@/components/ui/empty-state';
+import { EventCover } from '@/components/events/event-cover';
+import { Icon, Icons } from '@/components/ui/icon';
+import { InfoRow } from '@/components/ui/info-row';
+import { LoadingAnimation } from '@/components/ui/loading-animation';
+import { ManageEventPanel } from '@/components/events/manage-event-panel';
+import { PhotoGallery } from '@/components/photos/photo-gallery';
+import { ReportEventSheet } from '@/components/events/report-event-sheet';
+import { RsvpButtons } from '@/components/events/rsvp-buttons';
+import { ThemedText } from '@/components/ui/themed-text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useEventActions } from '@/hooks/use-event-actions';
 import { useEvent, useMyOrganizations } from '@/hooks/use-events';
@@ -26,6 +26,7 @@ function goBack() {
   else router.replace('/');
 }
 
+/** Event details: cover, info, photos, how to join, RSVP buttons, report, and the organizer panel for its organizers. */
 export default function EventDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const theme = useTheme();

@@ -2,12 +2,12 @@ import * as Linking from 'expo-linking';
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { Button } from '@/components/button';
-import { Chip } from '@/components/chip';
-import { TextField } from '@/components/form-field';
-import { Icon, Icons, type IconName } from '@/components/icon';
-import { SettingsScreen, SettingsSection } from '@/components/settings-screen';
-import { ThemedText } from '@/components/themed-text';
+import { Button } from '@/components/ui/button';
+import { Chip } from '@/components/ui/chip';
+import { TextField } from '@/components/ui/form-field';
+import { Icon, Icons, type IconName } from '@/components/ui/icon';
+import { SettingsScreen, SettingsSection } from '@/components/ui/settings-screen';
+import { ThemedText } from '@/components/ui/themed-text';
 import { SUPPORT_EMAIL } from '@/constants/app';
 import { Spacing } from '@/constants/theme';
 import { submitFeedback } from '@/data/account';
@@ -30,6 +30,7 @@ const KINDS: { id: FeedbackKind; label: string }[] = [
   { id: 'question', label: 'Question' },
 ];
 
+/** Help & Feedback: FAQ, contact email and the feedback form (read by admins). */
 export default function HelpScreen() {
   const theme = useTheme();
   const [open, setOpen] = useState<number | null>(null);

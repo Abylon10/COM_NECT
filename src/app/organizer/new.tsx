@@ -2,14 +2,15 @@ import { router } from 'expo-router';
 import { Alert, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { EmptyState } from '@/components/empty-state';
-import { EventForm } from '@/components/event-form';
-import { Icons } from '@/components/icon';
-import { ScreenHeader } from '@/components/screen-header';
+import { EmptyState } from '@/components/ui/empty-state';
+import { EventForm } from '@/components/events/event-form';
+import { Icons } from '@/components/ui/icon';
+import { ScreenHeader } from '@/components/ui/screen-header';
 import { createEvent } from '@/data/events';
 import { useMyOrganizations } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 
+/** Organizer: create a new event. */
 export default function NewEventScreen() {
   const theme = useTheme();
   const { memberships, loading } = useMyOrganizations();

@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { AdminShell } from '@/components/admin-shell';
-import { DataTable, TableToolbar, type Column } from '@/components/admin-table';
-import { ConfirmDialog } from '@/components/confirm-dialog';
-import { Icon, Icons } from '@/components/icon';
-import { ThemedText } from '@/components/themed-text';
+import { AdminShell } from '@/components/admin/admin-shell';
+import { DataTable, TableToolbar, type Column } from '@/components/admin/admin-table';
+import { ConfirmDialog } from '@/components/ui/confirm-dialog';
+import { Icon, Icons } from '@/components/ui/icon';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Spacing } from '@/constants/theme';
 import { setOrganizationVerified, type OrganizationSummary } from '@/data/admin';
 import { useAdminOrganizations } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 
+/** Admin: all organizations, with verify / unverify. */
 export default function AdminOrganizationsScreen() {
   const theme = useTheme();
   const { organizations } = useAdminOrganizations();

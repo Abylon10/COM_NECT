@@ -46,9 +46,9 @@ changes that assume multiple people are committing at once.
 - **expo-router** with file-based routing in `src/app/`. Each file there
   is a screen.
 - **Tabs use `NativeTabs`** from `expo-router/unstable-native-tabs`,
-  defined in `src/components/app-tabs.tsx`. Tabs are declared with
+  defined in `src/components/layout/app-tabs.tsx`. Tabs are declared with
   `<NativeTabs.Trigger name="...">`, where the name matches a file in
-  `src/app/(tabs)/`. A separate `src/components/app-tabs.web.tsx`
+  `src/app/(tabs)/`. A separate `src/components/layout/app-tabs.web.tsx`
   controls the web preview only.
 - **Backend: Supabase is the proposed choice but not yet confirmed by the
   team.** It fits the resident/organizer auth split, and Justin Dave has
@@ -164,16 +164,23 @@ src/
     admin.ts              admin-only queries/actions (requireAdmin → PermissionError)
   hooks/use-events.ts     loaders screens use; re-load when data changes
   hooks/use-event-actions.tsx  saved events + RSVPs shared across screens
-  components/             UI pieces (event-card, event-form, events-map(.web),
-                          photo-picker, photo-cropper, photo-gallery, loading-animation,
-                          startup-splash, admin-shell, admin-table, admin-ui,
-                          bottom-sheet, confirm-dialog, ...)
+  components/             UI pieces, grouped by purpose:
+    ui/                   generic (button, chip, icon, themed-text, form-field,
+                          bottom-sheet, confirm-dialog, settings-screen, loading-animation, ...)
+    layout/               app-header, app-tabs (+ .web), startup-splash
+    events/               event-card, event-cover, event-form, events-map (+ .web),
+                          filter-sheet, rsvp-buttons, manage-event-panel, ...
+    photos/               photo-picker, photo-cropper, photo-gallery
+    admin/                admin-shell, admin-table, admin-ui
   constants/              theme.ts (colors, spacing), app.ts (support email)
   utils/                  format.ts (dates in Asia/Manila), maps.ts (Biliran region,
                           open in Google Maps)
 ```
 
-- Icons: `components/icon.tsx` wraps `SymbolView` (SF Symbols on iOS,
+- **`CODE_GUIDE.md`** (repo root) explains the structure for the team:
+  folder map, "where do I find…" table, data flow, permissions, how-tos.
+  Keep it in sync when moving files or adding features.
+- Icons: `components/ui/icon.tsx` wraps `SymbolView` (SF Symbols on iOS,
   Material Symbols on Android/web). Add new icons to `Icons` there.
 - Event covers use the organizer's first photo; events without photos show
   a category-colored placeholder.

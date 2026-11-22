@@ -80,11 +80,6 @@ function me() {
 // Session
 // ---------------------------------------------------------------------------
 
-/** Synchronous, so navigation can switch screens without a loading flash. */
-export function isSignedIn() {
-  return session.userId !== null;
-}
-
 /**
  * Who is signed in, synchronously: `admin` accounts get the admin console,
  * everyone else the regular app.

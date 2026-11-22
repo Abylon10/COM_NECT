@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Avatar } from '@/components/avatar';
-import { Chip } from '@/components/chip';
-import { ConfirmDialog } from '@/components/confirm-dialog';
-import { Icon, Icons, type IconName } from '@/components/icon';
-import { Tag } from '@/components/status-badge';
-import { ThemedText } from '@/components/themed-text';
+import { Avatar } from '@/components/ui/avatar';
+import { Chip } from '@/components/ui/chip';
+import { ConfirmDialog } from '@/components/ui/confirm-dialog';
+import { Icon, Icons, type IconName } from '@/components/ui/icon';
+import { Tag } from '@/components/ui/status-badge';
+import { ThemedText } from '@/components/ui/themed-text';
 import { BottomTabInset, MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { APPLICATION_STATUS_LABEL, signOut } from '@/data/account';
 import {
@@ -26,6 +26,7 @@ const APPEARANCE_OPTIONS: { id: ColorSchemePreference; label: string }[] = [
   { id: 'dark', label: 'Night' },
 ];
 
+/** Profile tab: avatar, Saved/Going/Interested counts, appearance (System/Day/Night) and the settings menu. */
 export default function ProfileScreen() {
   const theme = useTheme();
   const user = useCurrentUser();

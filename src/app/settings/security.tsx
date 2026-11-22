@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Button } from '@/components/button';
-import { ConfirmDialog } from '@/components/confirm-dialog';
-import { TextField } from '@/components/form-field';
-import { Icons } from '@/components/icon';
-import { SettingsScreen, SettingsSection } from '@/components/settings-screen';
-import { ThemedText } from '@/components/themed-text';
+import { Button } from '@/components/ui/button';
+import { ConfirmDialog } from '@/components/ui/confirm-dialog';
+import { TextField } from '@/components/ui/form-field';
+import { Icons } from '@/components/ui/icon';
+import { SettingsScreen, SettingsSection } from '@/components/ui/settings-screen';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Spacing } from '@/constants/theme';
 import { changePassword, deactivateAccount, deleteAccount } from '@/data/account';
 import { ValidationError } from '@/data/types';
 import { useTheme } from '@/hooks/use-theme';
 
+/** Account & Security: change password, deactivate or delete the account. */
 export default function SecurityScreen() {
   const theme = useTheme();
   const [current, setCurrent] = useState('');

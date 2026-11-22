@@ -3,13 +3,13 @@ import { router } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { Button } from '@/components/button';
-import { Chip } from '@/components/chip';
-import { TextField } from '@/components/form-field';
-import { Icon, Icons } from '@/components/icon';
-import { SettingsScreen, SettingsSection } from '@/components/settings-screen';
-import { Tag } from '@/components/status-badge';
-import { ThemedText } from '@/components/themed-text';
+import { Button } from '@/components/ui/button';
+import { Chip } from '@/components/ui/chip';
+import { TextField } from '@/components/ui/form-field';
+import { Icon, Icons } from '@/components/ui/icon';
+import { SettingsScreen, SettingsSection } from '@/components/ui/settings-screen';
+import { Tag } from '@/components/ui/status-badge';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import {
   APPLICATION_STATUS_LABEL,
@@ -35,6 +35,7 @@ const STATUS_MEANING: Record<ApplicationStatus, string> = {
   requires_revision: 'An administrator needs more information. Update your application and resubmit.',
 };
 
+/** Become an Organizer: application form and its status (Pending / Approved / Not approved / Needs revision). */
 export default function OrganizerApplicationScreen() {
   const { memberships, loading } = useMyOrganizations();
   const { application, loading: loadingApp } = useMyApplication();

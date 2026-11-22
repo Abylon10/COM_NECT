@@ -2,12 +2,13 @@ import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
-import { StartupSplash } from '@/components/startup-splash';
+import { StartupSplash } from '@/components/layout/startup-splash';
 import { loadColorSchemePreference } from '@/hooks/color-scheme-preference';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { EventActionsProvider } from '@/hooks/use-event-actions';
 import { useSessionKind } from '@/hooks/use-events';
 
+/** Root layout. Stack.Protected shows exactly one area: sign-in screens (signed out), the resident/organizer app, or the admin console. */
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const session = useSessionKind();

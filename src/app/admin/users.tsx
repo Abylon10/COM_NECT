@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { Linking, StyleSheet, View } from 'react-native';
 
-import { AdminShell } from '@/components/admin-shell';
-import { DataTable, TableToolbar, type Column, type Sort } from '@/components/admin-table';
-import { Avatar } from '@/components/avatar';
-import { BottomSheet } from '@/components/bottom-sheet';
-import { Button } from '@/components/button';
-import { Chip } from '@/components/chip';
-import { ConfirmDialog } from '@/components/confirm-dialog';
-import { EmptyState } from '@/components/empty-state';
-import { Icon, Icons } from '@/components/icon';
-import { ThemedText } from '@/components/themed-text';
+import { AdminShell } from '@/components/admin/admin-shell';
+import { DataTable, TableToolbar, type Column, type Sort } from '@/components/admin/admin-table';
+import { Avatar } from '@/components/ui/avatar';
+import { BottomSheet } from '@/components/ui/bottom-sheet';
+import { Button } from '@/components/ui/button';
+import { Chip } from '@/components/ui/chip';
+import { ConfirmDialog } from '@/components/ui/confirm-dialog';
+import { EmptyState } from '@/components/ui/empty-state';
+import { Icon, Icons } from '@/components/ui/icon';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import { setUserSuspended, type AccountStatus, type UserQuery, type UserSummary } from '@/data/admin';
 import { useAdminUsers } from '@/hooks/use-events';
@@ -40,6 +40,7 @@ const STATUS_LABEL: Record<AccountStatus, string> = {
 /** Who to suspend or reinstate, waiting for confirmation. */
 type Pending = { ids: string[]; name: string; suspend: boolean } | null;
 
+/** Admin: User Management table (search, filters, sort, suspend / reinstate, contact). */
 export default function AdminUsersScreen() {
   const theme = useTheme();
   const [search, setSearch] = useState('');

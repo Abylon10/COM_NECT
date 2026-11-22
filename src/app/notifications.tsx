@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { EmptyState } from '@/components/empty-state';
-import { LoadingAnimation } from '@/components/loading-animation';
-import { Icon, Icons, type IconName } from '@/components/icon';
-import { ScreenHeader } from '@/components/screen-header';
-import { ThemedText } from '@/components/themed-text';
+import { EmptyState } from '@/components/ui/empty-state';
+import { LoadingAnimation } from '@/components/ui/loading-animation';
+import { Icon, Icons, type IconName } from '@/components/ui/icon';
+import { ScreenHeader } from '@/components/ui/screen-header';
+import { ThemedText } from '@/components/ui/themed-text';
 import { MaxContentWidth, Spacing, type ThemeColor } from '@/constants/theme';
 import { getNotifications, markNotificationsRead } from '@/data/notifications';
 import type { AppNotification, NotificationKind } from '@/data/types';
@@ -25,6 +25,7 @@ const KIND_STYLE: Record<NotificationKind, { icon: IconName; color: ThemeColor; 
   moderation: { icon: Icons.shield, color: 'danger', bg: 'dangerSoft' },
 };
 
+/** In-app notifications (bell icon). Opening the screen marks them as read. */
 export default function NotificationsScreen() {
   const theme = useTheme();
   // Load once and keep this snapshot, so items that were unread stay highlighted

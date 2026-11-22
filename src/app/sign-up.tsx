@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Button } from '@/components/button';
-import { TextField } from '@/components/form-field';
-import { SettingsScreen } from '@/components/settings-screen';
-import { ThemedText } from '@/components/themed-text';
+import { Button } from '@/components/ui/button';
+import { TextField } from '@/components/ui/form-field';
+import { SettingsScreen } from '@/components/ui/settings-screen';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Spacing } from '@/constants/theme';
 import { signUp } from '@/data/account';
 import { ValidationError } from '@/data/types';
 
+/** Create an account (always a resident; organizers apply from Profile). */
 export default function SignUpScreen() {
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');

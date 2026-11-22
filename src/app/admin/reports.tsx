@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { AdminCard } from '@/components/admin-ui';
-import { Button } from '@/components/button';
-import { Chip } from '@/components/chip';
-import { ConfirmDialog } from '@/components/confirm-dialog';
-import { EmptyState } from '@/components/empty-state';
-import { TextField } from '@/components/form-field';
-import { Icon, Icons } from '@/components/icon';
-import { LoadingAnimation } from '@/components/loading-animation';
-import { AdminShell } from '@/components/admin-shell';
-import { StatusBadge, Tag } from '@/components/status-badge';
-import { ThemedText } from '@/components/themed-text';
+import { AdminCard } from '@/components/admin/admin-ui';
+import { Button } from '@/components/ui/button';
+import { Chip } from '@/components/ui/chip';
+import { ConfirmDialog } from '@/components/ui/confirm-dialog';
+import { EmptyState } from '@/components/ui/empty-state';
+import { TextField } from '@/components/ui/form-field';
+import { Icon, Icons } from '@/components/ui/icon';
+import { LoadingAnimation } from '@/components/ui/loading-animation';
+import { AdminShell } from '@/components/admin/admin-shell';
+import { StatusBadge, Tag } from '@/components/ui/status-badge';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import {
   dismissReports,
@@ -23,6 +23,7 @@ import { useReportGroups } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 import { formatEventDate, formatTimeRange, timeAgo } from '@/utils/format';
 
+/** Admin: events reported by residents, grouped by event (dismiss, or remove the event). */
 export default function AdminReportsScreen() {
   const [filter, setFilter] = useState<'open' | 'resolved'>('open');
   const { groups, loading } = useReportGroups(filter);

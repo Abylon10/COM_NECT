@@ -2,12 +2,12 @@ import { router } from 'expo-router';
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { AdminShell } from '@/components/admin-shell';
-import { DataTable, type Column } from '@/components/admin-table';
-import { StatTile } from '@/components/admin-ui';
-import { EmptyState } from '@/components/empty-state';
-import { Icon, Icons } from '@/components/icon';
-import { ThemedText } from '@/components/themed-text';
+import { AdminShell } from '@/components/admin/admin-shell';
+import { DataTable, type Column } from '@/components/admin/admin-table';
+import { StatTile } from '@/components/admin/admin-ui';
+import { EmptyState } from '@/components/ui/empty-state';
+import { Icon, Icons } from '@/components/ui/icon';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import type { ApplicationWithApplicant } from '@/data/admin';
 import { useAdminStats, useApplications, useReportGroups } from '@/hooks/use-events';

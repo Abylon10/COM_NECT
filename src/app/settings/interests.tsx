@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 
-import { Button } from '@/components/button';
-import { Icon, Icons } from '@/components/icon';
-import { SettingsScreen, SettingsSection } from '@/components/settings-screen';
-import { ThemedText } from '@/components/themed-text';
+import { Button } from '@/components/ui/button';
+import { Icon, Icons } from '@/components/ui/icon';
+import { SettingsScreen, SettingsSection } from '@/components/ui/settings-screen';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import { INTEREST_OPTIONS, setMyInterests } from '@/data/interests';
 import { useMyInterests } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 
+/** My Interests: picks that drive "Recommended for you" on Browse. */
 export default function InterestsScreen() {
   const theme = useTheme();
   const { interests } = useMyInterests();

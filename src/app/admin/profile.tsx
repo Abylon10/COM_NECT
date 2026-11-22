@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { AdminShell } from '@/components/admin-shell';
-import { AdminCard } from '@/components/admin-ui';
-import { Avatar } from '@/components/avatar';
-import { Button } from '@/components/button';
-import { TextField } from '@/components/form-field';
-import { Icon, Icons } from '@/components/icon';
-import { useCroppedPhotoPicker } from '@/components/photo-cropper';
-import { ThemedText } from '@/components/themed-text';
+import { AdminShell } from '@/components/admin/admin-shell';
+import { AdminCard } from '@/components/admin/admin-ui';
+import { Avatar } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { TextField } from '@/components/ui/form-field';
+import { Icon, Icons } from '@/components/ui/icon';
+import { useCroppedPhotoPicker } from '@/components/photos/photo-cropper';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Spacing } from '@/constants/theme';
 import { changePassword, updateProfile } from '@/data/account';
 import type { Profile } from '@/data/types';

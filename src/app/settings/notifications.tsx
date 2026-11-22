@@ -1,7 +1,7 @@
 import { StyleSheet, Switch, View } from 'react-native';
 
-import { SettingsScreen, SettingsSection } from '@/components/settings-screen';
-import { ThemedText } from '@/components/themed-text';
+import { SettingsScreen, SettingsSection } from '@/components/ui/settings-screen';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Spacing } from '@/constants/theme';
 import { updateNotificationSettings } from '@/data/notifications';
 import type { NotificationSettings } from '@/data/types';
@@ -30,6 +30,7 @@ const GROUPS: {
   },
 ];
 
+/** Notification settings: the six toggles the alert rules in data/notifications.ts respect. */
 export default function NotificationSettingsScreen() {
   const theme = useTheme();
   const { settings } = useNotificationSettings();

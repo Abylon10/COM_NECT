@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 
-import { SettingsScreen } from '@/components/settings-screen';
-import { ThemedText } from '@/components/themed-text';
+import { SettingsScreen } from '@/components/ui/settings-screen';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Spacing } from '@/constants/theme';
 import { SUPPORT_EMAIL } from '@/constants/app';
 
@@ -55,6 +55,7 @@ const SECTIONS: { title: string; body: string[] }[] = [
   },
 ];
 
+/** Privacy Policy (draft text). */
 export default function PrivacyScreen() {
   return (
     <SettingsScreen title="Privacy Policy">

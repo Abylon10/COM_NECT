@@ -2,18 +2,19 @@ import { router } from 'expo-router';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Button } from '@/components/button';
-import { EmptyState } from '@/components/empty-state';
-import { Icon, Icons } from '@/components/icon';
-import { ScreenHeader } from '@/components/screen-header';
-import { StatusBadge } from '@/components/status-badge';
-import { ThemedText } from '@/components/themed-text';
+import { Button } from '@/components/ui/button';
+import { EmptyState } from '@/components/ui/empty-state';
+import { Icon, Icons } from '@/components/ui/icon';
+import { ScreenHeader } from '@/components/ui/screen-header';
+import { StatusBadge } from '@/components/ui/status-badge';
+import { ThemedText } from '@/components/ui/themed-text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import type { EventWithOrganization } from '@/data/events';
 import { useEvents, useEventStats, useMyOrganizations } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 import { formatEventDate, formatTimeRange } from '@/utils/format';
 
+/** Organizer Tools: the events of the user's verified organizations, with going/interested/saved counts. */
 export default function OrganizerToolsScreen() {
   const theme = useTheme();
   const { memberships, loading } = useMyOrganizations();
