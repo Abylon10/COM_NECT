@@ -1,0 +1,16 @@
+flowchart TB
+  subgraph Phone["Phone app (Android / iOS), one codebase"]
+    direction LR
+    UI["Screens (Expo Router)<br/>resident & organizer app<br/>admin console"]
+    HK["Hooks<br/>use-events, use-event-actions<br/>(reload on data change)"]
+    DL["Data access layer: src/data<br/>events · account · admin<br/>notifications · interests<br/>+ permission checks"]
+    UI --> HK --> DL
+  end
+  MOCK[("Mock tables: db.ts<br/>(now, in memory)")]
+  SB["Supabase (proposed)<br/>Auth · PostgreSQL · RLS · Storage"]
+  PUSH["Push notifications<br/>(expo-notifications, planned)"]
+  GM["Google / Apple Maps"]
+  DL -->|"now"| MOCK
+  DL -.->|"planned"| SB
+  SB -.-> PUSH
+  Phone -->|"map & directions"| GM

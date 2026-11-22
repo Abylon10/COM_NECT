@@ -1,0 +1,74 @@
+erDiagram
+  PROFILES ||--o{ ORGANIZATION_MEMBERS : "belongs to"
+  ORGANIZATIONS ||--o{ ORGANIZATION_MEMBERS : has
+  ORGANIZATIONS ||--o{ EVENTS : publishes
+  PROFILES ||--o{ SAVES : bookmarks
+  EVENTS ||--o{ SAVES : "saved in"
+  PROFILES ||--o{ RSVPS : responds
+  EVENTS ||--o{ RSVPS : receives
+  PROFILES ||--o{ ORGANIZER_APPLICATIONS : submits
+  PROFILES ||--o{ EVENT_REPORTS : files
+  EVENTS ||--o{ EVENT_REPORTS : "reported in"
+  PROFILES ||--o{ NOTIFICATIONS : receives
+  PROFILES ||--o{ FEEDBACK : sends
+  PROFILES { uuid id PK
+    text display_name
+    text email
+    text phone
+    text municipality
+    text barangay
+    text avatar_url
+    text role "resident | organizer | admin"
+    text status "active | deactivated | suspended"
+    timestamptz joined_at }
+  ORGANIZATIONS { uuid id PK
+    text name
+    text description
+    text contact_info
+    boolean is_verified }
+  ORGANIZATION_MEMBERS { uuid user_id FK
+    uuid organization_id FK
+    text member_role "admin | editor" }
+  EVENTS { uuid id PK
+    uuid organization_id FK
+    text title
+    text description
+    text category "youth | educational | sports | cultural | volunteer"
+    timestamptz start_at
+    timestamptz end_at
+    text venue
+    text location
+    float latitude
+    float longitude
+    text_array photos
+    text registration_info
+    text status "scheduled | cancelled | postponed"
+    text status_note
+    timestamptz updated_at }
+  SAVES { uuid user_id FK
+    uuid event_id FK }
+  RSVPS { uuid user_id FK
+    uuid event_id FK
+    text response "going | interested" }
+  ORGANIZER_APPLICATIONS { uuid id PK
+    uuid user_id FK
+    text organization_name
+    text organization_type
+    text documents
+    text status "pending | approved | rejected | requires_revision"
+    text admin_note }
+  EVENT_REPORTS { uuid id PK
+    uuid user_id FK
+    uuid event_id FK
+    text reason
+    text status "open | dismissed | removed" }
+  NOTIFICATIONS { uuid id PK
+    uuid user_id FK
+    uuid event_id FK
+    text kind
+    text title
+    boolean read }
+  FEEDBACK { uuid id PK
+    uuid user_id FK
+    text kind "issue | suggestion | question"
+    text message }

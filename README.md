@@ -9,7 +9,8 @@ data for now (`src/data/`), so everything resets when the app reloads.
 
 - **New to the code? Read [`CODE_GUIDE.md`](CODE_GUIDE.md)**: folder map,
   "where do I find…", data flow, permissions and how-tos.
-- Documentation paper and presentation: [`docs/`](docs/).
+- Documentation paper (DOCX + PDF) and its sources: [`docs/`](docs/). The
+  presentation is a separate slide deck (ask Justin Dave for the link).
 - Project context and status (for AI assistants and the team): `CLAUDE.md`.
 
 ## Run it
