@@ -180,6 +180,10 @@ src/
   chips, rounded cards, outline + filled button pairs.
 - Use `ConfirmDialog` instead of `Alert.alert` with buttons (those do
   nothing on the web preview).
+- **Reanimated:** any helper function called inside `useAnimatedStyle`
+  (or other worklets) must start with `'worklet';`. Otherwise it crashes
+  on the phone with "[Worklets] Tried to synchronously call a Remote
+  Function", while the web preview works fine, so web tests don't catch it.
 
 ## Current status
 
