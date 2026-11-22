@@ -181,6 +181,10 @@ src/
   chips, rounded cards, outline + filled button pairs.
 - Use `ConfirmDialog` instead of `Alert.alert` with buttons (those do
   nothing on the web preview).
+- `Button` has `flex: 1` so pairs share a row. To size one to its label,
+  pass a style with **`flex: 0`** (plus `flexBasis: 'auto'` if needed).
+  `flexGrow: 0` alone works on web but not on Android, where the button
+  collapses to a tall empty pill.
 - **Reanimated:** any helper function called inside `useAnimatedStyle`
   (or other worklets) must start with `'worklet';`. Otherwise it crashes
   on the phone with "[Worklets] Tried to synchronously call a Remote

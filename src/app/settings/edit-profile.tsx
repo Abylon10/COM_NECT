@@ -157,7 +157,10 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: Spacing.two,
   },
+  // `flex: 0` cancels Button's default `flex: 1`. Without it Android keeps
+  // flex 1 and squeezes these buttons to zero width (tall empty pills).
   small: {
+    flex: 0,
     flexGrow: 0,
     flexShrink: 0,
     flexBasis: 'auto',
