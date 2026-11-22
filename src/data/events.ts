@@ -66,6 +66,49 @@ export type EventFilters = {
   dateRange?: DateRange;
 };
 
+export type MemberRole = 'admin' | 'editor';
+
+export type Membership = {
+  userId: string;
+  organizationId: string;
+  memberRole: MemberRole;
+};
+
+/** What an organizer fills in when creating an event. */
+export type EventInput = {
+  organizationId: string;
+  title: string;
+  description: string;
+  category: Category;
+  startAt: string;
+  endAt: string;
+  venue: string;
+  location: string;
+  registrationInfo: string;
+};
+
+/** What an organizer can change on an existing event. */
+export type EventUpdate = Partial<Omit<EventInput, 'organizationId'>> & {
+  status?: EventStatus;
+  statusNote?: string;
+};
+
+export type NotificationKind = 'updated' | 'postponed' | 'cancelled';
+
+/** In-app alert for residents who saved or RSVP'd to an event that changed. */
+export type AppNotification = {
+  id: string;
+  eventId: string;
+  kind: NotificationKind;
+  title: string;
+  body: string;
+  createdAt: string;
+  read: boolean;
+};
+
+/** Thrown when the current user isn't allowed to do something (mirrors database rules). */
+export class PermissionError extends Error {}
+
 export const CATEGORIES: { id: Category; label: string }[] = [
   { id: 'youth', label: 'Youth' },
   { id: 'educational', label: 'Educational' },
@@ -276,16 +319,95 @@ const events: CommunityEvent[] = [
   },
 ];
 
-const currentUser: Profile = {
-  id: 'user-1',
-  displayName: 'Ashley Reyes',
-  email: 'ashley@example.com',
-  role: 'resident',
-  location: 'Brgy. Caraycaray, Naval',
-};
+// Two demo accounts so both user types can be shown without real sign-in.
+const users: Profile[] = [
+  {
+    id: 'user-resident',
+    displayName: 'Ashley Reyes',
+    email: 'ashley@example.com',
+    role: 'resident',
+    location: 'Brgy. Caraycaray, Naval',
+  },
+  {
+    id: 'user-organizer',
+    displayName: 'Carlo Mendoza',
+    email: 'carlo.sk@example.com',
+    role: 'organizer',
+    location: 'Brgy. Larrazabal, Naval',
+  },
+];
 
-const savedEventIds = new Set<string>(['evt-coastal-cleanup']);
-const rsvps = new Map<string, RsvpResponse>([['evt-youth-summit', 'going']]);
+const memberships: Membership[] = [
+  { userId: 'user-organizer', organizationId: 'org-sk-naval', memberRole: 'admin' },
+];
+
+let currentUserId = 'user-resident';
+
+// Saves, RSVPs and notifications are kept per user.
+const savedByUser = new Map<string, Set<string>>([
+  ['user-resident', new Set(['evt-coastal-cleanup'])],
+  ['user-organizer', new Set()],
+]);
+const rsvpsByUser = new Map<string, Map<string, RsvpResponse>>([
+  ['user-resident', new Map([['evt-youth-summit', 'going']])],
+  ['user-organizer', new Map()],
+]);
+const notificationsByUser = new Map<string, AppNotification[]>([
+  [
+    'user-resident',
+    [
+      {
+        id: 'ntf-seed-1',
+        eventId: 'evt-cultural-night',
+        kind: 'postponed',
+        title: 'Event postponed',
+        body: 'Biliranon Cultural Night moved to Sat, Nov 7, 2026 · 6:00 PM.',
+        createdAt: '2026-10-01T09:00:00+08:00',
+        read: false,
+      },
+    ],
+  ],
+]);
+
+function savedSet(userId = currentUserId) {
+  if (!savedByUser.has(userId)) savedByUser.set(userId, new Set());
+  return savedByUser.get(userId)!;
+}
+
+function rsvpMap(userId = currentUserId) {
+  if (!rsvpsByUser.has(userId)) rsvpsByUser.set(userId, new Map());
+  return rsvpsByUser.get(userId)!;
+}
+
+function notificationList(userId = currentUserId) {
+  if (!notificationsByUser.has(userId)) notificationsByUser.set(userId, []);
+  return notificationsByUser.get(userId)!;
+}
+
+// ---------------------------------------------------------------------------
+// Change notifications for the UI
+// ---------------------------------------------------------------------------
+// Screens re-load when data changes. With a real backend this would be
+// driven by realtime updates instead of local writes.
+
+let dataVersion = 0;
+const listeners = new Set<() => void>();
+
+export function subscribeToChanges(listener: () => void) {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+}
+
+export function getDataVersion() {
+  return dataVersion;
+}
+
+function notifyChange() {
+  dataVersion += 1;
+  listeners.forEach((listener) => listener());
+}
 
 // ---------------------------------------------------------------------------
 // Queries
@@ -348,8 +470,150 @@ export async function getLocations(): Promise<string[]> {
   return [...new Set(events.map((e) => e.location))].sort();
 }
 
+// ---------------------------------------------------------------------------
+// Current user (demo accounts until real sign-in exists)
+// ---------------------------------------------------------------------------
+
 export async function getCurrentUser(): Promise<Profile> {
-  return currentUser;
+  return users.find((u) => u.id === currentUserId)!;
+}
+
+export async function getDemoUsers(): Promise<Profile[]> {
+  return users;
+}
+
+export async function switchDemoUser(userId: string): Promise<void> {
+  if (!users.some((u) => u.id === userId)) throw new Error(`Unknown user ${userId}`);
+  currentUserId = userId;
+  notifyChange();
+}
+
+export type OrganizationMembership = Membership & { organization: Organization };
+
+/** Verified organizations the current user can post for. */
+export async function getMyOrganizations(): Promise<OrganizationMembership[]> {
+  return memberships
+    .filter((m) => m.userId === currentUserId)
+    .map((m) => ({ ...m, organization: organizations.find((o) => o.id === m.organizationId)! }))
+    .filter((m) => m.organization.isVerified);
+}
+
+function canManageOrganization(organizationId: string, userId = currentUserId) {
+  const org = organizations.find((o) => o.id === organizationId);
+  return (
+    !!org?.isVerified &&
+    memberships.some((m) => m.userId === userId && m.organizationId === organizationId)
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Organizer actions (verified organization members only)
+// ---------------------------------------------------------------------------
+
+function validateEvent(e: Pick<EventInput, 'title' | 'venue' | 'location' | 'startAt' | 'endAt'>) {
+  if (!e.title.trim()) throw new Error('Title is required.');
+  if (!e.venue.trim()) throw new Error('Venue is required.');
+  if (!e.location.trim()) throw new Error('Location is required.');
+  if (Number.isNaN(Date.parse(e.startAt)) || Number.isNaN(Date.parse(e.endAt))) {
+    throw new Error('Start and end must be valid dates.');
+  }
+  if (Date.parse(e.endAt) <= Date.parse(e.startAt)) {
+    throw new Error('The event must end after it starts.');
+  }
+}
+
+export async function createEvent(input: EventInput): Promise<EventWithOrganization> {
+  if (!canManageOrganization(input.organizationId)) {
+    throw new PermissionError('Only members of a verified organization can post its events.');
+  }
+  validateEvent(input);
+  const now = new Date().toISOString();
+  const event: CommunityEvent = {
+    ...input,
+    id: `evt-${Date.now().toString(36)}`,
+    title: input.title.trim(),
+    venue: input.venue.trim(),
+    location: input.location.trim(),
+    status: 'scheduled',
+    goingCount: 0,
+    interestedCount: 0,
+    updatedAt: now,
+  };
+  events.push(event);
+  notifyChange();
+  return withOrganization(event);
+}
+
+export async function updateEvent(id: string, update: EventUpdate): Promise<EventWithOrganization> {
+  const event = events.find((e) => e.id === id);
+  if (!event) throw new Error('Event not found.');
+  if (!canManageOrganization(event.organizationId)) {
+    throw new PermissionError('Only members of the organizing group can edit this event.');
+  }
+  const before = { ...event };
+  const next: CommunityEvent = { ...event, ...update, updatedAt: new Date().toISOString() };
+  if (next.status === 'scheduled') next.statusNote = update.statusNote?.trim() || undefined;
+  if (next.status !== 'scheduled' && !next.statusNote?.trim()) {
+    throw new Error('Add a short note telling residents what changed.');
+  }
+  validateEvent(next);
+  Object.assign(event, next);
+  alertFollowers(before, event);
+  notifyChange();
+  return withOrganization(event);
+}
+
+/**
+ * Tells everyone who saved or RSVP'd to an event when its schedule, place or
+ * status changes. With the backend this becomes a push notification.
+ */
+function alertFollowers(before: CommunityEvent, after: CommunityEvent) {
+  const scheduleChanged = before.startAt !== after.startAt || before.endAt !== after.endAt;
+  const placeChanged = before.venue !== after.venue || before.location !== after.location;
+  const statusChanged = before.status !== after.status;
+  if (!scheduleChanged && !placeChanged && !statusChanged) return;
+
+  const kind: NotificationKind =
+    statusChanged && after.status !== 'scheduled' ? after.status : 'updated';
+  const title =
+    kind === 'cancelled' ? 'Event cancelled' : kind === 'postponed' ? 'Event postponed' : 'Event updated';
+  const changes: string[] = [];
+  if (scheduleChanged) changes.push('new date or time');
+  if (placeChanged) changes.push(`now at ${after.venue}`);
+  const body =
+    after.statusNote && kind !== 'updated'
+      ? `${after.title}: ${after.statusNote}`
+      : `${after.title} has changes: ${changes.join(', ') || 'see the event for details'}.`;
+
+  const followers = new Set<string>();
+  savedByUser.forEach((ids, userId) => ids.has(after.id) && followers.add(userId));
+  rsvpsByUser.forEach((map, userId) => map.has(after.id) && followers.add(userId));
+  followers.delete(currentUserId); // the organizer who made the change
+
+  followers.forEach((userId) => {
+    notificationList(userId).unshift({
+      id: `ntf-${Date.now().toString(36)}-${userId}`,
+      eventId: after.id,
+      kind,
+      title,
+      body,
+      createdAt: after.updatedAt,
+      read: false,
+    });
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Notifications (current user)
+// ---------------------------------------------------------------------------
+
+export async function getNotifications(): Promise<AppNotification[]> {
+  return [...notificationList()];
+}
+
+export async function markNotificationsRead(): Promise<void> {
+  notificationList().forEach((n) => (n.read = true));
+  notifyChange();
 }
 
 // ---------------------------------------------------------------------------
@@ -357,20 +621,22 @@ export async function getCurrentUser(): Promise<Profile> {
 // ---------------------------------------------------------------------------
 
 export async function getSavedEventIds(): Promise<string[]> {
-  return [...savedEventIds];
+  return [...savedSet()];
 }
 
 export async function setEventSaved(eventId: string, saved: boolean): Promise<void> {
-  if (saved) savedEventIds.add(eventId);
-  else savedEventIds.delete(eventId);
+  if (saved) savedSet().add(eventId);
+  else savedSet().delete(eventId);
+  notifyChange();
 }
 
 export async function getRsvps(): Promise<Record<string, RsvpResponse>> {
-  return Object.fromEntries(rsvps);
+  return Object.fromEntries(rsvpMap());
 }
 
 /** Pass `null` to remove the user's RSVP. */
 export async function setRsvp(eventId: string, response: RsvpResponse | null): Promise<void> {
-  if (response) rsvps.set(eventId, response);
-  else rsvps.delete(eventId);
+  if (response) rsvpMap().set(eventId, response);
+  else rsvpMap().delete(eventId);
+  notifyChange();
 }

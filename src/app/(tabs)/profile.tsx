@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { Alert, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -13,7 +14,8 @@ import {
   type ColorSchemePreference,
 } from '@/hooks/color-scheme-preference';
 import { useEventActions } from '@/hooks/use-event-actions';
-import { useCurrentUser } from '@/hooks/use-events';
+import { switchDemoUser } from '@/data/events';
+import { useCurrentUser, useDemoUsers, useMyOrganizations } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 
 const APPEARANCE_OPTIONS: { id: ColorSchemePreference; label: string }[] = [
@@ -29,6 +31,9 @@ function comingSoon(feature: string) {
 export default function ProfileScreen() {
   const theme = useTheme();
   const user = useCurrentUser();
+  const demoUsers = useDemoUsers();
+  const { memberships } = useMyOrganizations();
+  const isOrganizer = memberships.length > 0;
   const { savedIds, rsvps } = useEventActions();
   const appearance = useColorSchemePreference();
   const responses = Object.values(rsvps);
@@ -54,16 +59,37 @@ export default function ProfileScreen() {
               {user.email}
             </ThemedText>
             <View style={styles.tags}>
-              <Tag
-                label={user.role === 'organizer' ? 'Organizer' : 'Resident'}
-                color={theme.primary}
-              />
+              <Tag label={isOrganizer ? 'Verified organizer' : 'Resident'} color={theme.primary} />
             </View>
             <ThemedText type="caption" themeColor="textSecondary">
-              {user.location}
+              {isOrganizer
+                ? memberships.map((m) => m.organization.name).join(', ')
+                : user.location}
             </ThemedText>
           </View>
         )}
+
+        <View style={[styles.appearance, { borderBottomColor: theme.border }]}>
+          <View style={styles.appearanceLabel}>
+            <Icon name={Icons.switchAccount} size={20} color={theme.textSecondary} />
+            <View style={styles.flex}>
+              <ThemedText style={styles.rowLabel}>Demo account</ThemedText>
+              <ThemedText type="caption" themeColor="textSecondary">
+                Until sign-in is ready, switch accounts to try both user types.
+              </ThemedText>
+            </View>
+          </View>
+          <View style={styles.appearanceChips}>
+            {demoUsers.map((u) => (
+              <Chip
+                key={u.id}
+                label={u.role === 'organizer' ? `Organizer: ${u.displayName}` : `Resident: ${u.displayName}`}
+                selected={u.id === user?.id}
+                onPress={() => switchDemoUser(u.id)}
+              />
+            ))}
+          </View>
+        </View>
 
         <View style={[styles.stats, { backgroundColor: theme.backgroundElement }]}>
           {stats.map((stat) => (
@@ -105,18 +131,26 @@ export default function ProfileScreen() {
           <MenuRow
             icon={Icons.bell}
             label="Notifications"
-            onPress={() => comingSoon('Notifications')}
+            onPress={() => router.push('/notifications')}
           />
-          <MenuRow
-            icon={Icons.megaphone}
-            label="Become an Organizer"
-            onPress={() =>
-              Alert.alert(
-                'Organizer accounts',
-                'Verified organizations will be able to post and manage events. This is coming soon.'
-              )
-            }
-          />
+          {isOrganizer ? (
+            <MenuRow
+              icon={Icons.megaphone}
+              label="Organizer Tools"
+              onPress={() => router.push('/organizer')}
+            />
+          ) : (
+            <MenuRow
+              icon={Icons.megaphone}
+              label="Become an Organizer"
+              onPress={() =>
+                Alert.alert(
+                  'Organizer accounts',
+                  'Members of verified organizations can post and manage events. Ask your organization to be verified by the Community Connect team.'
+                )
+              }
+            />
+          )}
           <MenuRow
             icon={Icons.privacy}
             label="Privacy Policy"
@@ -207,7 +241,11 @@ const styles = StyleSheet.create({
   },
   appearanceChips: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: Spacing.two,
+  },
+  flex: {
+    flex: 1,
   },
   menu: {
     gap: Spacing.half,

@@ -11,9 +11,9 @@ import { RsvpButtons } from '@/components/rsvp-buttons';
 import { ThemedText } from '@/components/themed-text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useEventActions } from '@/hooks/use-event-actions';
-import { useEvent } from '@/hooks/use-events';
+import { useEvent, useMyOrganizations } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
-import { formatEventDate, formatTimeRange } from '@/utils/format';
+import { formatEventDate, formatTimeRange, timeAgo } from '@/utils/format';
 
 function goBack() {
   if (router.canGoBack()) router.back();
@@ -26,6 +26,7 @@ export default function EventDetailsScreen() {
   const insets = useSafeAreaInsets();
   const { event, loading } = useEvent(id);
   const { rsvpFor } = useEventActions();
+  const { memberships } = useMyOrganizations();
 
   if (!event) {
     return (
@@ -44,6 +45,7 @@ export default function EventDetailsScreen() {
     );
   }
 
+  const canManage = memberships.some((m) => m.organizationId === event.organizationId);
   const goingCount = event.goingCount + (rsvpFor(event.id) === 'going' ? 1 : 0);
   const cancelled = event.status === 'cancelled';
   const { organization } = event;
@@ -92,6 +94,24 @@ export default function EventDetailsScreen() {
               {goingCount} going · {event.interestedCount} interested
             </ThemedText>
           </View>
+
+          {canManage && (
+            <View style={[styles.manageBox, { backgroundColor: theme.primarySoft }]}>
+              <View style={styles.flex}>
+                <ThemedText type="smallBold">You manage this event</ThemedText>
+                <ThemedText type="caption" themeColor="textSecondary">
+                  Last updated {timeAgo(event.updatedAt)}
+                </ThemedText>
+              </View>
+              <Button
+                label="Edit"
+                icon={Icons.edit}
+                variant="outline"
+                onPress={() => router.push({ pathname: '/organizer/[id]', params: { id: event.id } })}
+                style={styles.editButton}
+              />
+            </View>
+          )}
 
           <View style={[styles.card, { backgroundColor: theme.backgroundElement }]}>
             <InfoRow icon={Icons.calendar} text={formatEventDate(event.startAt)} />
@@ -193,6 +213,20 @@ const styles = StyleSheet.create({
     borderRadius: Radius.md,
   },
   noticeText: {
+    flex: 1,
+  },
+  manageBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.three,
+    padding: Spacing.three,
+    borderRadius: Radius.md,
+  },
+  editButton: {
+    flex: 0,
+    minWidth: 96,
+  },
+  flex: {
     flex: 1,
   },
   titleBlock: {

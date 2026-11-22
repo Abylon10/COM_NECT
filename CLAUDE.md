@@ -142,11 +142,17 @@ src/
     (tabs)/index.tsx      Browse: search, category chips, filter sheet, event list
     (tabs)/saved.tsx      My Events: Saved / Going / Interested
     (tabs)/profile.tsx    Profile (mock user, menu items are "coming soon")
-    event/[id].tsx        Event details, pushed over the tabs
+    event/[id].tsx        Event details, pushed over the tabs (Edit button for organizers)
+    organizer/index.tsx   Organizer Tools: the organization's events + New event
+    organizer/new.tsx     Create event form
+    organizer/[id].tsx    Edit event form (incl. postpone / cancel with a note)
+    notifications.tsx     In-app alerts for saved/RSVP'd events that changed
   data/events.ts          ALL data access + mock data (swap this for the backend)
-  hooks/use-events.ts     loaders that screens use (useEvents, useEvent, ...)
+  hooks/use-events.ts     loaders that screens use (useEvents, useEvent, ...); they
+                          re-load when the data layer signals a change
   hooks/use-event-actions.tsx  saved events + RSVPs shared across screens
-  components/             UI pieces (event-card, event-cover, filter-sheet, ...)
+  components/             UI pieces (event-card, event-cover, filter-sheet,
+                          event-form, date-time-pickers, bottom-sheet, ...)
   constants/theme.ts      colors (teal brand), spacing, radius
   utils/format.ts         date/time formatting (always Asia/Manila time)
 ```
@@ -173,6 +179,19 @@ src/
   Day / Night choice on Profile (`hooks/color-scheme-preference.ts`).
   Native uses `Appearance.setColorScheme`, so the tab bar and alerts
   follow too. The choice is in memory and resets to System on reload.
+- **Organizer tools (mock data):** two demo accounts, switched on Profile
+  (resident Ashley Reyes; organizer Carlo Mendoza, admin of the verified
+  SK Federation of Naval). Organizers create events and edit, postpone
+  or cancel them (a note is required). Permissions are checked in
+  `src/data/events.ts` (`PermissionError`), mirroring the planned
+  database rules, not only by hiding buttons.
+- **In-app alerts:** when an organizer changes an event's date, time,
+  place or status, everyone who saved or RSVP'd gets a notification
+  (bell icon with unread dot → Notifications screen). This stands in
+  for push notifications until `expo-notifications` is decided.
+- Date/time pickers are custom (calendar + 30-minute time slots), so no
+  native picker package is needed and they work on web too. Events are
+  single-day; times are entered in Philippine time.
 - Web preview tab bar (`app-tabs.web.tsx`) is updated too.
 - ESLint is set up (`npx expo lint`). Lint and typecheck pass.
 - Not yet tested on a real device after these changes. Check the native
@@ -180,13 +199,14 @@ src/
 
 ## Next steps
 
-1. Run on device (Expo Go) and check the tab bar, filter sheet, and
-   details screen.
+1. Run on device (Expo Go) and check the tab bar, filter sheet, details,
+   organizer form, date/time pickers and notifications.
 2. Get team confirmation on Supabase, then replace the mock data in
-   `src/data/events.ts` with real database calls and add the
-   resident/organizer auth.
-3. Organizer tools: create/edit event screens, shown only to members of
-   verified organizations.
-4. Decide notification triggers (saved event changed, upcoming reminder,
-   new event in a followed category).
+   `src/data/events.ts` with real database calls, add sign-in (replacing
+   the demo account switch) and row-level security matching the checks
+   in `createEvent` / `updateEvent`.
+3. Push notifications (`expo-notifications`) for the alerts that are
+   in-app only today; add reminders before saved events.
+4. Organizer extras: manage organization members, event photos,
+   multi-day events.
 5. Answer the open questions above (announcements, who verifies, area).
