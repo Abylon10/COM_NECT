@@ -4,7 +4,7 @@ import { AdminCard } from '@/components/admin-ui';
 import { EmptyState } from '@/components/empty-state';
 import { Icons } from '@/components/icon';
 import { LoadingAnimation } from '@/components/loading-animation';
-import { SettingsScreen } from '@/components/settings-screen';
+import { AdminShell } from '@/components/admin-shell';
 import { Tag } from '@/components/status-badge';
 import { ThemedText } from '@/components/themed-text';
 import { Spacing } from '@/constants/theme';
@@ -29,7 +29,7 @@ export default function AdminFeedbackScreen() {
   };
 
   return (
-    <SettingsScreen title="Feedback">
+    <AdminShell active="feedback" title="Feedback" subtitle="Problems, suggestions and questions from Help & Feedback">
       {loading ? (
         <LoadingAnimation label="Loading feedback…" scale={0.8} />
       ) : feedback.length === 0 ? (
@@ -56,7 +56,7 @@ export default function AdminFeedbackScreen() {
           ))}
         </View>
       )}
-    </SettingsScreen>
+    </AdminShell>
   );
 }
 

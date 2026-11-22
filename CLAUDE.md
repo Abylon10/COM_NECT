@@ -165,7 +165,8 @@ src/
   hooks/use-event-actions.tsx  saved events + RSVPs shared across screens
   components/             UI pieces (event-card, event-form, events-map(.web),
                           photo-picker, photo-gallery, loading-animation,
-                          startup-splash, bottom-sheet, confirm-dialog, ...)
+                          startup-splash, admin-shell, admin-table, admin-ui,
+                          bottom-sheet, confirm-dialog, ...)
   constants/              theme.ts (colors, spacing), app.ts (support email)
   utils/                  format.ts (dates in Asia/Manila), maps.ts (Biliran region,
                           open in Google Maps)
@@ -197,7 +198,16 @@ src/
   it; a mismatch shows the same "Incorrect email or password." as a wrong
   password, so the form doesn't reveal which emails are admins.
   Suspended accounts can't sign in.
-- **Admin console** (`src/app/admin/`, admins see only this): dashboard
+- **Admin console** (`src/app/admin/`, admins see only this). Layout
+  follows the "Safemind" admin reference: `AdminShell` has a sidebar
+  (Dashboard, Organizer requests, Reported events, User management,
+  Organizations, Feedback; Account: day/night, log out) that is always
+  visible at ≥900px wide and becomes a ☰ slide-out menu on phones.
+  `DataTable` (admin-table.tsx) gives checkboxes, sortable headers, a ⋮
+  row menu (popover) and pagination, and stacks rows on phones (<720px).
+  User Management has search, a Filters sheet (role, status), sort by
+  name / date joined, bulk suspend / reinstate and Contact (mailto).
+  Sidebar links use `router.replace`. Features: dashboard
   with counts, organizer applications (approve / needs revision / reject,
   note required for the last two; approval creates a verified org and
   makes the applicant an organizer), event reports grouped by event
@@ -205,7 +215,8 @@ src/
   organizations (verify / unverify; unverified orgs can't post or edit),
   users (search, suspend / reinstate) and Help & Feedback messages.
   Seeded with two pending applications (Maria Santos, Jomar Dela Cruz),
-  two reports and one feedback message. All checks live in
+  two reports, one feedback message and 12 extra sample residents (so the
+  user table pages). Profiles have `joinedAt`. All checks live in
   `data/admin.ts`, ready to become RLS on `profiles.role = 'admin'`.
 - **Profile & Settings:** tappable Saved/Going/Interested counts, Edit
   Profile (photo via expo-image-picker, name, email with a verification

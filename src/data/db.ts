@@ -321,6 +321,7 @@ export const users: Profile[] = [
     barangay: 'Caraycaray',
     location: 'Brgy. Caraycaray, Naval',
     role: 'resident',
+    joinedAt: at(-120, '10:00'),
   },
   {
     id: 'user-organizer',
@@ -331,6 +332,7 @@ export const users: Profile[] = [
     barangay: 'Larrazabal',
     location: 'Brgy. Larrazabal, Naval',
     role: 'organizer',
+    joinedAt: at(-200, '10:00'),
   },
   {
     id: 'user-resident-2',
@@ -341,6 +343,7 @@ export const users: Profile[] = [
     barangay: 'P.I. Garcia',
     location: 'Brgy. P.I. Garcia, Naval',
     role: 'resident',
+    joinedAt: at(-45, '10:00'),
   },
   {
     id: 'user-resident-3',
@@ -351,6 +354,7 @@ export const users: Profile[] = [
     barangay: '',
     location: 'Biliran',
     role: 'resident',
+    joinedAt: at(-12, '10:00'),
   },
   {
     // Admin console only. Signs in through the administrator toggle on Sign in.
@@ -362,8 +366,39 @@ export const users: Profile[] = [
     barangay: '',
     location: 'Naval',
     role: 'admin',
+    joinedAt: at(-365, '10:00'),
   },
 ];
+
+// More sample residents so the admin user table has pages to browse.
+const SAMPLE_RESIDENTS: [string, string, string][] = [
+  ['Angela Villanueva', 'Caraycaray', 'Naval'],
+  ['Mark Anthony Gerona', 'Atipolo', 'Naval'],
+  ['Kristine Joy Lagumbay', 'P.I. Garcia', 'Naval'],
+  ['Rhea Mae Cabigas', 'Poblacion', 'Almeria'],
+  ['John Paul Saldivar', 'Larrazabal', 'Naval'],
+  ['Princess Ann Dadula', 'Sto. Niño', 'Kawayan'],
+  ['Kenneth Ybañez', 'Poblacion', 'Caibiran'],
+  ['Shaira Montejo', 'Agpangi', 'Naval'],
+  ['Christian Pepito', 'Poblacion', 'Biliran'],
+  ['Lovely Rose Tabuan', 'Busali', 'Biliran'],
+  ['Jerome Abellana', 'Libertad', 'Naval'],
+  ['Nicole Ann Cabahug', 'Poblacion', 'Culaba'],
+];
+
+users.push(
+  ...SAMPLE_RESIDENTS.map(([displayName, barangay, municipality], i): Profile => ({
+    id: `user-sample-${i + 1}`,
+    displayName,
+    email: `${displayName.split(' ')[0].toLowerCase()}.${displayName.split(' ').at(-1)!.toLowerCase().replace('ñ', 'n')}@example.com`,
+    phone: '',
+    municipality,
+    barangay,
+    location: `Brgy. ${barangay}, ${municipality}`,
+    role: 'resident',
+    joinedAt: at(-(3 + i * 7), '14:00'),
+  }))
+);
 
 /** Demo password for the seeded accounts (mock auth only). */
 export const DEMO_PASSWORD = 'community123';

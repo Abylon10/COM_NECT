@@ -9,7 +9,8 @@ import { EmptyState } from '@/components/empty-state';
 import { TextField } from '@/components/form-field';
 import { Icon, Icons } from '@/components/icon';
 import { LoadingAnimation } from '@/components/loading-animation';
-import { SettingsScreen, SettingsSection } from '@/components/settings-screen';
+import { AdminShell } from '@/components/admin-shell';
+import { SettingsSection } from '@/components/settings-screen';
 import { Tag } from '@/components/status-badge';
 import { ThemedText } from '@/components/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
@@ -21,6 +22,11 @@ import { useTheme } from '@/hooks/use-theme';
 import { formatEventDate } from '@/utils/format';
 
 type Decision = Exclude<ApplicationStatus, 'pending'>;
+
+function back() {
+  if (router.canGoBack()) router.back();
+  else router.replace('/admin/applications');
+}
 
 const DECISION_TEXT: Record<Decision, { title: string; message: string; confirm: string }> = {
   approved: {
@@ -52,16 +58,16 @@ export default function AdminApplicationScreen() {
 
   if (loading) {
     return (
-      <SettingsScreen title="Application">
+      <AdminShell active="applications" title="Application" onBack={back}>
         <LoadingAnimation label="Loading application…" scale={0.8} />
-      </SettingsScreen>
+      </AdminShell>
     );
   }
   if (!app) {
     return (
-      <SettingsScreen title="Application">
+      <AdminShell active="applications" title="Application" onBack={back}>
         <EmptyState icon={Icons.info} title="Application not found" message="It may have been removed." />
-      </SettingsScreen>
+      </AdminShell>
     );
   }
 
@@ -81,7 +87,7 @@ export default function AdminApplicationScreen() {
     try {
       await reviewApplication(app.id, decision, note);
       setDecision(null);
-      router.back();
+      back();
     } catch (err) {
       setDecision(null);
       setError((err as Error).message);
@@ -89,8 +95,11 @@ export default function AdminApplicationScreen() {
   };
 
   return (
-    <SettingsScreen
-      title="Application"
+    <AdminShell
+      active="applications"
+      title={app.organizationName}
+      subtitle="Organizer request"
+      onBack={back}
       footer={
         pending ? (
           <>
@@ -111,7 +120,6 @@ export default function AdminApplicationScreen() {
         <View style={styles.row}>
           <Tag label={APPLICATION_STATUS_LABEL[app.status]} color={statusColor(app.status)} />
         </View>
-        <ThemedText type="title">{app.organizationName}</ThemedText>
         <ThemedText type="small" themeColor="textSecondary">
           {ORGANIZATION_TYPES.find((t) => t.id === app.organizationType)?.label}
         </ThemedText>
@@ -188,7 +196,7 @@ export default function AdminApplicationScreen() {
         onConfirm={confirm}
         onCancel={() => setDecision(null)}
       />
-    </SettingsScreen>
+    </AdminShell>
   );
 }
 

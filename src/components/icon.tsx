@@ -74,4 +74,9 @@ export const Icons = {
   chat: { ios: 'bubble.left', md: 'chat_bubble' },
   block: { ios: 'nosign', md: 'block' },
   trash: { ios: 'trash', md: 'delete' },
+  menu: { ios: 'line.3.horizontal', md: 'menu' },
+  more: { ios: 'ellipsis', md: 'more_vert' },
+  home: { ios: 'house', md: 'home' },
+  arrowDown: { ios: 'arrow.down', md: 'arrow_downward' },
+  arrowUp: { ios: 'arrow.up', md: 'arrow_upward' },
 } satisfies Record<string, IconName>;

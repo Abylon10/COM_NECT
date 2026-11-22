@@ -17,6 +17,7 @@ import {
   getUsers,
   type AdminStats,
   type ApplicationWithApplicant,
+  type UserQuery,
 } from '@/data/admin';
 import {
   getDataVersion,
@@ -215,8 +216,8 @@ export function useAdminOrganizations() {
   return { organizations: data, loading };
 }
 
-export function useAdminUsers(query: string) {
-  const { data, loading } = useLoader(`admin-users:${query}`, () => getUsers(query), []);
+export function useAdminUsers(query: UserQuery) {
+  const { data, loading } = useLoader(`admin-users:${JSON.stringify(query)}`, () => getUsers(query), []);
   return { users: data, loading };
 }
 

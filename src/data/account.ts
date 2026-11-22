@@ -156,6 +156,7 @@ export async function signUp(input: {
     barangay: '',
     location: 'Naval',
     role: 'resident',
+    joinedAt: new Date().toISOString(),
   });
   passwords.set(id, input.password);
   session.userId = id;

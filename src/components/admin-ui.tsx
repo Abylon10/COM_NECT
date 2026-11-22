@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
-import { Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, useWindowDimensions, View, type StyleProp, type ViewStyle } from 'react-native';
 
-import { Icon, Icons, type IconName } from '@/components/icon';
+import { Icon, type IconName } from '@/components/icon';
 import { ThemedText } from '@/components/themed-text';
 import { Radius, Spacing, type ThemeColor } from '@/constants/theme';
 import type { ApplicationStatus } from '@/data/types';
@@ -48,6 +48,9 @@ export function StatTile({
   onPress?: () => void;
 }) {
   const theme = useTheme();
+  const { width } = useWindowDimensions();
+  // 6 across on desktop, 3 on tablets, 2 on phones.
+  const basis = width >= 1200 ? '14%' : width >= 600 ? '30%' : '45%';
   const soft: Record<typeof tone, ThemeColor> = {
     primary: 'primarySoft',
     warning: 'warningSoft',
@@ -55,7 +58,7 @@ export function StatTile({
     success: 'primarySoft',
   };
   return (
-    <AdminCard onPress={onPress} style={styles.tile} accessibilityLabel={`${label}: ${value}`}>
+    <AdminCard onPress={onPress} style={[styles.tile, { flexBasis: basis }]} accessibilityLabel={`${label}: ${value}`}>
       <View style={[styles.tileIcon, { backgroundColor: theme[soft[tone]] }]}>
         <Icon name={icon} size={18} color={theme[tone]} />
       </View>
@@ -79,38 +82,6 @@ export function CountBadge({ count, tone = 'danger' }: { count: number; tone?: '
         {count}
       </ThemedText>
     </View>
-  );
-}
-
-/** Menu row on the dashboard: icon, label, description, count, chevron. */
-export function AdminMenuRow({
-  icon,
-  label,
-  description,
-  count = 0,
-  onPress,
-}: {
-  icon: IconName;
-  label: string;
-  description: string;
-  count?: number;
-  onPress: () => void;
-}) {
-  const theme = useTheme();
-  return (
-    <AdminCard onPress={onPress} style={styles.menuRow} accessibilityLabel={label}>
-      <View style={[styles.tileIcon, { backgroundColor: theme.primarySoft }]}>
-        <Icon name={icon} size={20} color={theme.primary} />
-      </View>
-      <View style={styles.flex}>
-        <ThemedText type="smallBold">{label}</ThemedText>
-        <ThemedText type="caption" themeColor="textSecondary">
-          {description}
-        </ThemedText>
-      </View>
-      <CountBadge count={count} />
-      <Icon name={Icons.chevronRight} size={16} color={theme.textSecondary} />
-    </AdminCard>
   );
 }
 
@@ -147,7 +118,6 @@ const styles = StyleSheet.create({
   },
   tile: {
     flexGrow: 1,
-    flexBasis: '45%',
     gap: Spacing.one,
   },
   tileIcon: {
@@ -171,15 +141,6 @@ const styles = StyleSheet.create({
   badgeText: {
     color: '#FFFFFF',
     fontWeight: '700',
-  },
-  menuRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.three,
-  },
-  flex: {
-    flex: 1,
-    gap: Spacing.half,
   },
   detail: {
     gap: Spacing.half,

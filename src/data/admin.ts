@@ -296,26 +296,46 @@ export type AccountStatus = 'active' | 'deactivated' | 'suspended';
 
 export type UserSummary = Profile & { status: AccountStatus; organizations: string[] };
 
-export async function getUsers(query = ''): Promise<UserSummary[]> {
+export type UserQuery = {
+  search?: string;
+  role?: 'all' | 'resident' | 'organizer';
+  status?: 'all' | AccountStatus;
+  /** Newest first by default. */
+  sort?: 'joined_desc' | 'joined_asc' | 'name';
+};
+
+function accountStatus(id: string): AccountStatus {
+  if (suspended.has(id)) return 'suspended';
+  if (deactivated.has(id)) return 'deactivated';
+  return 'active';
+}
+
+/** Users except administrators. With Supabase, search/filter/sort run in the query. */
+export async function getUsers(query: UserQuery = {}): Promise<UserSummary[]> {
   requireAdmin();
-  const q = query.trim().toLowerCase();
-  return users
+  const { search = '', role = 'all', status = 'all', sort = 'joined_desc' } = query;
+  const q = search.trim().toLowerCase();
+  const list = users
     .filter((u) => u.role !== 'admin')
+    .filter((u) => role === 'all' || u.role === role)
     .filter(
       (u) => !q || u.displayName.toLowerCase().includes(q) || u.email.toLowerCase().includes(q)
     )
     .map((u) => ({
       ...u,
-      status: (suspended.has(u.id)
-        ? 'suspended'
-        : deactivated.has(u.id)
-          ? 'deactivated'
-          : 'active') as AccountStatus,
+      status: accountStatus(u.id),
       organizations: memberships
         .filter((m) => m.userId === u.id)
         .map((m) => organizations.find((o) => o.id === m.organizationId)?.name ?? ''),
     }))
-    .sort((a, b) => a.displayName.localeCompare(b.displayName));
+    .filter((u) => status === 'all' || u.status === status);
+  return list.sort((a, b) =>
+    sort === 'name'
+      ? a.displayName.localeCompare(b.displayName)
+      : sort === 'joined_asc'
+        ? a.joinedAt.localeCompare(b.joinedAt)
+        : b.joinedAt.localeCompare(a.joinedAt)
+  );
 }
 
 /** Suspended accounts can't sign in until an administrator lifts it. */

@@ -65,6 +65,8 @@ export type Profile = {
   location: string;
   avatarUri?: string;
   role: UserRole;
+  /** When the account was created (ISO). */
+  joinedAt: string;
 };
 
 export type DateRange = 'any' | 'today' | 'week' | 'month';

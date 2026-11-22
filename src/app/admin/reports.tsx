@@ -9,7 +9,7 @@ import { EmptyState } from '@/components/empty-state';
 import { TextField } from '@/components/form-field';
 import { Icon, Icons } from '@/components/icon';
 import { LoadingAnimation } from '@/components/loading-animation';
-import { SettingsScreen } from '@/components/settings-screen';
+import { AdminShell } from '@/components/admin-shell';
 import { StatusBadge, Tag } from '@/components/status-badge';
 import { ThemedText } from '@/components/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
@@ -48,7 +48,7 @@ export default function AdminReportsScreen() {
   };
 
   return (
-    <SettingsScreen title="Event Reports">
+    <AdminShell active="reports" title="Reported Events" subtitle="Events residents flagged as wrong or inappropriate">
       <View style={styles.chips}>
         <Chip label="Open" selected={filter === 'open'} onPress={() => setFilter('open')} />
         <Chip label="Resolved" selected={filter === 'resolved'} onPress={() => setFilter('resolved')} />
@@ -105,7 +105,7 @@ export default function AdminReportsScreen() {
           error={error || undefined}
         />
       </ConfirmDialog>
-    </SettingsScreen>
+    </AdminShell>
   );
 }
 

@@ -16,6 +16,16 @@ export function formatEventDate(iso: string) {
   });
 }
 
+/** "Oct 10, 2026" */
+export function formatShortDate(iso: string) {
+  return new Date(iso).toLocaleDateString(LOCALE, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: TIME_ZONE,
+  });
+}
+
 /** "8:00 AM" */
 export function formatTime(iso: string) {
   return new Date(iso).toLocaleTimeString(LOCALE, {
