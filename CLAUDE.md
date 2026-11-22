@@ -62,9 +62,9 @@ changes that assume multiple people are committing at once.
 - **Build the UI with mock data first.** Screens don't depend on the
   backend decision, so work can continue while it's pending.
 - **Keep all data access in one place:** the modules in `src/data/`.
-  Screens call functions from that file and never know where data comes
-  from. Switching from mock data to Supabase, or another backend, should
-  only require changing that file.
+  Screens call their functions and never know where data comes from.
+  Switching from mock data to Supabase, or another backend, should only
+  require changing those modules.
 
 ## Code conventions (from the template)
 
