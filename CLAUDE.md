@@ -237,7 +237,11 @@ src/
   unlocks Organizer Tools.
 - **Map tab:** react-native-maps (Google Maps on Android, Apple Maps on
   iOS in Expo Go), centered on Biliran, pins for the user's upcoming Going
-  (teal) / Interested (amber) events. Coordinates are approximate
+  (teal) / Interested (amber) events. Demo events cover all 8 towns
+  (Almeria, Biliran, Cabucgayan, Caibiran, Culaba, Kawayan, Maripipi,
+  Naval); Ashley is Going/Interested in 10 of them. Two (Kawayan swim
+  clinic, Busali Falls trek) have no RSVP, so they show in Browse but not
+  on her map. Coordinates are approximate
   (`PLACES` / `MUNICIPALITIES` in `data/db.ts`). Web preview shows an
   embedded Google Map. Events also have "Open in Google Maps".
 - Organizers can post announcements to an event's followers and see
