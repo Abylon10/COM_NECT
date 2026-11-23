@@ -369,8 +369,10 @@ para('Residents often miss community events and announcements because informatio
      'is proposed for persistent accounts and data. System testing showed that the prototype meets its '
      'functional requirements: all 14 test cases passed after the defects found during testing were fixed, '
      'all 32 screens fit a 360-pixel phone screen, and the app ran on an Android phone with a working map of '
-     'events. A user evaluation with residents, organizers and IT experts, using a questionnaire based on '
-     'ISO/IEC 25010 and the System Usability Scale, is the next step of the study.', align='justify')
+     'events. In an initial online evaluation, seven residents rated the app "Agree" on four of five '
+     'ISO/IEC 25010 characteristics (overall mean 3.56) and "Neutral" on security (3.14); its System Usability '
+     'Scale score was 51.1, which is marginal. A larger evaluation with organizers and IT experts is '
+     'recommended.', align='justify')
 para('**Keywords:** community events, mobile application, React Native, verified organizers, usability')
 
 para('**Acknowledgment**')
@@ -619,7 +621,9 @@ lead('3.3 Respondents and Sampling.',
      'The planned respondents are at least 30 residents aged 18–20 from barangays of Biliran, at least 5 '
      'community organizers (e.g., SK, school and volunteer groups) and at least 5 IT practitioners or faculty. '
      'They will be chosen through purposive sampling: residents must match the target users, and organizers '
-     'must currently announce events. System testing (Part 4.2) was done by the developer.')
+     'must currently announce events. System testing (Part 4.2) was done by the developer. For this paper, an '
+     'initial round was run online on November 23, 2026: the questionnaire was shared as a Google Form with the '
+     'demo link of the app, and seven residents answered (Part 4.3).')
 lead('3.4 Data Gathering Instruments and Procedures.', '')
 numbered([
     'Short interviews with organizers about how they currently announce events and handle changes.',
@@ -677,7 +681,7 @@ screens([('s01-browse.png', 'Event list'), ('s18-details-photos.png', 'Event det
 screens([('s07-profile.png', 'Profile'), ('s19-admin-dashboard.png', 'Admin dashboard'),
          ('s20-admin-users.png', 'User management')])
 lead('4.2 System Testing Results.',
-     'The application was tested against its functional requirements before any user evaluation. Fourteen '
+     'The application was tested against its functional requirements before the user evaluation. Fourteen '
      'test cases covered every role and main feature (sign-in, search and filters, event details, save and '
      'RSVP, cancelled events, the map, photo cropping, the organizer workflow, admin moderation, phone layout, '
      'device testing and code quality). The results are summarized below; the full test cases and bug log are '
@@ -690,26 +694,71 @@ table(['Test area', 'What was checked', 'Result'], [
     ['Code quality', 'TypeScript type check and ESLint', 'No errors'],
 ], [1.7, 3.1, 1.7], cap='Summary of system testing results')
 figure('map-phone.jpg', 'Device test: the Map tab on an Android phone', max_h=4.6)
-lead('4.3 User Evaluation (Next Step).',
-     'The evaluation with respondents has not been conducted yet. It will use the questionnaire in Appendix B: '
-     'ISO/IEC 25010 items on a 5-point scale (functional suitability, usability, performance efficiency, '
-     'reliability and security) and the ten System Usability Scale items. Results will be summarized as '
-     'weighted means with the interpretation in Chapter 3, and as SUS scores compared with the benchmark of 68 '
-     '(Sauro, 2011).')
-table(['Characteristic', 'Instrument', 'Respondents', 'Status'], [
-    ['Functional suitability, usability, performance efficiency, reliability, security', 'ISO/IEC 25010 '
-     'questionnaire (Appendix B, Part 2)', 'Residents, organizers, IT experts', 'To be conducted'],
-    ['Perceived usability', 'System Usability Scale (Appendix B, Part 3)', 'All respondents', 'To be conducted'],
-], [2.4, 1.9, 1.3, 0.9], cap='Planned user evaluation', font_size=9)
+lead('4.3 User Evaluation Results.',
+     'The questionnaire in Appendix B was answered online through Google Forms by **7 respondents** on November '
+     '23, 2026. All were residents aged 18 to 24 (mean age 21.4); four live in Biliran (Naval 2, Culaba 1, '
+     'Biliran 1) and three outside the province. No organizers or IT experts answered in this round. Raw data and '
+     'computations are in Appendix C.')
+table(['Profile', 'Category', 'f', '%'], [
+    ['Respondent type', 'Resident', '7', '100.0'],
+    ['Age', '18–20', '2', '28.6'],
+    ['', '21–24', '5', '71.4'],
+    ['Municipality', 'Naval', '2', '28.6'],
+    ['', 'Culaba', '1', '14.3'],
+    ['', 'Biliran', '1', '14.3'],
+    ['', 'Outside Biliran', '3', '42.9'],
+], [1.8, 2.2, 1.0, 1.5], cap='Profile of respondents (N = 7)', font_size=9)
+para('**Software quality (ISO/IEC 25010).** The weighted mean of each item and characteristic is interpreted '
+     'with the scale in Chapter 3.', align='justify')
+table(['Characteristic / item', 'Mean', 'Interpretation'], [
+    ['**Functional suitability**', '**3.64**', '**Agree (Very Good)**'],
+    ['Q1. Lists the community events I need in one place', '3.71', 'Agree'],
+    ['Q2. Search and filters help me find events', '3.71', 'Agree'],
+    ['Q3. Event pages show complete details', '3.71', 'Agree'],
+    ['Q4. Saving and RSVP work as expected', '3.57', 'Agree'],
+    ['Q5. The map shows where my events are', '3.57', 'Agree'],
+    ['Q6. I am alerted when an event I follow changes', '3.57', 'Agree'],
+    ['**Usability**', '**3.52**', '**Agree (Very Good)**'],
+    ['Q7. The app is easy to learn', '3.43', 'Agree'],
+    ['Q8. The screens are clear and easy to read', '3.57', 'Agree'],
+    ['Q9. I can tell when an event is cancelled or postponed', '3.57', 'Agree'],
+    ['**Performance efficiency**', '**3.71**', '**Agree (Very Good)**'],
+    ['Q10. Screens open quickly', '3.71', 'Agree'],
+    ['Q11. Scrolling the event list is smooth', '3.71', 'Agree'],
+    ['**Reliability**', '**3.64**', '**Agree (Very Good)**'],
+    ['Q12. Works without crashing or errors', '3.71', 'Agree'],
+    ['Q13. Information stays correct after changes', '3.57', 'Agree'],
+    ['**Security**', '**3.14**', '**Neutral (Good)**'],
+    ['Q14. Only verified organizers can post events', '3.14', 'Neutral'],
+    ['Q15. I trust the app with my personal information', '3.14', 'Neutral'],
+    ['**Overall (Q1–Q15)**', '**3.56**', '**Agree (Very Good)**'],
+], [3.9, 0.8, 1.8], cap='ISO/IEC 25010 evaluation results (N = 7)', font_size=9)
+para('**System Usability Scale.** The mean SUS score is **51.1** (individual scores: six at 50.0 and one at '
+     '57.5). This is below the average of 68 (Sauro, 2011) and falls in the "marginal" range of 50–70 '
+     '(Bangor et al., 2008).', align='justify')
+para('**Reading the results.** Four of the seven respondents gave the same rating to all ten SUS items, '
+     'including the negatively worded statements (for example, "I found the system unnecessarily complex"), and '
+     'two others differed on only two items. On the SUS, '
+     'agreeing with a negative statement lowers the score, so a respondent who gives the same rating to all ten '
+     'items always scores exactly 50. The SUS result therefore reflects this answering pattern as much as the '
+     'app itself, and it should be read together with the ISO/IEC 25010 ratings, where the same respondents '
+     'agreed that the app is easy to learn and clear (Q7–Q9). Because the sample is small (N = 7), residents '
+     'only, and partly from outside Biliran, the results are initial and not generalizable.', align='justify')
 lead('4.4 Discussion.',
      'The testing results show that the prototype delivers the features that the problem analysis called for: '
      'one list of events from verified organizers, search and filters, complete event details, saving and RSVP, '
      'alerts for changes, and a map of each resident\'s events. This matches what related studies found useful: '
      'organizer-fed event apps that replace posters and social-media posts (Md Sharif, 2020; ALFarsi et al., '
      '2018), notifications for changes (Rivas, 2026; Jaictin et al., 2025) and map-based views of community '
-     'activities (Ganoe et al., 2010). Whether residents and organizers find it useful and easy to use (Davis, '
-     '1989) will be answered by the user evaluation; similar local systems were evaluated with the same ISO/IEC '
-     '25010 and SUS instruments (Chico et al., 2026; Jaictin et al., 2025).')
+     'activities (Ganoe et al., 2010). The initial evaluation supports this: residents agreed that the app '
+     'provides the events and details they need, performs well and is easy to use, which matches perceived '
+     'usefulness and ease of use in the Technology Acceptance Model (Davis, 1989). Security was the only '
+     'characteristic rated Neutral. Residents cannot see how organizers are verified, and the demo uses sample '
+     'accounts without a real backend, so trust in the app\'s handling of personal data is not yet established. '
+     'This supports connecting Supabase with row-level security and showing a clear verified badge and privacy '
+     'policy. The marginal SUS score, together with the uniform answering pattern, shows that the next '
+     'evaluation should be done in person with a guided task session, as in similar local systems evaluated '
+     'with the same instruments (Chico et al., 2026; Jaictin et al., 2025).')
 lead('4.5 Challenges Encountered.', '')
 table(['Challenge', 'How it was handled'], [
     ['Backend not yet decided by the team', 'Built the interface on mock data behind one data-access module, so '
@@ -722,6 +771,8 @@ table(['Challenge', 'How it was handled'], [
     ['Bugs that appeared only on Android phones (an animation crash, squeezed buttons)', 'Tested on a real '
      'phone with Expo Go, fixed the cause and wrote the rules in the code guide.'],
     ['Layouts that did not fit small phones', 'Checked all 32 screens automatically at 360 px wide.'],
+    ['Short time for the user evaluation', 'Ran the questionnaire online (Google Forms) with a demo link of the '
+                                           'app; reported the results as an initial round.'],
     ['Solo development while the team finalizes roles', 'Organized the code by purpose and wrote CODE_GUIDE.md '
                                                         'so members can find things and join quickly.'],
 ], [2.6, 3.9], cap='Challenges and solutions')
@@ -737,14 +788,19 @@ numbered([
     'recommendations, complete event details with photos, saving, RSVP, a map of the resident\'s events, in-app '
     'alerts, verified-organizer publishing and an admin console for verification and moderation.',
     '**Testing:** all 14 functional test cases passed after 10 defects were fixed; all screens fit a 360-pixel '
-    'phone screen; and the app runs on an Android phone. The user evaluation (ISO/IEC 25010 and SUS) is the '
-    'next step.',
+    'phone screen; and the app runs on an Android phone.',
+    '**User evaluation (initial, N = 7 residents):** overall ISO/IEC 25010 mean of 3.56 (Agree); functional '
+    'suitability 3.64, usability 3.52, performance efficiency 3.71 and reliability 3.64 (all Agree); security '
+    '3.14 (Neutral). The SUS score was 51.1 (marginal); four of the seven respondents gave the same rating to '
+    'all ten SUS items.',
 ])
 lead('5.2 Conclusions.',
      'A single mobile application can present community events in a consistent, searchable form that addresses '
      'the scattered-information problem identified in this study. The prototype meets its functional '
-     'requirements for all three roles, so it is ready for evaluation by residents, organizers and IT experts. '
-     'Its acceptance by users can only be concluded after that evaluation.')
+     'requirements for all three roles. In the initial evaluation, residents agreed that it is functionally '
+     'suitable, usable, efficient and reliable, but were neutral about security and trust, and the SUS score was '
+     'only marginal. The app is therefore acceptable as a prototype, while trust and usability need to be '
+     'strengthened and confirmed with a larger and more varied group of respondents before deployment.')
 lead('5.3 Recommendations.', '')
 bullets([
     '**For users and organizers:** pilot the app with a few SK councils and school organizations first, and '
@@ -753,8 +809,10 @@ bullets([
     '**For future developers:** connect the Supabase backend and push notifications; let organizers drop a map '
     'pin for the venue and manage members; add multi-day events and local-language support; measure performance '
     'on low-end phones.',
-    '**For the researchers:** conduct the user evaluation with the questionnaire in Appendix B before '
-    'deployment, then revise the app based on the results.',
+    '**For the researchers:** repeat the evaluation in person with at least 30 residents, 5 organizers and 5 IT '
+    'experts, guiding each through the task list; check for respondents who give the same rating to every item; '
+    'and improve trust by connecting the real backend, explaining organizer verification in the app and '
+    'publishing the final privacy policy.',
     '**For future researchers:** study long-term use and whether the app increases event attendance.',
 ])
 
@@ -888,8 +946,33 @@ table(['Statement', '1', '2', '3', '4', '5'], [[f'{i + 1}. {s}', '', '', '', '',
 para('**Part 4. Comments and suggestions:** ______________________________________________')
 
 h4('Appendix C: Raw Data and Computations')
-para('To be added after the user evaluation: the tally of responses per item and the weighted-mean and SUS '
-     'computations.')
+para('Responses collected through Google Forms on November 23, 2026 (R1–R7 = respondents). Ratings are 1–5.')
+RAW = {
+    'Q1': [4, 2, 4, 5, 2, 5, 4], 'Q2': [4, 2, 4, 5, 2, 5, 4], 'Q3': [4, 2, 4, 5, 2, 5, 4],
+    'Q4': [4, 2, 4, 5, 2, 4, 4], 'Q5': [4, 2, 4, 5, 2, 4, 4], 'Q6': [4, 2, 4, 5, 2, 4, 4],
+    'Q7': [4, 2, 4, 5, 1, 4, 4], 'Q8': [4, 2, 4, 5, 1, 5, 4], 'Q9': [4, 2, 4, 5, 1, 5, 4],
+    'Q10': [4, 2, 4, 5, 2, 5, 4], 'Q11': [4, 2, 4, 5, 2, 5, 4], 'Q12': [4, 2, 4, 5, 2, 5, 4],
+    'Q13': [4, 2, 4, 5, 1, 5, 4], 'Q14': [4, 2, 3, 5, 1, 3, 4], 'Q15': [4, 2, 3, 5, 1, 3, 4],
+    'SUS1': [4, 2, 4, 5, 1, 4, 4], 'SUS2': [2, 2, 3, 5, 1, 3, 4], 'SUS3': [2, 2, 3, 5, 1, 3, 4],
+    'SUS4': [4, 2, 4, 5, 1, 3, 4], 'SUS5': [4, 2, 4, 5, 1, 4, 4], 'SUS6': [4, 2, 4, 5, 1, 3, 4],
+    'SUS7': [4, 2, 4, 5, 1, 3, 4], 'SUS8': [4, 2, 4, 5, 1, 3, 4], 'SUS9': [4, 2, 4, 5, 1, 5, 4],
+    'SUS10': [4, 2, 4, 5, 1, 4, 4],
+}
+rows = []
+for item, v in RAW.items():
+    tally = [str(v.count(r)) for r in (5, 4, 3, 2, 1)]
+    rows.append([item] + [str(x) for x in v] + tally + [f'{sum(v) / len(v):.2f}'])
+table(['Item', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'f5', 'f4', 'f3', 'f2', 'f1', 'Mean'], rows,
+      [0.6] + [0.36] * 7 + [0.36] * 5 + [0.6], cap='Raw ratings, tally and weighted mean per item', font_size=8)
+sus_rows = []
+for k in range(7):
+    odd = sum(RAW[f'SUS{i}'][k] - 1 for i in (1, 3, 5, 7, 9))
+    even = sum(5 - RAW[f'SUS{i}'][k] for i in (2, 4, 6, 8, 10))
+    sus_rows.append([f'R{k + 1}', str(odd), str(even), f'{(odd + even) * 2.5:.1f}'])
+sus_rows.append(['**Mean**', '', '', '**51.1**'])
+table(['Respondent', 'Odd items (rating − 1)', 'Even items (5 − rating)', 'SUS = sum × 2.5'], sus_rows,
+      [1.4, 1.8, 1.8, 1.5], cap='SUS computation per respondent', font_size=9)
+para('Weighted mean example (Q1): (5 × 2 + 4 × 3 + 2 × 2) / 7 = 26 / 7 = 3.71.')
 
 h4('Appendix D: Sample System Screenshots')
 para('More screenshots are in the Software Documentation, Section 7 (User Manual), and Chapter 4.')
@@ -909,7 +992,8 @@ table(['Milestone', 'Target date', 'Status'], [
     ['Admin console', 'Nov 22, 2026', 'Done'],
     ['Device testing on Android', 'Nov 22, 2026', 'Done'],
     ['Documentation and presentation', 'Nov 23, 2026', 'Done'],
-    ['User evaluation (ISO/IEC 25010, SUS)', 'No fixed time', 'Planned'],
+    ['Initial user evaluation online (7 residents)', 'Nov 23, 2026', 'Done'],
+    ['Full user evaluation (residents, organizers, IT experts)', 'No fixed time', 'Planned'],
     ['Team decision on backend; Supabase setup', 'No fixed time', 'Pending'],
     ['Push notifications', 'No fixed time', 'Planned'],
 ], [3.2, 1.6, 1.7], cap='Project timeline')
