@@ -1,0 +1,31 @@
+flowchart LR
+  RES["Resident"]
+  ORG["Verified organizer"]
+  ADM["Administrator"]
+  subgraph P["Community Connect"]
+    P1(("1.0<br/>Browse, search<br/>& map"))
+    P2(("2.0<br/>Save, RSVP<br/>& report"))
+    P3(("3.0<br/>Manage events"))
+    P4(("4.0<br/>Send alerts"))
+    P5(("5.0<br/>Admin review"))
+  end
+  D1[("D1 Events")]
+  D2[("D2 Organizations")]
+  D3[("D3 Saves & RSVPs")]
+  D4[("D4 Applications,<br/>reports, users")]
+  RES -- "search, filters" --> P1
+  P1 -- "matching events, pins" --> RES
+  D1 --> P1
+  D2 --> P1
+  RES -- "save / RSVP / report" --> P2
+  P2 --> D3
+  P2 --> D4
+  ORG -- "event details, changes" --> P3
+  P3 --> D1
+  P3 -- "changed event" --> P4
+  D3 -- "followers" --> P4
+  P4 -- "alerts" --> RES
+  ADM -- "approve, remove, suspend" --> P5
+  D4 --> P5
+  P5 --> D2
+  P5 --> D1

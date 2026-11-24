@@ -5,7 +5,6 @@ import {
   getMyApplication,
   getMyOrganizations,
   getSessionKind,
-  isSignedIn,
 } from '@/data/account';
 import {
   getAdminOrganizations,
@@ -47,11 +46,6 @@ import { getNotifications, getNotificationSettings } from '@/data/notifications'
 /** Increases whenever data changes (an event is edited, the user signs in, ...). */
 export function useDataVersion() {
   return useSyncExternalStore(subscribeToChanges, getDataVersion, getDataVersion);
-}
-
-/** Whether someone is signed in. Synchronous so navigation never flashes. */
-export function useIsSignedIn() {
-  return useSyncExternalStore(subscribeToChanges, isSignedIn, isSignedIn);
 }
 
 /** 'signedOut' | 'user' | 'admin', synchronously, for the navigation guards. */

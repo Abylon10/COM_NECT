@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Button } from '@/components/button';
-import { TextField } from '@/components/form-field';
-import { Icon, Icons } from '@/components/icon';
-import { ThemedText } from '@/components/themed-text';
+import { Button } from '@/components/ui/button';
+import { TextField } from '@/components/ui/form-field';
+import { Icon, Icons } from '@/components/ui/icon';
+import { ThemedText } from '@/components/ui/themed-text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { DEMO_PASSWORD, signIn, type SignInMode } from '@/data/account';
 import { useTheme } from '@/hooks/use-theme';
@@ -20,6 +20,7 @@ const DEMO_ACCOUNTS: Record<SignInMode, { label: string; email: string }[]> = {
   admin: [{ label: 'Administrator', email: 'admin@example.com' }],
 };
 
+/** Sign in. Tapping the logo switches to administrator sign-in. Demo account buttons fill in the form. */
 export default function SignInScreen() {
   const theme = useTheme();
   const [email, setEmail] = useState('');

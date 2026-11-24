@@ -1,0 +1,23 @@
+flowchart LR
+  R(["👤 Resident"])
+  subgraph SYS["Community Connect"]
+    direction TB
+    U1(["Sign up / sign in"])
+    U2(["Browse, search and filter events"])
+    U3(["View event details and photos"])
+    U4(["Save and RSVP: Going / Interested"])
+    U5(["See my events on the Biliran map"])
+    U6(["Receive alerts and reminders"])
+    U7(["Edit profile, interests, settings"])
+    U8(["Report an event"])
+    U9(["Apply to become an organizer"])
+    U10(["Create / edit / postpone / cancel events"])
+    U11(["Post announcements to followers"])
+    U12(["Review organizer applications"])
+    U13(["Handle reports, verify organizations,<br/>suspend users"])
+  end
+  O(["👤 Verified organizer"])
+  A(["👤 Administrator"])
+  R --- U1 & U2 & U3 & U4 & U5 & U6 & U7 & U8 & U9
+  U10 & U11 --- O
+  U12 & U13 --- A

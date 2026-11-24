@@ -67,7 +67,8 @@ function withOrganization(event: CommunityEvent): EventWithOrganization {
   return { ...event, organization };
 }
 
-function hasEnded(event: CommunityEvent, now = Date.now()) {
+/** True once the event's end time has passed. */
+export function hasEnded(event: CommunityEvent, now = Date.now()) {
   return Date.parse(event.endAt) < now;
 }
 
@@ -138,11 +139,13 @@ export async function getRecommendedEvents(): Promise<EventWithOrganization[]> {
     .sort(byStart);
 }
 
+/** Upcoming events first (soonest first), then events that already ended. */
 export async function getEventsByIds(ids: string[]): Promise<EventWithOrganization[]> {
+  const now = Date.now();
   return events
     .filter((event) => ids.includes(event.id))
     .map(withOrganization)
-    .sort(byStart);
+    .sort((a, b) => Number(hasEnded(a, now)) - Number(hasEnded(b, now)) || byStart(a, b));
 }
 
 export async function getEvent(id: string): Promise<EventWithOrganization | null> {

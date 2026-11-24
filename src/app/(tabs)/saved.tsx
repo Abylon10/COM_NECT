@@ -2,12 +2,12 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Chip } from '@/components/chip';
-import { EmptyState } from '@/components/empty-state';
-import { EventCard } from '@/components/event-card';
-import { LoadingAnimation } from '@/components/loading-animation';
-import { Icons, type IconName } from '@/components/icon';
-import { ThemedText } from '@/components/themed-text';
+import { Chip } from '@/components/ui/chip';
+import { EmptyState } from '@/components/ui/empty-state';
+import { EventCard } from '@/components/events/event-card';
+import { LoadingAnimation } from '@/components/ui/loading-animation';
+import { Icons, type IconName } from '@/components/ui/icon';
+import { ThemedText } from '@/components/ui/themed-text';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useEventActions } from '@/hooks/use-event-actions';
 import { useEventsByIds } from '@/hooks/use-events';
@@ -33,6 +33,7 @@ const SEGMENTS: { id: Segment; label: string; empty: { icon: IconName; message: 
   },
 ];
 
+/** Saved tab ("My Events"): Saved / Going / Interested lists. The segment comes from the URL (?segment=going). */
 export default function SavedScreen() {
   const theme = useTheme();
   const { savedIds, rsvps } = useEventActions();

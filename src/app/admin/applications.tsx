@@ -2,13 +2,13 @@ import { router } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { AdminShell } from '@/components/admin-shell';
-import { DataTable, TableToolbar, type Column } from '@/components/admin-table';
-import { useApplicationStatusColor } from '@/components/admin-ui';
-import { Chip } from '@/components/chip';
-import { EmptyState } from '@/components/empty-state';
-import { Icon, Icons } from '@/components/icon';
-import { ThemedText } from '@/components/themed-text';
+import { AdminShell } from '@/components/admin/admin-shell';
+import { DataTable, TableToolbar, type Column } from '@/components/admin/admin-table';
+import { useApplicationStatusColor } from '@/components/admin/admin-ui';
+import { Chip } from '@/components/ui/chip';
+import { EmptyState } from '@/components/ui/empty-state';
+import { Icon, Icons } from '@/components/ui/icon';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Spacing } from '@/constants/theme';
 import { APPLICATION_STATUS_LABEL, ORGANIZATION_TYPES } from '@/data/account';
 import type { ApplicationWithApplicant } from '@/data/admin';
@@ -16,6 +16,7 @@ import { useApplications } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 import { formatShortDate } from '@/utils/format';
 
+/** Admin: list of organizer applications (Pending / All) with search. */
 export default function AdminApplicationsScreen() {
   const theme = useTheme();
   const [filter, setFilter] = useState<'pending' | 'all'>('pending');

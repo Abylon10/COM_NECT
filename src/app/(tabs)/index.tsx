@@ -2,26 +2,27 @@ import { useState } from 'react';
 import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { AppHeader } from '@/components/app-header';
-import { Chip } from '@/components/chip';
-import { EmptyState } from '@/components/empty-state';
-import { EventCard } from '@/components/event-card';
+import { AppHeader } from '@/components/layout/app-header';
+import { Chip } from '@/components/ui/chip';
+import { EmptyState } from '@/components/ui/empty-state';
+import { EventCard } from '@/components/events/event-card';
 import {
   countActiveFilters,
   DEFAULT_SHEET_FILTERS,
   FilterSheet,
   type SheetFilters,
-} from '@/components/filter-sheet';
-import { Icons } from '@/components/icon';
-import { LoadingAnimation } from '@/components/loading-animation';
-import { RecommendedStrip } from '@/components/recommended-strip';
-import { SearchBar } from '@/components/search-bar';
-import { ThemedText } from '@/components/themed-text';
+} from '@/components/events/filter-sheet';
+import { Icons } from '@/components/ui/icon';
+import { LoadingAnimation } from '@/components/ui/loading-animation';
+import { RecommendedStrip } from '@/components/events/recommended-strip';
+import { SearchBar } from '@/components/ui/search-bar';
+import { ThemedText } from '@/components/ui/themed-text';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { CATEGORIES, type Category } from '@/data/events';
 import { useEvents } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 
+/** Browse tab: "Recommended for you", search, category chips, filter sheet and the list of upcoming events. */
 export default function BrowseScreen() {
   const theme = useTheme();
   const [query, setQuery] = useState('');

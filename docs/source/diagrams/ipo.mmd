@@ -1,0 +1,26 @@
+flowchart LR
+  subgraph I["INPUT"]
+    direction TB
+    i1["Problems: scattered posts,<br/>missed updates, unverified sources"]
+    i2["Event details from<br/>verified organizers"]
+    i3["Resident needs: youth, educational,<br/>sports, cultural, volunteer events"]
+    i4["Hardware and software<br/>requirements"]
+    i1 ~~~ i2 ~~~ i3 ~~~ i4
+  end
+  subgraph PR["PROCESS"]
+    direction TB
+    p1["Requirements gathering<br/>(proposal, personas)"]
+    p2["Design: wireframes and<br/>hi-fi prototype (Figma)"]
+    p3["Iterative development<br/>(Expo / React Native)"]
+    p4["Testing and evaluation<br/>(ISO/IEC 25010, SUS)"]
+    p1 --> p2 --> p3 --> p4
+  end
+  subgraph OU["OUTPUT"]
+    direction TB
+    o1["Community Connect<br/>mobile application"]
+    o2["Centralized, searchable list<br/>of trusted local events"]
+    o3["Evaluation results"]
+    o1 ~~~ o2 ~~~ o3
+  end
+  I ==> PR ==> OU
+  OU -. "feedback" .-> PR

@@ -1,0 +1,12 @@
+sequenceDiagram
+  actor R as Resident
+  participant C as Event card (screen)
+  participant H as EventActionsProvider
+  participant D as Data layer (events.ts)
+  R->>C: Tap "Going"
+  C->>H: toggleRsvp(eventId, "going")
+  H->>H: Update RSVP state immediately
+  H-->>C: Re-render (button filled, count +1)
+  H->>D: setRsvp(eventId, "going")
+  D-->>H: saved (mock now, database later)
+  Note over C,H: Saved tab and Profile stats<br/>read the same shared state

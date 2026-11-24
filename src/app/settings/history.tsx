@@ -1,16 +1,17 @@
 import { router } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { EmptyState } from '@/components/empty-state';
-import { Icon, Icons } from '@/components/icon';
-import { SettingsScreen } from '@/components/settings-screen';
-import { Tag } from '@/components/status-badge';
-import { ThemedText } from '@/components/themed-text';
+import { EmptyState } from '@/components/ui/empty-state';
+import { Icon, Icons } from '@/components/ui/icon';
+import { SettingsScreen } from '@/components/ui/settings-screen';
+import { Tag } from '@/components/ui/status-badge';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import { useEventHistory } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 import { formatEventDate } from '@/utils/format';
 
+/** My Event History: past events the user saved or responded to. */
 export default function HistoryScreen() {
   const theme = useTheme();
   const { events, loading } = useEventHistory();

@@ -17,7 +17,7 @@ import {
 } from './db';
 import type { AppNotification, NotificationKind, NotificationSettings } from './types';
 
-export function settingsFor(userId: string): NotificationSettings {
+function settingsFor(userId: string): NotificationSettings {
   return notificationSettingsByUser.get(userId) ?? DEFAULT_NOTIFICATION_SETTINGS;
 }
 

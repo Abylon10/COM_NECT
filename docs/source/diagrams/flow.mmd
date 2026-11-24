@@ -1,0 +1,15 @@
+flowchart TD
+  S([Open app]) --> B[Browse tab: list of upcoming events]
+  B --> Q{Looking for<br/>something specific?}
+  Q -- Yes --> F[Search and/or set filters:<br/>category, date, location, organizer]
+  F --> B
+  Q -- No --> T[Tap an event card]
+  T --> D[Event details: date, time, venue,<br/>organizer, how to join]
+  D --> C{Event cancelled?}
+  C -- Yes --> N[Read organizer's notice<br/>RSVP disabled]
+  C -- No --> A{Action}
+  A -- Save --> SV[Bookmark added → Saved tab]
+  A -- Interested / Going --> RV[RSVP recorded → Saved tab filters]
+  SV --> E([Done])
+  RV --> E
+  N --> E

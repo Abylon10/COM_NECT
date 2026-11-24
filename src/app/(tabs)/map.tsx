@@ -3,10 +3,10 @@ import { useRef, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Chip } from '@/components/chip';
-import { EventsMap, type EventsMapHandle, type MapEvent } from '@/components/events-map';
-import { Icon, Icons } from '@/components/icon';
-import { ThemedText } from '@/components/themed-text';
+import { Chip } from '@/components/ui/chip';
+import { EventsMap, type EventsMapHandle, type MapEvent } from '@/components/events/events-map';
+import { Icon, Icons } from '@/components/ui/icon';
+import { ThemedText } from '@/components/ui/themed-text';
 import { BottomTabInset, Radius, Spacing } from '@/constants/theme';
 import type { RsvpResponse } from '@/data/types';
 import { useMyMapEvents } from '@/hooks/use-events';
@@ -16,6 +16,7 @@ import { openInGoogleMaps } from '@/utils/maps';
 
 type Filter = 'all' | RsvpResponse;
 
+/** Map tab: Biliran map with pins for the user's upcoming Going (teal) and Interested (amber) events. */
 export default function MapScreen() {
   const theme = useTheme();
   const { events, loading } = useMyMapEvents();

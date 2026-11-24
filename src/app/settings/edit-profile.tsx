@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Avatar } from '@/components/avatar';
-import { Button } from '@/components/button';
-import { Chip } from '@/components/chip';
-import { TextField } from '@/components/form-field';
-import { Icon, Icons } from '@/components/icon';
-import { useCroppedPhotoPicker } from '@/components/photo-cropper';
-import { SettingsScreen, SettingsSection } from '@/components/settings-screen';
-import { ThemedText } from '@/components/themed-text';
+import { Avatar } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Chip } from '@/components/ui/chip';
+import { TextField } from '@/components/ui/form-field';
+import { Icon, Icons } from '@/components/ui/icon';
+import { useCroppedPhotoPicker } from '@/components/photos/photo-cropper';
+import { SettingsScreen, SettingsSection } from '@/components/ui/settings-screen';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import {
   cancelPendingEmail,
@@ -22,6 +22,7 @@ import { ValidationError } from '@/data/types';
 import { useCurrentUser } from '@/hooks/use-events';
 import { useTheme } from '@/hooks/use-theme';
 
+/** Edit Profile: photo (cropped in the app), name, email (with verification), contact number, municipality/barangay. */
 export default function EditProfileScreen() {
   const user = useCurrentUser();
   // Mount the form once the profile has loaded so fields start filled in.

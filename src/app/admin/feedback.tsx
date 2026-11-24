@@ -1,12 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 
-import { AdminCard } from '@/components/admin-ui';
-import { EmptyState } from '@/components/empty-state';
-import { Icons } from '@/components/icon';
-import { LoadingAnimation } from '@/components/loading-animation';
-import { AdminShell } from '@/components/admin-shell';
-import { Tag } from '@/components/status-badge';
-import { ThemedText } from '@/components/themed-text';
+import { AdminCard } from '@/components/admin/admin-ui';
+import { EmptyState } from '@/components/ui/empty-state';
+import { Icons } from '@/components/ui/icon';
+import { LoadingAnimation } from '@/components/ui/loading-animation';
+import { AdminShell } from '@/components/admin/admin-shell';
+import { Tag } from '@/components/ui/status-badge';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Spacing } from '@/constants/theme';
 import type { FeedbackKind } from '@/data/types';
 import { useFeedback } from '@/hooks/use-events';
@@ -19,6 +19,7 @@ const KIND_LABEL: Record<FeedbackKind, string> = {
   question: 'Question',
 };
 
+/** Admin: messages sent from Help & Feedback. */
 export default function AdminFeedbackScreen() {
   const theme = useTheme();
   const { feedback, loading } = useFeedback();

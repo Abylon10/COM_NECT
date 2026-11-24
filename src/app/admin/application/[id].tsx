@@ -2,17 +2,17 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Linking, Pressable, StyleSheet, View } from 'react-native';
 
-import { AdminCard, DetailLine, useApplicationStatusColor } from '@/components/admin-ui';
-import { Button } from '@/components/button';
-import { ConfirmDialog } from '@/components/confirm-dialog';
-import { EmptyState } from '@/components/empty-state';
-import { TextField } from '@/components/form-field';
-import { Icon, Icons } from '@/components/icon';
-import { LoadingAnimation } from '@/components/loading-animation';
-import { AdminShell } from '@/components/admin-shell';
-import { SettingsSection } from '@/components/settings-screen';
-import { Tag } from '@/components/status-badge';
-import { ThemedText } from '@/components/themed-text';
+import { AdminCard, DetailLine, useApplicationStatusColor } from '@/components/admin/admin-ui';
+import { Button } from '@/components/ui/button';
+import { ConfirmDialog } from '@/components/ui/confirm-dialog';
+import { EmptyState } from '@/components/ui/empty-state';
+import { TextField } from '@/components/ui/form-field';
+import { Icon, Icons } from '@/components/ui/icon';
+import { LoadingAnimation } from '@/components/ui/loading-animation';
+import { AdminShell } from '@/components/admin/admin-shell';
+import { SettingsSection } from '@/components/ui/settings-screen';
+import { Tag } from '@/components/ui/status-badge';
+import { ThemedText } from '@/components/ui/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import { APPLICATION_STATUS_LABEL, ORGANIZATION_TYPES } from '@/data/account';
 import { reviewApplication } from '@/data/admin';
@@ -47,6 +47,7 @@ const DECISION_TEXT: Record<Decision, { title: string; message: string; confirm:
   },
 };
 
+/** Admin: review one organizer application (approve / needs revision / reject). */
 export default function AdminApplicationScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const theme = useTheme();
