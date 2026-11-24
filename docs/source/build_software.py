@@ -332,9 +332,9 @@ PH = lambda s: f'[[{s}]]'  # noqa: E731
 # ===========================================================================
 h1('Community Connect: Software Documentation')
 para('Application Development and Emerging Technologies · BSCS-3C · Group 7')
+para('School of Technology and Computer Studies (STCS) · Biliran Province State University')
 para('This document describes the software itself, for developers, testers and users. The academic paper '
-     '(Chapters 1–5) is a separate document. Text highlighted in yellow and [in brackets] is still to be '
-     'filled in by the team.', italic=False)
+     '(Chapters 1–5) is a separate document.', italic=False)
 para('**Table of Contents**')
 toc('TOC \\o "1-4" \\h \\z \\u', 'Right-click here and choose Update Field to build the table of contents.')
 page_break()
@@ -347,19 +347,20 @@ table(['Field', 'Details'], [
     ['Version', '0.9.0 (functional prototype: resident, organizer and administrator features running on '
                 'mock data; backend pending team approval)'],
     ['Team members and roles', [
-        'Monsales, Justin Dave: Lead developer (mobile app, UI/UX, repository)',
-        'Salundaguit, Henjiel A.: ' + PH('role'),
-        'Ucag, Jennifer N.: ' + PH('role'),
-        'Bohol, Philip: ' + PH('role'),
-        'Doloeras, Patricia: ' + PH('role'),
-        'Pedida, Toroi: ' + PH('role'),
+        'Monsales, Justin Dave A.: Lead developer (mobile app, UI/UX, repository)',
+        'Salundaguit, Henjiel A.: Developer, documentation and testing',
+        'Pedida, Caster Troy F.: Developer, documentation and testing',
+        'Bohol, John Philip C.: Documentation and testing',
+        'Doloeras, Patricia: Member',
     ]],
     ['Course / Section', 'Application Development and Emerging Technologies, BSCS-3C'],
+    ['Department', 'School of Technology and Computer Studies (STCS), Biliran Province State University'],
     ['Instructor', 'Mary Angel Palma'],
     ['Repository link', 'https://github.com/Abylon10/COM_NECT'],
-    ['Live demo link', 'Not deployed yet. The app runs on phones through Expo Go during '
-                       'development (see Section 6).'],
-    ['Date', 'November 22, 2026'],
+    ['Live demo link', ['https://claude.ai/artifact/4b1HvyLVNMfcAx8McF8ekd',
+                        'Web demo with sample data; changes reset on reload. The full app runs on phones '
+                        'through Expo Go (see Section 6).']],
+    ['Date', 'November 24, 2026'],
 ], [2.0, 4.5])
 
 h3('2. Overview')

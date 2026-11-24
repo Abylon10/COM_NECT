@@ -16,7 +16,7 @@ To rebuild: render the diagrams and screenshots into a figures folder, then
 ```bash
 python3 build_software.py course-template.docx <figures-folder> software.docx
 python3 build_paper.py course-template.docx <figures-folder> paper.docx
-soffice --headless --convert-to pdf software.docx paper.docx
+python3 to_pdf.py software.docx paper.docx   # builds the table of contents, then exports PDF
 ```
 
 Easiest option: ask Claude Code to "update the documentation", and it will

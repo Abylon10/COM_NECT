@@ -335,15 +335,16 @@ for txt, sz, b in [('COMMUNITY CONNECT', 20, True),
                    ('A Community Events and Announcement Application', 14, False),
                    ('', 11, False),
                    ('A Project Presented to', 11, False),
-                   (PH('Department / College, School name'), 11, False),
+                   ('School of Technology and Computer Studies (STCS)', 11, False),
+                   ('Biliran Province State University', 11, False),
                    ('', 11, False),
                    ('In Partial Fulfillment of the Requirements in', 11, False),
                    ('Application Development and Emerging Technologies', 11, True),
                    ('', 11, False),
                    ('By', 11, False),
-                   ('Salundaguit, Henjiel A.', 11, False), ('Ucag, Jennifer N.', 11, False),
-                   ('Monsales, Justin Dave', 11, False), ('Bohol, Philip', 11, False),
-                   ('Doloeras, Patricia', 11, False), ('Pedida, Toroi', 11, False),
+                   ('Bohol, John Philip C.', 11, False), ('Doloeras, Patricia', 11, False),
+                   ('Monsales, Justin Dave A.', 11, False), ('Pedida, Caster Troy F.', 11, False),
+                   ('Salundaguit, Henjiel A.', 11, False),
                    ('', 11, False),
                    ('BSCS-3C', 11, False),
                    ('Instructor: Mary Angel Palma', 11, False),
@@ -894,7 +895,7 @@ table(['Appendix', 'Content'], [
 
 h4('Appendix A: Informed Consent Form')
 para('**Title of study:** Community Connect: A Community Events and Announcement Application')
-para('**Researchers:** BSCS-3C Group 7, ' + PH('school name'))
+para('**Researchers:** BSCS-3C Group 7, STCS, Biliran Province State University')
 para('You are invited to try the Community Connect mobile application and answer a short questionnaire. The '
      'session takes about 20 minutes. You will perform simple tasks (find an event, filter, open details, save '
      'and RSVP) and then rate the application. There are no known risks. Participation is voluntary; you may '
@@ -999,9 +1000,8 @@ table(['Milestone', 'Target date', 'Status'], [
 ], [3.2, 1.6, 1.7], cap='Project timeline')
 
 h4('Appendix F: Curriculum Vitae of Researchers')
-for name in ['Salundaguit, Henjiel A.', 'Ucag, Jennifer N.', 'Monsales, Justin Dave', 'Bohol, Philip',
-             'Doloeras, Patricia', 'Pedida, Toroi']:
-    para(f'**{name}**: ' + PH('contact, education, skills, photo'))
+para('The curriculum vitae of the researchers follow on the next pages, in this order: Bohol, John Philip C.; '
+     'Monsales, Justin Dave A.; Pedida, Caster Troy F.; Salundaguit, Henjiel A.')
 
 doc.save(OUT)
 print('figures', counters['Figure'], 'tables', counters['Table'])

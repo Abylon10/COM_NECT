@@ -6,8 +6,10 @@ Mary Angel Palma).
 
 ## Team
 
-Salundaguit, Henjiel A. · Ucag, Jennifer N. · Monsales, Justin Dave ·
-Bohol, Philip · Doloeras, Patricia · Pedida, Toroi
+Bohol, John Philip C. · Doloeras, Patricia · Monsales, Justin Dave A. ·
+Pedida, Caster Troy F. · Salundaguit, Henjiel A. (Ucag moved to another
+group.) School of Technology and Computer Studies (STCS), Biliran Province
+State University.
 
 **Current setup: Justin Dave is building the app solo for now.** The rest
 of the team will pull the repo once the base screens are ready. Avoid
